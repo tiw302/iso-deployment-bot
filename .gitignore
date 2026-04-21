@@ -1,0 +1,17 @@
+temp/
+*.aria2
+*.iso
+__pycache__/
+
+
+# Editor-specific files (Vim/Neovim)
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]uv[a-z]
+[._]sw?
+[._]*.un~
+undo/
+.netrwhist
+*~

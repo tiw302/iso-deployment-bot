@@ -1,0 +1,26 @@
+name: Daily ISO Sync Automation
+
+on:
+  schedule:
+    - cron: '0 17 * * *' # รันตอนเที่ยงคืนไทย (17:00 UTC) ทุกวัน
+  workflow_dispatch:     # ปุ่มกดรันเองหน้า Actions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y aria2 rclone
+
+      - name: Setup Rclone Config
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.RCLONE_CONF_DATA }}" > ~/.config/rclone/rclone.conf
+
+      - name: Run Mirror Script
+        run: python3 sync_script.py
