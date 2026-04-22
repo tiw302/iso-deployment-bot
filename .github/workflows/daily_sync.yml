@@ -1,4 +1,4 @@
-name: ISO Ultimate Library 100TB
+name: ISO Ultimate 100TB Library
 
 on:
   schedule:
@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Free Up Space
+      - name: Maximize Runner Space
         uses: jlumbroso/free-disk-space@main
         with:
           tool-cache: true
@@ -20,18 +20,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Aria2 & Rclone
+      - name: Install Tools
         run: |
           sudo apt-get update
           sudo apt-get install -y aria2
           curl https://rclone.org/install.sh | sudo bash
 
-      - name: Setup Rclone
+      - name: Setup Rclone Config
         env:
-          MY_CONF: ${{ secrets.RCLONE_CONF_DATA }}
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF_DATA }}
         run: |
           mkdir -p ~/.config/rclone
-          printf "%s" "$MY_CONF" > ~/.config/rclone/rclone.conf
+          printf "%s" "$RCLONE_CONF" > ~/.config/rclone/rclone.conf
 
       - name: Run Massive Sync
         run: python3 sync_script.py
