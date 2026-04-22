@@ -3,7 +3,7 @@ import subprocess
 from urllib.parse import urlparse
 
 c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
-remote_name = "gdrive" # ต้องตรงกับชื่อใน [ ] ของ rclone.conf
+remote_name = "gdrive"
 remote_folder = "os-deployment-library"
 
 def dl(url, category):
@@ -19,7 +19,6 @@ def dl(url, category):
 
     print(f"\n{c}[ check  ]{w} {name}")
     
-    # ตรวจสอบไฟล์ซ้ำบน Google Drive
     check = subprocess.run(["rclone", "lsf", remote_path], capture_output=True)
     if check.returncode == 0 and name in check.stdout.decode():
         print(f"{y}[ skip   ]{w} already in 100TB library.")
