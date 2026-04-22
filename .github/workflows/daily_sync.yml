@@ -1,3 +1,5 @@
+# Updated at 2026-04-22
+
 name: ISO Ultimate 100TB Library
 
 on:
@@ -28,10 +30,10 @@ jobs:
 
       - name: Setup Rclone Config
         env:
-          RCLONE_CONF_BASE64: ${{ secrets.RCLONE_CONF_DATA }}
+          CONF_BASE64: ${{ secrets.RCLONE_CONF_DATA }}
         run: |
           mkdir -p ~/.config/rclone
-          echo "$RCLONE_CONF_BASE64" | base64 -d > ~/.config/rclone/rclone.conf
+          echo "$CONF_BASE64" | base64 -d > ~/.config/rclone/rclone.conf
 
       - name: Run Massive Sync
         run: python3 sync_script.py
