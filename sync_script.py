@@ -3,6 +3,7 @@
 import os
 import subprocess
 from urllib.parse import urlparse
+import shutil
 
 c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
 remote_name = "gdrive"
@@ -22,12 +23,9 @@ SINGLE_STREAM_HOSTS = [
     "software-static.download.prss.microsoft.com",
 ]
 
-
 def is_single_stream(url):
-    from urllib.parse import urlparse
     host = urlparse(url).netloc.lower()
     return any(h in host for h in SINGLE_STREAM_HOSTS)
-
 
 def dl(url, category):
     parsed_url = urlparse(url)
@@ -41,6 +39,7 @@ def dl(url, category):
 
     local_dir = f"./temp/{category}"
     os.makedirs(local_dir, exist_ok=True)
+    local_file = os.path.join(local_dir, name)
     remote_path = f"{remote_name}:{remote_folder}/{category}/{name}"
 
     print(f"\n{c}[ check  ]{w} {name}")
@@ -76,17 +75,24 @@ def dl(url, category):
     try:
         subprocess.run(cmd, check=True)
         print(f"{c}[ sync   ]{w} uploading...")
+        
         subprocess.run([
-            "rclone", "copy", "-P",
-            f"{local_dir}/{name}",
+            "rclone", "move", "-P",
+            local_file,
             f"{remote_name}:{remote_folder}/{category}/"
         ], check=True)
+        
         print(f"{g}[ ok     ]{w} {name} secured.")
-        if os.path.exists(f"{local_dir}/{name}"):
-            os.remove(f"{local_dir}/{name}")
+        
     except Exception as e:
         print(f"{r}[ error  ]{w} {name}: {e}")
-
+    finally:
+        if os.path.exists(local_file):
+            os.remove(local_file)
+        try:
+            os.rmdir(local_dir)
+        except:
+            pass
 
 db = {
 

@@ -1,15 +1,14 @@
 # Updated at 2026-04-22
 
-name: ISO Ultimate 100TB Library
-
 on:
   schedule:
     - cron: '0 17 * * *'
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-xl
     steps:
       - name: Maximize Runner Space
         uses: jlumbroso/free-disk-space@main
@@ -18,6 +17,11 @@ jobs:
           android: true
           dotnet: true
           docker-images: true
+          large-packages: true
+          swap-storage: true
+
+      - name: Check Disk Before
+        run: df -h /
 
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -41,10 +45,16 @@ jobs:
               raw_data = base64.b64decode(os.environ["CONF_BASE64"])
               with open(conf_path, "wb") as f:
                   f.write(raw_data)
-              print("[S] Success: rclone.conf has been restored perfectly!")
+              print("[S] Success: rclone.conf restored!")
           except Exception as e:
               print(f"[x] Error: {e}")
               exit(1)
 
-      - name: Run Mirror Script
+      - name: Run Mirror Script (Streaming Mode)
         run: python3 sync_script.py
+
+      - name: Cleanup Temp
+        if: always()
+        run: |
+          rm -rf /tmp/iso_sync_* 2>/dev/null || true
+          df -h /
