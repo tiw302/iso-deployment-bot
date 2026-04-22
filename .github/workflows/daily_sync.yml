@@ -38,10 +38,10 @@ jobs:
           os.makedirs(os.path.dirname(conf_path), exist_ok=True)
           
           raw_data = base64.b64decode(os.environ["CONF_BASE64"])
+          
           with open(conf_path, "wb") as f:
               f.write(raw_data)
           
-          print("Rclone config has been secured and restored.")
-
+          print("Success: rclone.conf is ready!")
       - name: Run Mirror Script
         run: python3 sync_script.py
