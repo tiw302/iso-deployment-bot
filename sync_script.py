@@ -2,19 +2,17 @@ import os
 import subprocess
 from urllib.parse import urlparse
 
-try:
-    from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
-except ImportError:
-    print("\033[91m[ error ]\033[0m playwright missing. run: pip install playwright")
-    exit(1)
-
+# terminal colors
 c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
+
+# configure your remote rclone destination here
 remote_base = "gdrive:os-deployment-library"
 
 def dl(url, category):
     # strip query strings to ensure clean filename
     parsed_url = urlparse(url)
     name = os.path.basename(parsed_url.path)
+    
     if not name.endswith('.iso'):
         name += '.iso'
         
@@ -22,15 +20,17 @@ def dl(url, category):
     os.makedirs(local_dir, exist_ok=True)
     remote_path = f"{remote_base}/{category}/{name}"
 
-    print(f"{c}[ check  ]{w} {name}")
+    print(f"\n{c}[ check  ]{w} {name}")
     
-    # skip if file already exists on remote
+    # query rclone to prevent redundant downloads
     check = subprocess.run(["rclone", "lsf", remote_path], capture_output=True)
     if check.returncode == 0 and name in check.stdout.decode():
-        print(f"{y}[ skip   ]{w} {name}")
+        print(f"{y}[ skip   ]{w} {name} already exists on remote.")
         return
 
-    print(f"{c}[ fetch  ]{w} {name}...")
+    print(f"{c}[ fetch  ]{w} downloading payload...")
+    
+    # --file-allocation=none prevents disk lockups on massive files
     cmd = [
         "aria2c", "-x", "16", "-s", "16", "--retry-wait=5", "-m=0",
         "--auto-file-renaming=false", "--file-allocation=none", 
@@ -39,46 +39,18 @@ def dl(url, category):
     
     try:
         subprocess.run(cmd, check=True)
-        print(f"{c}[ upload ]{w} {name}...")
-        subprocess.run(["rclone", "copy", f"{local_dir}/{name}", f"{remote_base}/{category}/"], check=True)
-        print(f"{g}[ ok     ]{w} {name}")
-        os.remove(f"{local_dir}/{name}")
-    except Exception as e:
-        print(f"{r}[ error  ]{w} {name}: {e}")
-
-def scrape_windows_eval():
-    print(f"{c}[ scrape ]{w} starting headless browser...")
-    links = []
-    
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(accept_downloads=True)
-        page = context.new_page()
-
-        # intercept network requests to catch generated tokens
-        def handle_request(request):
-            if ".iso" in request.url and "download" in request.url.lower():
-                links.append(request.url)
+        print(f"{c}[ sync   ]{w} uploading {name} to cloud...")
         
-        page.on("request", handle_request)
-
-        try:
-            page.goto("https://www.microsoft.com/en-us/evalcenter/evaluate-windows-11-enterprise", timeout=60000)
-            page.wait_for_load_state("networkidle")
-            
-            # replace this with actual form submission logic based on current dom
-            # page.click("button:has-text('download')")
-            
-            # wait for token generation requests to fire
-            page.wait_for_timeout(5000) 
-
-        except Exception as e:
-            print(f"{r}[ error  ]{w} scrape failed: {e}")
-        finally:
-            browser.close()
-            
-    # remove duplicate urls
-    return list(set(links))
+        subprocess.run(["rclone", "copy", f"{local_dir}/{name}", f"{remote_base}/{category}/"], check=True)
+        print(f"{g}[ ok     ]{w} {name} synced successfully.")
+        
+        # cleanup local storage to free up space
+        os.remove(f"{local_dir}/{name}")
+        
+    except Exception as e:
+        print(f"{r}[ error  ]{w} {name} process failed: {e}")
+        if os.path.exists(f"{local_dir}/{name}"):
+            os.remove(f"{local_dir}/{name}")
 
 db = {
     "linux-distros/arch-based": [
@@ -130,14 +102,10 @@ db = {
 }
 
 if __name__ == "__main__":
-    print(f"{c}[ system ]{w} init sync protocol...")
+    print(f"\n{c}[ system ]{w} initializing sync protocol...")
     
     for cat, urls in db.items():
         for url in urls: 
             dl(url, cat)
             
-    win_links = scrape_windows_eval()
-    for link in win_links:
-        dl(link, "windows-evaluation")
-        
-    print(f"{g}[ system ]{w} sync completed")
+    print(f"\n{g}[ system ]{w} sync completed.")
