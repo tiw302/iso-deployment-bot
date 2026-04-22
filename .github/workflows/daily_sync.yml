@@ -1,16 +1,15 @@
-name: Daily ISO Sync Automation
+name: ISO Library Master Sync
 
 on:
   schedule:
-    - cron: '0 17 * * *' # midnight bkk
+    - cron: '0 17 * * *'
   workflow_dispatch:
 
 jobs:
-  build:
+  sync-process:
     runs-on: ubuntu-latest
     steps:
-      # maximize space to handle large isos
-      - name: Free Disk Space
+      - name: Maximize Runner Space
         uses: jlumbroso/free-disk-space@main
         with:
           tool-cache: true
@@ -18,21 +17,22 @@ jobs:
           dotnet: true
           docker-images: true
 
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Tools
+      - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y aria2
           curl https://rclone.org/install.sh | sudo bash
 
-      - name: Setup Rclone Config
+      - name: Configure Rclone
         env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF_DATA }}
+          MY_RCLONE_CONF: ${{ secrets.RCLONE_CONF_DATA }}
         run: |
           mkdir -p ~/.config/rclone
-          echo "$RCLONE_CONF" > ~/.config/rclone/rclone.conf
+          # ใช้ printf เพื่อรักษาฟอร์แมต JSON ให้คงเดิม 100%
+          printf "%s" "$MY_RCLONE_CONF" > ~/.config/rclone/rclone.conf
 
-      - name: Run Mirror Script
+      - name: Start Sync Script
         run: python3 sync_script.py
