@@ -28,10 +28,10 @@ jobs:
 
       - name: Setup Rclone Config
         env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF_DATA }}
+          RCLONE_CONF_BASE64: ${{ secrets.RCLONE_CONF_DATA }}
         run: |
           mkdir -p ~/.config/rclone
-          printf "%s" "$RCLONE_CONF" > ~/.config/rclone/rclone.conf
+          echo "$RCLONE_CONF_BASE64" | base64 -d > ~/.config/rclone/rclone.conf
 
       - name: Run Massive Sync
         run: python3 sync_script.py
