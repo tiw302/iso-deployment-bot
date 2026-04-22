@@ -2,46 +2,37 @@ name: Daily ISO Sync Automation
 
 on:
   schedule:
-    - cron: '0 17 * * *' # run daily at midnight (bkk time)
-  workflow_dispatch:     # manual trigger
+    - cron: '0 17 * * *' # midnight bkk
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1. free up disk space for massive isos (important)
+      # maximize space to handle large isos
       - name: Free Disk Space
         uses: jlumbroso/free-disk-space@main
         with:
           tool-cache: true
           android: true
           dotnet: true
-          haskell: true
-          large-packages: true
           docker-images: true
-          swap-storage: true
 
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          ref: master
 
-      # 2. install aria2, rclone, and playwright dependencies
-      - name: Install Tools & Playwright
+      - name: Install Tools
         run: |
           sudo apt-get update
           sudo apt-get install -y aria2
           curl https://rclone.org/install.sh | sudo bash
-          pip3 install playwright
-          playwright install-deps chromium
-          playwright install chromium
 
-      # 3. setup rclone
       - name: Setup Rclone Config
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF_DATA }}
         run: |
           mkdir -p ~/.config/rclone
-          echo "${{ secrets.RCLONE_CONF_DATA }}" > ~/.config/rclone/rclone.conf
+          echo "$RCLONE_CONF" > ~/.config/rclone/rclone.conf
 
-      # 4. run script
       - name: Run Mirror Script
         run: python3 sync_script.py
