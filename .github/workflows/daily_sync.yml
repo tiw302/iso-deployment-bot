@@ -33,7 +33,9 @@ jobs:
           CONF_BASE64: ${{ secrets.RCLONE_CONF_DATA }}
         run: |
           mkdir -p ~/.config/rclone
-          echo "$CONF_BASE64" | base64 -d > ~/.config/rclone/rclone.conf
+          printf "%s" "$CONF_BASE64" | base64 -d > ~/.config/rclone/rclone.conf
+          
+          grep "\[" ~/.config/rclone/rclone.conf
 
-      - name: Run Massive Sync
+      - name: Run Mirror Script
         run: python3 sync_script.py
