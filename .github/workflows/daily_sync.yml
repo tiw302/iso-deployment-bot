@@ -1,4 +1,4 @@
-name: ISO Library Master Sync
+name: ISO Ultimate Library 100TB
 
 on:
   schedule:
@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync-process:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Maximize Runner Space
+      - name: Free Up Space
         uses: jlumbroso/free-disk-space@main
         with:
           tool-cache: true
@@ -20,19 +20,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
+      - name: Install Aria2 & Rclone
         run: |
           sudo apt-get update
           sudo apt-get install -y aria2
           curl https://rclone.org/install.sh | sudo bash
 
-      - name: Configure Rclone
+      - name: Setup Rclone
         env:
-          MY_RCLONE_CONF: ${{ secrets.RCLONE_CONF_DATA }}
+          MY_CONF: ${{ secrets.RCLONE_CONF_DATA }}
         run: |
           mkdir -p ~/.config/rclone
-          # ใช้ printf เพื่อรักษาฟอร์แมต JSON ให้คงเดิม 100%
-          printf "%s" "$MY_RCLONE_CONF" > ~/.config/rclone/rclone.conf
+          printf "%s" "$MY_CONF" > ~/.config/rclone/rclone.conf
 
-      - name: Start Sync Script
+      - name: Run Massive Sync
         run: python3 sync_script.py
