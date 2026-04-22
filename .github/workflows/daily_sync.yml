@@ -30,7 +30,8 @@ jobs:
       - name: Install Tools & Playwright
         run: |
           sudo apt-get update
-          sudo apt-get install -y aria2 rclone
+          sudo apt-get install -y aria2
+          curl https://rclone.org/install.sh | sudo bash
           pip3 install playwright
           playwright install-deps chromium
           playwright install chromium
