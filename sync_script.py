@@ -36,43 +36,43 @@ def dl(url, category):
     except Exception as e:
         print(f"{R}[ ERROR  ]{W} {name} failed")
 
-db = { # iso link
+db = { # os link
     "linux-distros/arch-based": [
         "https://mirror.kku.ac.th/archlinux/iso/latest/archlinux-x86_64.iso",
-        "https://mirror.isoc.or.th/manjaro/kde/25.0/manjaro-kde-25.0-64bit.iso",
-        "https://iso.mirror.endeavouros.com/iso/EndeavourOS_Galileo_Neo_24_04.iso",
-        "https://mirrors.n0p.me/cachyos/desktop/260101/cachyos-desktop-linux-260101.iso",
-        "https://garudalinux.org/downloads/garuda/dr460nized/garuda-dr460nized-linux-zen-250210.iso"
+        "https://mirror.cachyos.org/ISO/desktop/latest/cachyos-desktop-linux-x86_64-latest.iso",
+        "https://iso.mirror.endeavouros.com/iso/EndeavourOS_Galileo-Neo_2024.04.iso",
+        "https://mirror.kku.ac.th/manjaro/kde/24.0.0/manjaro-kde-24.0.0-240513-linux69.iso",
+        "https://garudalinux.org/downloads/garuda/dr460nized/garuda-dr460nized-linux-zen-240428.iso"
+    ],
+    "linux-distros/independent-and-minimal": [
+        "https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-latest.iso",
+        "https://repo-default.voidlinux.org/live/current/void-live-x86_64-latest.iso"
     ],
     "linux-distros/debian-based": [
-        "https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.9.0-amd64-DVD-1.iso",
-        "https://releases.ubuntu.com/24.04.2/ubuntu-24.04.2-desktop-amd64.iso",
-        "https://mirrors.layeronline.com/linuxmint/stable/22.1/linuxmint-22.1-cinnamon-64bit.iso",
-        "https://download.popos.org/iso/22.04/amd64/intel/41/pop-os_22.04_amd64_intel_41.iso",
-        "https://mirrors.edge.kernel.org/mx-linux/MX-23.5_x64.iso",
-        "https://download.astralinux.ru/astra/stable/2.12_common_edition/iso/astra-1.7.5-22.08.2023_14.47.iso"
+        "https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.5.0-amd64-DVD-1.iso",
+        "https://mirror.kku.ac.th/ubuntu-releases/24.04/ubuntu-24.04-desktop-amd64.iso",
+        "https://mirror.kku.ac.th/linuxmint/stable/21.3/linuxmint-21.3-cinnamon-64bit.iso",
+        "https://iso.pop-os.org/22.04/amd64/intel/41/pop-os_22.04_amd64_intel_41.iso"
     ],
     "linux-distros/redhat-fedora": [
-        "https://download.fedoraproject.org/pub/fedora/linux/releases/43/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-43-1.1.iso",
-        "https://mirrors.xtom.jp/almalinux/9.5/isos/x86_64/AlmaLinux-9.5-x86_64-dvd.iso",
-        "https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.5-x86_64-dvd.iso"
+        "https://mirror.kku.ac.th/fedora/linux/releases/40/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-40-1.14.iso",
+        "https://mirror.kku.ac.th/almalinux/9/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso",
+        "https://mirror.kku.ac.th/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-dvd.iso"
     ],
     "security-pentest": [
-        "https://cdimage.kali.org/kali-2026.1/kali-linux-2026.1-installer-amd64.iso",
-        "https://deb.parrot.sh/parrot/iso/7.0/Parrot-security-7.0_amd64.iso",
-        "https://mirror.accum.se/mirror/blackarch/iso/blackarch-linux-full-2025.12.01-x86_64.iso",
-        "https://mirrors.ocf.berkeley.edu/pentoo/Pentoo_Full_x86_64_2024.0.iso"
-    ],
-    "windows-evaluation": [
-        "https://software-static.download.prss.microsoft.com/dblo/9813/Win11_24H2_English_x64v3.iso",
-        "https://software-static.download.prss.microsoft.com/sg/download/evalcenter/Win11_24H2_English_x64_Enterprise.iso",
-        "https://software-static.download.prss.microsoft.com/sg/download/evalcenter/WinServer2025-English-Final.iso"
+        "https://cdimage.kali.org/kali-2024.1/kali-linux-2024.1-installer-amd64.iso",
+        "https://deb.parrot.sh/parrot/iso/6.0/Parrot-security-6.0_amd64.iso",
+        "https://mirror.kku.ac.th/blackarch/iso/blackarch-linux-full-2023.12.01-x86_64.iso" 
     ],
     "rescue-and-others": [
         "https://github.com/HirenBootCD/HBCD_PE_x64/releases/download/v1.0.2/HBCD_PE_x64.iso",
-        "https://ftp.nluug.nl/pub/os/Linux/distr/systemrescuecd/systemrescue-11.00-amd64.iso",
-        "https://download.proxmox.com/iso/proxmox-ve_8.3-1.iso",
-        "https://images.linuxcontainers.org/images/openwrt/23.05/amd64/default/20240421_07%3A45/config.iso"
+        "https://mirror.kku.ac.th/systemrescue/systemrescue-11.00-amd64.iso",
+        "https://enterprise.proxmox.com/iso/proxmox-ve_8.1-2.iso"
+    ],
+    "massive-offline-packages": [
+        "https://cdimage.kali.org/kali-2024.1/kali-linux-2024.1-everything-amd64.iso",
+        "https://cdimage.debian.org/debian-cd/current/amd64/iso-bd/debian-mac-12.5.0-amd64-BD-1.iso",
+        "https://mirror.kku.ac.th/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-latest-dvd1.iso"
     ]
 }
 
