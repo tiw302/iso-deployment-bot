@@ -29,13 +29,19 @@ jobs:
           curl https://rclone.org/install.sh | sudo bash
 
       - name: Setup Rclone Config
+        shell: python
         env:
           CONF_BASE64: ${{ secrets.RCLONE_CONF_DATA }}
         run: |
-          mkdir -p ~/.config/rclone
-          printf "%s" "$CONF_BASE64" | base64 -d > ~/.config/rclone/rclone.conf
+          import os, base64
+          conf_path = os.path.expanduser("~/.config/rclone/rclone.conf")
+          os.makedirs(os.path.dirname(conf_path), exist_ok=True)
           
-          grep "\[" ~/.config/rclone/rclone.conf
+          raw_data = base64.b64decode(os.environ["CONF_BASE64"])
+          with open(conf_path, "wb") as f:
+              f.write(raw_data)
+          
+          print("Rclone config has been secured and restored.")
 
       - name: Run Mirror Script
         run: python3 sync_script.py
