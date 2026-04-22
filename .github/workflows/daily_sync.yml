@@ -37,11 +37,14 @@ jobs:
           conf_path = os.path.expanduser("~/.config/rclone/rclone.conf")
           os.makedirs(os.path.dirname(conf_path), exist_ok=True)
           
-          raw_data = base64.b64decode(os.environ["CONF_BASE64"])
-          
-          with open(conf_path, "wb") as f:
-              f.write(raw_data)
-          
-          print("Success: rclone.conf is ready!")
+          try:
+              raw_data = base64.b64decode(os.environ["CONF_BASE64"])
+              with open(conf_path, "wb") as f:
+                  f.write(raw_data)
+              print("[S] Success: rclone.conf has been restored perfectly!")
+          except Exception as e:
+              print(f"[x] Error: {e}")
+              exit(1)
+
       - name: Run Mirror Script
         run: python3 sync_script.py
