@@ -9,9 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # maximize free disk space (crucial for massive iso files)
-      # this clears pre-installed bloatware on the runner, giving us ~40gb of free space
-      - name: Free Disk Space (Ubuntu)
+      # 1. free up disk space for massive isos (important)
+      - name: Free Disk Space
         uses: jlumbroso/free-disk-space@main
         with:
           tool-cache: true
@@ -27,7 +26,7 @@ jobs:
         with:
           ref: master
 
-      # install system packages and python dependencies
+      # 2. install aria2, rclone, and playwright dependencies
       - name: Install Tools & Playwright
         run: |
           sudo apt-get update
@@ -36,12 +35,12 @@ jobs:
           playwright install-deps chromium
           playwright install chromium
 
-      # setup rclone credentials from github secrets
+      # 3. setup rclone
       - name: Setup Rclone Config
         run: |
           mkdir -p ~/.config/rclone
           echo "${{ secrets.RCLONE_CONF_DATA }}" > ~/.config/rclone/rclone.conf
 
-      # execute the synchronization protocol
+      # 4. run script
       - name: Run Mirror Script
         run: python3 sync_script.py
