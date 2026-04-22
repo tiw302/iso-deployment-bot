@@ -32,7 +32,7 @@ def dl(url, category):
     
     # --file-allocation=none prevents disk lockups on massive files
     cmd = [
-        "aria2c", "-x", "16", "-s", "16", "--retry-wait=5", "-m=0",
+        "aria2c", "-x", "16", "-s", "16", "--retry-wait=5", "--max-tries=0",
         "--auto-file-renaming=false", "--file-allocation=none", 
         "--dir", local_dir, "-o", name, url
     ]
