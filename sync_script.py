@@ -1,25 +1,36 @@
 import os
 import subprocess
+from urllib.parse import urlparse
 
-C, G, R, Y, W = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
-REMOTE_BASE = "gdrive:os-deployment-library"
+try:
+    from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
+except ImportError:
+    print("\033[91m[ error ]\033[0m playwright missing. run: pip install playwright")
+    exit(1)
+
+c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
+remote_base = "gdrive:os-deployment-library"
 
 def dl(url, category):
-    name = url.split('/')[-1].split('?')[0]
+    # strip query strings to ensure clean filename
+    parsed_url = urlparse(url)
+    name = os.path.basename(parsed_url.path)
+    if not name.endswith('.iso'):
+        name += '.iso'
+        
     local_dir = f"./temp/{category}"
     os.makedirs(local_dir, exist_ok=True)
-    remote_path = f"{REMOTE_BASE}/{category}/{name}"
+    remote_path = f"{remote_base}/{category}/{name}"
 
-    print(f"{C}[ CHECK  ]{W} {name}")
+    print(f"{c}[ check  ]{w} {name}")
     
-    # check if exists
+    # skip if file already exists on remote
     check = subprocess.run(["rclone", "lsf", remote_path], capture_output=True)
     if check.returncode == 0 and name in check.stdout.decode():
-        print(f"{Y}[ SKIP   ]{W} {name}")
+        print(f"{y}[ skip   ]{w} {name}")
         return
 
-    print(f"{C}[ FETCH  ]{W} {name}...")
-    # add --retry-wait to handle network hiccups
+    print(f"{c}[ fetch  ]{w} {name}...")
     cmd = [
         "aria2c", "-x", "16", "-s", "16", "--retry-wait=5", "-m=0",
         "--auto-file-renaming=false", "--dir", local_dir, "-o", name, url
@@ -27,47 +38,54 @@ def dl(url, category):
     
     try:
         subprocess.run(cmd, check=True)
-        print(f"{C}[ UPLOAD ]{W} {name} to cloud...")
-        # use copy instead of move for safety during testing
-        subprocess.run(["rclone", "copy", f"{local_dir}/{name}", f"{REMOTE_BASE}/{category}/"], check=True)
-        print(f"{G}[  OK    ]{W} {name} synced")
-        # cleanup local after upload
+        print(f"{c}[ upload ]{w} {name}...")
+        subprocess.run(["rclone", "copy", f"{local_dir}/{name}", f"{remote_base}/{category}/"], check=True)
+        print(f"{g}[ ok     ]{w} {name}")
         os.remove(f"{local_dir}/{name}")
     except Exception as e:
-        print(f"{R}[ ERROR  ]{W} {name} failed")
+        print(f"{r}[ error  ]{w} {name}: {e}")
 
-db = { # os link
+def scrape_windows_eval():
+    print(f"{c}[ scrape ]{w} starting headless browser...")
+    links = []
+    
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(accept_downloads=True)
+        page = context.new_page()
+
+        # intercept network requests to catch generated tokens
+        def handle_request(request):
+            if ".iso" in request.url and "download" in request.url.lower():
+                links.append(request.url)
+        
+        page.on("request", handle_request)
+
+        try:
+            page.goto("https://www.microsoft.com/en-us/evalcenter/evaluate-windows-11-enterprise", timeout=60000)
+            page.wait_for_load_state("networkidle")
+            
+            # replace this with actual form submission logic based on current dom
+            # page.click("button:has-text('download')")
+            
+            # wait for token generation requests to fire
+            page.wait_for_timeout(5000) 
+
+        except Exception as e:
+            print(f"{r}[ error  ]{w} scrape failed: {e}")
+        finally:
+            browser.close()
+            
+    # remove duplicate urls
+    return list(set(links))
+
+db = {
     "linux-distros/arch-based": [
         "https://mirror.kku.ac.th/archlinux/iso/latest/archlinux-x86_64.iso",
-        "https://mirror.cachyos.org/ISO/desktop/latest/cachyos-desktop-linux-x86_64-latest.iso",
-        "https://iso.mirror.endeavouros.com/iso/EndeavourOS_Galileo-Neo_2024.04.iso",
-        "https://mirror.kku.ac.th/manjaro/kde/24.0.0/manjaro-kde-24.0.0-240513-linux69.iso",
-        "https://garudalinux.org/downloads/garuda/dr460nized/garuda-dr460nized-linux-zen-240428.iso"
+        "https://mirror.cachyos.org/ISO/desktop/latest/cachyos-desktop-linux-x86_64-latest.iso"
     ],
-    "linux-distros/independent-and-minimal": [
-        "https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-latest.iso",
-        "https://repo-default.voidlinux.org/live/current/void-live-x86_64-latest.iso"
-    ],
-    "linux-distros/debian-based": [
-        "https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.5.0-amd64-DVD-1.iso",
-        "https://mirror.kku.ac.th/ubuntu-releases/24.04/ubuntu-24.04-desktop-amd64.iso",
-        "https://mirror.kku.ac.th/linuxmint/stable/21.3/linuxmint-21.3-cinnamon-64bit.iso",
-        "https://iso.pop-os.org/22.04/amd64/intel/41/pop-os_22.04_amd64_intel_41.iso"
-    ],
-    "linux-distros/redhat-fedora": [
-        "https://mirror.kku.ac.th/fedora/linux/releases/40/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-40-1.14.iso",
-        "https://mirror.kku.ac.th/almalinux/9/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso",
-        "https://mirror.kku.ac.th/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-dvd.iso"
-    ],
-    "security-pentest": [
-        "https://cdimage.kali.org/kali-2024.1/kali-linux-2024.1-installer-amd64.iso",
-        "https://deb.parrot.sh/parrot/iso/6.0/Parrot-security-6.0_amd64.iso",
-        "https://mirror.kku.ac.th/blackarch/iso/blackarch-linux-full-2023.12.01-x86_64.iso" 
-    ],
-    "rescue-and-others": [
-        "https://github.com/HirenBootCD/HBCD_PE_x64/releases/download/v1.0.2/HBCD_PE_x64.iso",
-        "https://mirror.kku.ac.th/systemrescue/systemrescue-11.00-amd64.iso",
-        "https://enterprise.proxmox.com/iso/proxmox-ve_8.1-2.iso"
+    "linux-distros/independent": [
+        "https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-latest.iso"
     ],
     "massive-offline-packages": [
         "https://cdimage.kali.org/kali-2024.1/kali-linux-2024.1-everything-amd64.iso",
@@ -77,5 +95,14 @@ db = { # os link
 }
 
 if __name__ == "__main__":
+    print(f"{c}[ system ]{w} init sync protocol...")
+    
     for cat, urls in db.items():
-        for url in urls: dl(url, cat)
+        for url in urls: 
+            dl(url, cat)
+            
+    win_links = scrape_windows_eval()
+    for link in win_links:
+        dl(link, "windows-evaluation")
+        
+    print(f"{g}[ system ]{w} sync completed")
