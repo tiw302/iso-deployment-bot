@@ -33,7 +33,8 @@ def dl(url, category):
     print(f"{c}[ fetch  ]{w} {name}...")
     cmd = [
         "aria2c", "-x", "16", "-s", "16", "--retry-wait=5", "-m=0",
-        "--auto-file-renaming=false", "--dir", local_dir, "-o", name, url
+        "--auto-file-renaming=false", "--file-allocation=none", 
+        "--dir", local_dir, "-o", name, url
     ]
     
     try:

@@ -2,27 +2,46 @@ name: Daily ISO Sync Automation
 
 on:
   schedule:
-    - cron: '0 17 * * *' # รันตอนเที่ยงคืนไทย (17:00 UTC) ทุกวัน
-  workflow_dispatch:     # ปุ่มกดรันเองหน้า Actions
+    - cron: '0 17 * * *' # run daily at midnight (bkk time)
+  workflow_dispatch:     # manual trigger
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # maximize free disk space (crucial for massive iso files)
+      # this clears pre-installed bloatware on the runner, giving us ~40gb of free space
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           ref: master
 
-      - name: Install Tools
+      # install system packages and python dependencies
+      - name: Install Tools & Playwright
         run: |
           sudo apt-get update
           sudo apt-get install -y aria2 rclone
+          pip3 install playwright
+          playwright install-deps chromium
+          playwright install chromium
 
+      # setup rclone credentials from github secrets
       - name: Setup Rclone Config
         run: |
           mkdir -p ~/.config/rclone
           echo "${{ secrets.RCLONE_CONF_DATA }}" > ~/.config/rclone/rclone.conf
 
+      # execute the synchronization protocol
       - name: Run Mirror Script
         run: python3 sync_script.py
