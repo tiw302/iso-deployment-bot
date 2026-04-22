@@ -40,7 +40,7 @@ def dl(url, category):
         subprocess.run(cmd, check=True)
         print(f"{c}[ sync   ]{w} uploading...")
         subprocess.run([
-            "rclone", "copy",
+            "rclone", "copy", "-P",
             f"{local_dir}/{name}",
             f"{remote_name}:{remote_folder}/{category}/"
         ], check=True)
