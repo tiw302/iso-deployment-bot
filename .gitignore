@@ -1,10 +1,33 @@
+# application specific
 temp/
 *.aria2
 *.iso
+*.img
+*.zip
+*.bin
+
+# python cache
 __pycache__/
+*.py[cod]
+*$py.class
 
+# virtual environments
+venv/
+.venv/
+env/
 
-# Editor-specific files (Vim/Neovim)
+# secrets & config (security)
+.env
+rclone.conf
+*.conf.bak
+
+# ides & editors
+.vscode/
+.idea/
+.project
+.pydevproject
+
+# vim/neovim
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
 [._]s[a-rt-v][a-z]
@@ -15,3 +38,7 @@ __pycache__/
 undo/
 .netrwhist
 *~
+
+# system files
+.DS_Store
+Thumbs.db
