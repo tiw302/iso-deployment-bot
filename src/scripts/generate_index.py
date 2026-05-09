@@ -9,8 +9,19 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(script_dir))
 from distros import DB
 
+GDRIVE_LIBRARY_URL = "https://drive.google.com/drive/folders/1B64Y44QVMlgoVm49PRk2_UvPXRzXNZ8e?usp=sharing"
+
+ASCII_ART = r"""
+  _      _____  _   _ _    _ __   __  _____  _____  _____   _____  ____  
+ | |    |_   _|| \ | |\ \  / /\ \ / / |  _  ||  ___||  __ \ |_   _|/ ___| 
+ | |      | |  |  \| | \ \/ /  \ V /  | | | || |___ | |__) |  | |  \___ \ 
+ | |___  _| |_ | |\  |  |  |    | |   | |_| ||  ___||  _  /  _| |_  ___) |
+ |_____||_____||_| \_|  |__|    |_|   |_____||_|    |_| \_\ |_____||____/ 
+                                                                           
+"""
+
 def generate_html():
-    """generate a static index.html dashboard in the web/ directory."""
+    """generate a static index.html dashboard with raw terminal style."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
     root_dir = os.path.dirname(os.path.dirname(script_dir))
     output_path = os.path.join(root_dir, "web", "index.html")
@@ -34,32 +45,34 @@ def generate_html():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OS Deployment Library</title>
+    <title>os-deployment-library</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
+        <pre class="ascii-art">{ASCII_ART}</pre>
+        
         <header>
-            <div>
-                <h1>OS Deployment Library</h1>
-                <p class="subtitle">automated iso mirroring & distribution system</p>
-            </div>
-            <div class="stats-group">
-                <div class="stat-box">
-                    <div class="stat-label">total isos</div>
-                    <div class="stat-value">{{total_isos}}</div>
+            <div class="header-info">
+                <div class="header-left">
+                    <h1>os-deployment-library</h1>
+                    <div class="stats">
+                        &gt; status: active<br>
+                        &gt; total_isos: {{total_isos}}<br>
+                        &gt; storage_est: {{total_size_gb:.1f}} gb
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-label">est. size</div>
-                    <div class="stat-value">{{total_size_gb:.1f}} gb</div>
+                <div class="header-right">
+                    <a href="{{GDRIVE_LIBRARY_URL}}" target="_blank" class="btn-gdrive">
+                        [ browse_google_drive ]
+                    </a>
                 </div>
             </div>
         </header>
 
         <div class="search-container">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="searchInput" placeholder="search distributions..." class="search-input">
+            <input type="text" id="searchInput" placeholder="user@linux:~$ search _" class="search-input">
         </div>
 
         <div id="content">
@@ -67,22 +80,22 @@ def generate_html():
         </div>
 
         <footer>
-            <p>generated on {{last_updated}} • open source education</p>
-            <div class="footer-links">
-                <a href="https://github.com/tiw302/os-deployment-library"><i class="fab fa-github"></i> github</a>
-                <a href="https://instagram.com/tiw3025k_"><i class="fab fa-instagram"></i> instagram</a>
-            </div>
+            <p>system_generated: {{last_updated}}</p>
+            <p>
+                <a href="https://github.com/tiw302/os-deployment-library">github</a> | 
+                <a href="https://instagram.com/tiw3025k_">instagram</a>
+            </p>
         </footer>
     </div>
     <script src="assets/script.js"></script>
 </body>
 </html>"""
     
-    # manual replacement to avoid issues with f-string curly braces
     final_html = html_template.replace("{{total_isos}}", str(total_isos)) \
                              .replace("{{total_size_gb:.1f}}", f"{total_size_gb:.1f}") \
                              .replace("{{generate_sections(DB)}}", generate_sections(DB)) \
-                             .replace("{{last_updated}}", last_updated)
+                             .replace("{{last_updated}}", last_updated) \
+                             .replace("{{GDRIVE_LIBRARY_URL}}", GDRIVE_LIBRARY_URL)
     
     with open(output_path, "w") as f:
         f.write(final_html)
@@ -96,9 +109,7 @@ def generate_sections(db):
         sections += f"""
         <section class="category-section">
             <div class="category-title">
-                <div class="category-indicator"></div>
-                {cat_name}
-                <span class="category-count">({len(entries)} items)</span>
+                {cat_name} ({len(entries)})
             </div>
             <div class="grid">
                 {generate_cards(entries)}
@@ -109,19 +120,17 @@ def generate_sections(db):
 def generate_cards(entries):
     cards = ""
     for entry in entries:
-        name = entry.get('name', 'unknown')
-        size = entry.get('size', '?.? gb')
+        name = entry.get('name', 'unknown').lower()
+        size = entry.get('size', '?.? gb').lower()
         url = entry.get('url', '#')
         cards += f"""
         <div class="iso-card" data-name="{name}">
             <div class="iso-info">
-                <div class="iso-name" title="{name}">{name}</div>
-                <div class="iso-details">
-                    <i class="fas fa-file-iso"></i> {size.lower()}
-                </div>
+                <div class="iso-name">{name}</div>
+                <div class="iso-size">{size}</div>
             </div>
             <a href="{url}" target="_blank" class="external-link">
-                <i class="fas fa-external-link-alt"></i>
+                <i class="fas fa-link"></i>
             </a>
         </div>"""
     return cards
