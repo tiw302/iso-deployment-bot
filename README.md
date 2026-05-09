@@ -30,7 +30,7 @@ automated iso mirroring system designed to synchronize multiple operating system
 6. cleanup local workspace and session files.
 
 ## maintenance
-- update `sync_script.py` database to reflect upstream version changes.
+- update `src/distros.py` database to reflect upstream version changes.
 - monitor github action logs for code 3 (broken links) or code 9 (storage limits).
 - rotate rclone tokens if authentication failures occur.
 
