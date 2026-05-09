@@ -1,9 +1,13 @@
-# Updated 2026-04-23
+# updated 2026-04-23
 
 import os
 import subprocess
 from urllib.parse import urlparse
 
+import sys
+import os
+script_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(script_dir))
 from distros import DB
 
 c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
@@ -30,7 +34,7 @@ def is_single_stream(url: str) -> bool:
     return any(h in host for h in SINGLE_STREAM_HOSTS)
 
 def dl(entry: dict, category: str):
-    """Download one ISO entry, upload to GDrive, then remove the local file."""
+    """download one iso entry, upload to gdrive, then remove the local file."""
     url          = entry["url"]
     display_name = entry["name"]
     size         = entry.get("size", "?")
@@ -73,7 +77,7 @@ def dl(entry: dict, category: str):
 
     try:
         subprocess.run(cmd, check=True)
-        print(f"{c}[ sync ]{w} uploading → gdrive:{remote_folder}/{category}/")
+        print(f"{c}[ sync ]{w} uploading -> gdrive:{remote_folder}/{category}/")
         subprocess.run([
             "rclone", "move", "-P",
             local_file,
@@ -94,13 +98,13 @@ def dl(entry: dict, category: str):
 if __name__ == "__main__":
     total = sum(len(v) for v in DB.values())
     cats  = len(DB)
-    print(f"{c}[ info ]{w} {total} ISOs across {cats} categories")
-    print(f"{c}[ info ]{w} Remote: {remote_name}:{remote_folder}")
+    print(f"{c}[ info ]{w} {total} isos across {cats} categories")
+    print(f"{c}[ info ]{w} remote: {remote_name}:{remote_folder}")
     print()
 
     for cat, entries in DB.items():
-        print(f"{y}── {cat} ({len(entries)}) ──{w}")
+        print(f"{y}-- {cat} ({len(entries)}) --{w}")
         for entry in entries:
             dl(entry, cat)
 
-    print(f"\n{g}[ done ]{w} All entries processed.")
+    print(f"\n{g}[ done ]{w} all entries processed.")
