@@ -51,7 +51,7 @@ jobs:
               exit(1)
 
       - name: Run Mirror Script (Streaming Mode)
-        run: python3 sync_script.py
+        run: python3 src/scripts/sync.py
 
       - name: Cleanup Temp
         if: always()
