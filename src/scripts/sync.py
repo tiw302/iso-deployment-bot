@@ -148,7 +148,6 @@ def dl(entry: dict, category: str):
         error_msg = f"**error**: {display_name}\n`{e}`"
         print(f"{r}[ error ]{w} {display_name}: {e}")
         discord_notify(error_msg, 0xe74c3c)
-        raise
     finally:
         if os.path.exists(local_file):
             os.remove(local_file)
