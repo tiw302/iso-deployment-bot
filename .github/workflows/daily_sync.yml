@@ -51,6 +51,8 @@ jobs:
               exit(1)
 
       - name: Run Mirror Script (Streaming Mode)
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: python3 src/scripts/sync.py
 
       - name: Cleanup Temp
