@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Deployment Library</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1>OS Deployment Library</h1>
+                <p class="subtitle">automated iso mirroring & distribution system</p>
+            </div>
+            <div class="stats-group">
+                <div class="stat-box">
+                    <div class="stat-label">total isos</div>
+                    <div class="stat-value">{total_isos}</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">est. size</div>
+                    <div class="stat-value">{total_size_gb:.1f} gb</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="search distributions..." class="search-input">
+        </div>
+
+        <div id="content">
+            {generate_sections(DB)}
+        </div>
+
+        <footer>
+            <p>generated on {last_updated} • open source education</p>
+            <div class="footer-links">
+                <a href="https://github.com/tiw302/os-deployment-library"><i class="fab fa-github"></i> github</a>
+                <a href="https://instagram.com/tiw3025k_"><i class="fab fa-instagram"></i> instagram</a>
+            </div>
+        </footer>
+    </div>
+    <script src="assets/script.js"></script>
+</body>
+</html>

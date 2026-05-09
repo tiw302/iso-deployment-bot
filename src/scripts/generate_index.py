@@ -10,11 +10,10 @@ sys.path.append(os.path.dirname(script_dir))
 from distros import DB
 
 def generate_html():
-    """generate a static index.html dashboard with separate css."""
-    # write to the project root directory
+    """generate a static index.html dashboard in the web/ directory."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
     root_dir = os.path.dirname(os.path.dirname(script_dir))
-    output_path = os.path.join(root_dir, "index.html")
+    output_path = os.path.join(root_dir, "web", "index.html")
     
     total_isos = sum(len(v) for v in DB.values())
     
@@ -49,11 +48,11 @@ def generate_html():
             <div class="stats-group">
                 <div class="stat-box">
                     <div class="stat-label">total isos</div>
-                    <div class="stat-value">{total_isos}</div>
+                    <div class="stat-value">{{total_isos}}</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-label">est. size</div>
-                    <div class="stat-value">{total_size_gb:.1f} gb</div>
+                    <div class="stat-value">{{total_size_gb:.1f}} gb</div>
                 </div>
             </div>
         </header>
@@ -64,45 +63,29 @@ def generate_html():
         </div>
 
         <div id="content">
-            {generate_sections(DB)}
+            {{generate_sections(DB)}}
         </div>
 
         <footer>
-            <p>generated on {last_updated} • open source education</p>
+            <p>generated on {{last_updated}} • open source education</p>
             <div class="footer-links">
                 <a href="https://github.com/tiw302/os-deployment-library"><i class="fab fa-github"></i> github</a>
                 <a href="https://instagram.com/tiw3025k_"><i class="fab fa-instagram"></i> instagram</a>
             </div>
         </footer>
     </div>
-
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const sections = document.querySelectorAll('.category-section');
-
-        searchInput.addEventListener('input', (e) => {{
-            const term = e.target.value.toLowerCase();
-            sections.forEach(section => {{
-                let hasMatch = false;
-                const cards = section.querySelectorAll('.iso-card');
-                cards.forEach(card => {{
-                    const name = card.dataset.name.toLowerCase();
-                    if (name.includes(term)) {{
-                        card.style.display = 'flex';
-                        hasMatch = true;
-                    }} else {{
-                        card.style.display = 'none';
-                    }}
-                }});
-                section.style.display = hasMatch ? 'block' : 'none';
-            }});
-        }});
-    </script>
+    <script src="assets/script.js"></script>
 </body>
 </html>"""
     
+    # manual replacement to avoid issues with f-string curly braces
+    final_html = html_template.replace("{{total_isos}}", str(total_isos)) \
+                             .replace("{{total_size_gb:.1f}}", f"{total_size_gb:.1f}") \
+                             .replace("{{generate_sections(DB)}}", generate_sections(DB)) \
+                             .replace("{{last_updated}}", last_updated)
+    
     with open(output_path, "w") as f:
-        f.write(html_template)
+        f.write(final_html)
     print(f"dashboard generated: {output_path}")
 
 def generate_sections(db):
