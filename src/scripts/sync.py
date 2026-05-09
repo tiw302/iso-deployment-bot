@@ -3,15 +3,26 @@
 import os
 import subprocess
 from urllib.parse import urlparse
-
 import sys
-import os
+
+# setup path to import distros from parent directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(script_dir))
 from distros import DB
 
 c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
-remote_name   = "gdrive"
+
+def get_remote_name() -> str:
+    """dynamically determine the remote name from rclone config."""
+    try:
+        result = subprocess.run(["rclone", "listremotes"], capture_output=True, text=True, check=True)
+        remotes = [r.strip().rstrip(':') for r in result.stdout.strip().split('\n') if r.strip()]
+        if remotes:
+            return remotes[0]
+    except Exception:
+        pass
+    return "gdrive" # fallback default
+
 remote_folder = "os-deployment-library"
 
 SINGLE_STREAM_HOSTS = [
@@ -38,6 +49,7 @@ def dl(entry: dict, category: str):
     url          = entry["url"]
     display_name = entry["name"]
     size         = entry.get("size", "?")
+    remote_name  = get_remote_name()
 
     parsed = urlparse(url)
     filename = os.path.basename(parsed.path)
@@ -77,7 +89,7 @@ def dl(entry: dict, category: str):
 
     try:
         subprocess.run(cmd, check=True)
-        print(f"{c}[ sync ]{w} uploading -> gdrive:{remote_folder}/{category}/")
+        print(f"{c}[ sync ]{w} uploading -> {remote_name}:{remote_folder}/{category}/")
         subprocess.run([
             "rclone", "move", "-P",
             local_file,
@@ -96,10 +108,11 @@ def dl(entry: dict, category: str):
             pass
 
 if __name__ == "__main__":
+    current_remote = get_remote_name()
     total = sum(len(v) for v in DB.values())
     cats  = len(DB)
     print(f"{c}[ info ]{w} {total} isos across {cats} categories")
-    print(f"{c}[ info ]{w} remote: {remote_name}:{remote_folder}")
+    print(f"{c}[ info ]{w} remote: {current_remote}:{remote_folder}")
     print()
 
     for cat, entries in DB.items():
