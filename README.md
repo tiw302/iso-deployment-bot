@@ -1,21 +1,21 @@
 # os-deployment-library
 
-### overview
+## overview
 automated iso mirroring system designed to synchronize multiple operating system distributions to google drive storage. the system utilizes github actions for scheduled execution, aria2 for multi-threaded downloads, and rclone for cloud storage synchronization.
 
-### project structure
+## project structure
 - `src/distros.py`: primary database containing iso names, urls, and sizes.
 - `src/scripts/sync.py`: core operational script for downloading and cloud syncing.
 - `src/scripts/refactor.py`: maintenance tool for database sorting and de-duplication.
 - `.github/workflows/daily_sync.yml`: automated workflow configuration.
 
-### infrastructure
+## infrastructure
 - runtime: github actions (ubuntu-latest)
 - downloader: aria2c (optimized with 16 connections)
 - storage: google drive (via rclone)
 - automation: cron schedule (00:00 utc+7 daily)
 
-### rclone configuration setup
+## rclone configuration setup
 to enable cloud synchronization, you must provide your rclone configuration as a base64 encoded secret.
 
 1. **generate configuration**: run `rclone config` on your local machine to set up your google drive remote (ensure the remote name matches `remote_name` in `src/scripts/sync.py`).
@@ -34,12 +34,12 @@ to enable cloud synchronization, you must provide your rclone configuration as a
    - create a **new repository secret** named `RCLONE_CONF_DATA`.
    - paste the generated base64 string as the value.
 
-### prerequisites
+## prerequisites
 - rclone configuration: must be converted to **base64** and stored in github secrets as `RCLONE_CONF_DATA`.
 - storage quota: ensure target drive has 400gb+ available space.
 - private repo: mandatory to prevent accidental credential leakage in logs.
 
-### manual execution
+## manual execution
 to run the synchronization locally:
 ```bash
 # update database formatting/sorting
@@ -49,7 +49,7 @@ python3 src/scripts/refactor.py
 python3 src/scripts/sync.py
 ```
 
-### automation logic
+## automation logic
 1. checkout repository & setup python environment.
 2. restore `rclone.conf` from base64 secret.
 3. parse `src/distros.py` and verify remote file existence.
@@ -57,12 +57,12 @@ python3 src/scripts/sync.py
 5. stream/move verified assets to gdrive destination.
 6. perform exhaustive cleanup of local temp files.
 
-### maintenance
+## maintenance
 - database: update `src/distros.py` when new upstream versions are released.
 - logs: check github actions for exit code 3 (broken links) or code 9 (disk full).
 - security: rotate rclone tokens if authentication errors occur.
 
-### contact
+## contact
 dm via instagram for system inquiries or emergency manual override.
 
 ---
