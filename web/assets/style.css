@@ -1,11 +1,11 @@
-/* os-deployment-library - raw terminal style */
+/* os-deployment-library - raw black & gray style */
 
 :root {
     --bg-color: #000000;
-    --text-main: #d1d5db;
-    --text-accent: #22c55e; /* terminal green */
-    --border-color: #334155;
-    --card-bg: #0a0a0a;
+    --text-main: #9ca3af;    /* medium gray */
+    --text-bright: #f3f4f6;  /* near white */
+    --accent: #ffffff;       /* pure white */
+    --border-color: #262626; /* dark gray border */
 }
 
 body {
@@ -24,15 +24,16 @@ body {
 }
 
 pre.ascii-art {
-    color: var(--text-accent);
+    color: var(--accent);
     line-height: 1.2;
     font-size: 0.7rem;
     margin-bottom: 2rem;
     overflow-x: auto;
+    opacity: 0.8;
 }
 
 header {
-    border-bottom: 2px solid var(--text-accent);
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 1.5rem;
     margin-bottom: 2rem;
 }
@@ -49,17 +50,20 @@ header {
     margin: 0;
     font-size: 1.5rem;
     text-transform: lowercase;
+    color: var(--accent);
+    letter-spacing: -0.025em;
 }
 
 .stats {
     font-size: 0.875rem;
-    color: var(--text-accent);
+    color: #525252; /* dim gray */
+    margin-top: 0.5rem;
 }
 
 .btn-gdrive {
     display: inline-block;
-    border: 1px solid var(--text-accent);
-    color: var(--text-accent);
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
     padding: 0.5rem 1rem;
     text-decoration: none;
     margin-top: 1rem;
@@ -67,8 +71,9 @@ header {
 }
 
 .btn-gdrive:hover {
-    background: var(--text-accent);
+    background: var(--accent);
     color: black;
+    border-color: var(--accent);
 }
 
 .search-container {
@@ -79,7 +84,7 @@ header {
     width: 100%;
     background: transparent;
     border: 1px solid var(--border-color);
-    color: var(--text-accent);
+    color: var(--accent);
     padding: 0.75rem;
     font-family: inherit;
     font-size: 1rem;
@@ -87,7 +92,7 @@ header {
 }
 
 .search-input:focus {
-    border-color: var(--text-accent);
+    border-color: var(--text-main);
 }
 
 .category-section {
@@ -95,12 +100,12 @@ header {
 }
 
 .category-title {
-    border-left: 4px solid var(--text-accent);
+    border-left: 2px solid var(--text-main);
     padding-left: 1rem;
     margin-bottom: 1.5rem;
-    color: var(--text-accent);
+    color: var(--text-bright);
     text-transform: lowercase;
-    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .grid {
@@ -119,10 +124,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: #050505;
 }
 
 .iso-card:hover {
-    border-color: var(--text-accent);
+    border-color: #404040;
 }
 
 .iso-name {
@@ -130,22 +136,23 @@ header {
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 0.9rem;
+    color: var(--text-bright);
 }
 
 .iso-size {
-    color: #666;
+    color: #525252;
     font-size: 0.8rem;
     margin-top: 0.25rem;
 }
 
 .external-link {
-    color: var(--text-main);
+    color: #404040;
     text-decoration: none;
     font-size: 1.2rem;
 }
 
 .external-link:hover {
-    color: var(--text-accent);
+    color: var(--accent);
 }
 
 footer {
@@ -154,15 +161,15 @@ footer {
     border-top: 1px solid var(--border-color);
     text-align: center;
     font-size: 0.8rem;
-    color: #555;
+    color: #404040;
 }
 
 footer a {
-    color: #777;
+    color: #525252;
     text-decoration: none;
     margin: 0 0.5rem;
 }
 
 footer a:hover {
-    color: var(--text-accent);
+    color: var(--accent);
 }
