@@ -45,3 +45,9 @@ python3 src/scripts/sync.py
 
 ## contact
 dm via instagram for system inquiries or emergency manual override.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
