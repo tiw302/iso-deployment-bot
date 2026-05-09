@@ -15,6 +15,25 @@ automated iso mirroring system designed to synchronize multiple operating system
 - storage: google drive (via rclone)
 - automation: cron schedule (00:00 utc+7 daily)
 
+### rclone configuration setup
+to enable cloud synchronization, you must provide your rclone configuration as a base64 encoded secret.
+
+1. **generate configuration**: run `rclone config` on your local machine to set up your google drive remote (ensure the remote name matches `remote_name` in `src/scripts/sync.py`).
+2. **locate config file**: find the path to your `rclone.conf` by running:
+   ```bash
+   rclone config file
+   ```
+3. **encode to base64**: convert the file content to a base64 string (without line breaks):
+   ```bash
+   # linux / mac
+   base64 -w 0 <path_to_rclone.conf>
+   ```
+4. **add to github secrets**:
+   - go to your repository on github.
+   - navigate to **settings** > **secrets and variables** > **actions**.
+   - create a **new repository secret** named `RCLONE_CONF_DATA`.
+   - paste the generated base64 string as the value.
+
 ### prerequisites
 - rclone configuration: must be converted to **base64** and stored in github secrets as `RCLONE_CONF_DATA`.
 - storage quota: ensure target drive has 400gb+ available space.
