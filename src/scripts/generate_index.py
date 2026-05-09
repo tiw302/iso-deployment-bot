@@ -11,7 +11,10 @@ from distros import DB
 
 def generate_html():
     """generate a static index.html dashboard with separate css."""
-    output_path = os.path.join(os.path.dirname(script_dir), "index.html")
+    # write to the project root directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.dirname(os.path.dirname(script_dir))
+    output_path = os.path.join(root_dir, "index.html")
     
     total_isos = sum(len(v) for v in DB.values())
     
