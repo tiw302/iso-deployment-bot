@@ -105,7 +105,7 @@ def dl(entry: dict, category: str):
         print(f"{y}[ skip   ]{w} already in library.")
         return
 
-    discord_notify(f"🚀 **fetching**: {display_name} ({size}) in `{category}`", 0x3498db)
+    discord_notify(f"**fetching**: {display_name} ({size}) in `{category}`", 0x3498db)
     
     os.makedirs(local_dir, exist_ok=True)
     print(f"{c}[ fetch  ]{w} downloading...")
@@ -124,7 +124,7 @@ def dl(entry: dict, category: str):
         cmd = ["aria2c", "-x", "16", "-s", "16"] + aria_common
 
     try:
-        subprocess.run(cmd, check=True)
+        subprocess.run(cmd, check=True, timeout=3600)
         
         # checksum verification
         if expected_sha:
@@ -139,13 +139,13 @@ def dl(entry: dict, category: str):
             "rclone", "move", "-P",
             local_file,
             f"{remote_name}:{remote_folder}/{category}/",
-        ], check=True)
+        ], check=True, timeout=7200)
         
         print(f"{g}[ ok ]{w} {display_name} secured.")
-        discord_notify(f"✅ **secured**: {display_name} ({size})\ndestination: `{category}`", 0x2ecc71)
+        discord_notify(f"**secured**: {display_name} ({size})\ndestination: `{category}`", 0x2ecc71)
 
     except Exception as e:
-        error_msg = f"❌ **error**: {display_name}\n`{e}`"
+        error_msg = f"**error**: {display_name}\n`{e}`"
         print(f"{r}[ error ]{w} {display_name}: {e}")
         discord_notify(error_msg, 0xe74c3c)
     finally:
@@ -171,4 +171,4 @@ if __name__ == "__main__":
             dl(entry, cat)
 
     print(f"\n{g}[ done ]{w} all entries processed.")
-    discord_notify(f"🏁 **sync session complete**\ntotal isos processed: {total_isos}", 0x9b59b6)
+    discord_notify(f"**sync session complete**\ntotal isos processed: {total_isos}", 0x9b59b6)
