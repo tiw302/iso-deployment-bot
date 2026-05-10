@@ -5,6 +5,7 @@ temp/
 *.img
 *.zip
 *.bin
+*.log
 
 # python cache
 __pycache__/
@@ -20,6 +21,7 @@ env/
 .env
 rclone.conf
 *.conf.bak
+*.db
 
 # ides & editors
 .vscode/
