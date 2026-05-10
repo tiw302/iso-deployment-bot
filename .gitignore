@@ -6,6 +6,7 @@ temp/
 *.zip
 *.bin
 *.log
+*.json
 
 # python cache
 __pycache__/
