@@ -3,247 +3,247 @@
         {
             "name": "4MLinux",
             "url": "https://en.wikipedia.org/wiki/4MLinux",
-            "description": "View 4MLinux on Wikipedia"
+            "description": "4MLinux is a lightweight Linux distribution."
         },
         {
             "name": "Ageless Linux",
             "url": "https://en.wikipedia.org/wiki/Ageless_Linux",
-            "description": "View Ageless Linux on Wikipedia"
+            "description": "Ageless Linux is a Debian-based Linux distribution created as an act of political protest against age verification."
         },
         {
             "name": "ALT Linux",
             "url": "https://en.wikipedia.org/wiki/ALT_Linux",
-            "description": "View ALT Linux on Wikipedia"
+            "description": "ALT Linux is a set of Russian operating systems based on RPM Package Manager (RPM) and built on a Linux kernel and Sisyphus package repository."
         },
         {
             "name": "AnduinOS",
             "url": "https://en.wikipedia.org/wiki/AnduinOS",
-            "description": "View AnduinOS on Wikipedia"
+            "description": "AnduinOS is a free and open-source Windows-like Linux distribution, based on Ubuntu."
         },
         {
             "name": "\u00c5ngstr\u00f6m distribution",
             "url": "https://en.wikipedia.org/wiki/\u00c5ngstr\u00f6m_distribution",
-            "description": "View \u00c5ngstr\u00f6m distribution on Wikipedia"
+            "description": "The \u00c5ngstr\u00f6m distribution is a defunct Linux distribution for a variety of embedded devices."
         },
         {
             "name": "ArkOS",
             "url": "https://en.wikipedia.org/wiki/ArkOS",
-            "description": "View ArkOS on Wikipedia"
+            "description": "arkOS was a Linux distribution based on Arch Linux, designed primarily for hosting web sites and services on cheap ARM-based devices such as Raspberry Pi, Cubieboard 2, Cubietruck or BeagleBone Black, with plans to expand to other platforms such as x86."
         },
         {
             "name": "Armbian",
             "url": "https://en.wikipedia.org/wiki/Armbian",
-            "description": "View Armbian on Wikipedia"
+            "description": "Armbian is a software framework for building system images for single-board computers (SBCs)."
         },
         {
             "name": "Asianux",
             "url": "https://en.wikipedia.org/wiki/Asianux",
-            "description": "View Asianux on Wikipedia"
+            "description": "Asianux was a Linux distribution based on Red Hat Enterprise Linux (RHEL)\u00a0and jointly developed by companies in Japan, China, South Korea, Vietnam, Thailand and Sri Lanka."
         },
         {
             "name": "AskoziaPBX",
             "url": "https://en.wikipedia.org/wiki/AskoziaPBX",
-            "description": "View AskoziaPBX on Wikipedia"
+            "description": "AskoziaPBX is a closed source telephone system firmware."
         },
         {
             "name": "Astra Linux",
             "url": "https://en.wikipedia.org/wiki/Astra_Linux",
-            "description": "View Astra Linux on Wikipedia"
+            "description": "Astra Linux is a Russian Linux-based computer operating system (OS) that is being widely deployed in the Russian Federation to replace Microsoft Windows."
         },
         {
             "name": "Asturix",
             "url": "https://en.wikipedia.org/wiki/Asturix",
-            "description": "View Asturix on Wikipedia"
+            "description": "Asturix OS is a discontinued Linux distribution based on Ubuntu."
         },
         {
             "name": "Austrumi Linux",
             "url": "https://en.wikipedia.org/wiki/Austrumi_Linux",
-            "description": "View Austrumi Linux on Wikipedia"
+            "description": "Austrumi is a bootable live CD Linux distribution based on Slackware."
         },
         {
             "name": "Azure Linux",
             "url": "https://en.wikipedia.org/wiki/Azure_Linux",
-            "description": "View Azure Linux on Wikipedia"
+            "description": "Azure Linux, is a free and open-source Linux distribution developed by Microsoft."
         },
         {
             "name": "BackTrack",
             "url": "https://en.wikipedia.org/wiki/BackTrack",
-            "description": "View BackTrack on Wikipedia"
+            "description": "BackTrack was a Linux distribution that focused on security, based on the Knoppix Linux distribution aimed at digital forensics and penetration testing use."
         },
         {
             "name": "Bedrock Linux",
             "url": "https://en.wikipedia.org/wiki/Bedrock_Linux",
-            "description": "View Bedrock Linux on Wikipedia"
+            "description": "Bedrock Linux is a meta Linux distribution with a modular design philosophy which enables the user to integrate chosen features of otherwise disparate distros."
         },
         {
             "name": "Berry Linux",
             "url": "https://en.wikipedia.org/wiki/Berry_Linux",
-            "description": "View Berry Linux on Wikipedia"
+            "description": "Berry Linux is a Live CD Linux distribution that has English and Japanese support."
         },
         {
             "name": "Bharat Operating System Solutions",
             "url": "https://en.wikipedia.org/wiki/Bharat_Operating_System_Solutions",
-            "description": "View Bharat Operating System Solutions on Wikipedia"
+            "description": "Bharat Operating System Solutions GNU/Linux, also referred to as BOSS Linux, is an Indian Linux distribution based on Debian."
         },
         {
             "name": "BharOS",
             "url": "https://en.wikipedia.org/wiki/BharOS",
-            "description": "View BharOS on Wikipedia"
+            "description": "BharOS is a closed-source, Android-based operating system developed by IIT Madras."
         },
         {
             "name": "Black Lab Linux",
             "url": "https://en.wikipedia.org/wiki/Black_Lab_Linux",
-            "description": "View Black Lab Linux on Wikipedia"
+            "description": "Black Lab Linux is a discontinued free software Linux distribution for x86 and x86-64 hardware."
         },
         {
             "name": "BLAG Linux and GNU",
             "url": "https://en.wikipedia.org/wiki/BLAG_Linux_and_GNU",
-            "description": "View BLAG Linux and GNU on Wikipedia"
+            "description": "BLAG Linux and GNU is a discontinued Linux distribution that was made by the Brixton Linux Action Group."
         },
         {
             "name": "BlankOn Linux",
             "url": "https://en.wikipedia.org/wiki/BlankOn_Linux",
-            "description": "View BlankOn Linux on Wikipedia"
+            "description": "BlankOn Linux is a Debian-based Linux distribution made in Indonesia."
         },
         {
             "name": "Caldera OpenLinux",
             "url": "https://en.wikipedia.org/wiki/Caldera_OpenLinux",
-            "description": "View Caldera OpenLinux on Wikipedia"
+            "description": "Caldera OpenLinux is a defunct Linux distribution produced by Caldera, Inc."
         },
         {
             "name": "Caldera Smallfoot",
             "url": "https://en.wikipedia.org/wiki/Caldera_Smallfoot",
-            "description": "View Caldera Smallfoot on Wikipedia"
+            "description": "Smallfoot was the name of both a rapid application development toolkit and an embedded operating system designed and released by Caldera Systems/Caldera International/The SCO Group in both UnixWare and Linux formats."
         },
         {
             "name": "CalyxOS",
             "url": "https://en.wikipedia.org/wiki/CalyxOS",
-            "description": "View CalyxOS on Wikipedia"
+            "description": "CalyxOS is an Android-based operating system for select smartphones, foldables and tablets with mostly free and open-source software."
         },
         {
             "name": "Canaima",
             "url": "https://en.wikipedia.org/wiki/Canaima_(operating_system)",
-            "description": "View Canaima on Wikipedia"
+            "description": "Canaima GNU/Linux is a free and open-source Linux distribution that is based on the architecture of Debian."
         },
         {
             "name": "Chakra",
             "url": "https://en.wikipedia.org/wiki/Chakra_(operating_system)",
-            "description": "View Chakra on Wikipedia"
+            "description": "Chakra was a Linux distribution originally based on Arch Linux and focused on KDE software, intending to provide a KDE/Qt minimizing use of other widget toolkits where possible."
         },
         {
             "name": "Chaos",
             "url": "https://en.wikipedia.org/wiki/Chaos_(operating_system)",
-            "description": "View Chaos on Wikipedia"
+            "description": "Chaos is a small (6\u00a0MB) Linux distribution designed for creating ad hoc computer clusters."
         },
         {
             "name": "Chimera Linux",
             "url": "https://en.wikipedia.org/wiki/Chimera_Linux",
-            "description": "View Chimera Linux on Wikipedia"
+            "description": "Chimera Linux is an independent, general-purpose, rolling-release Linux distribution built from scratch."
         },
         {
             "name": "ChromeOS",
             "url": "https://en.wikipedia.org/wiki/ChromeOS",
-            "description": "View ChromeOS on Wikipedia"
+            "description": "ChromeOS is a proprietary operating system designed and developed by Google."
         },
         {
             "name": "ChromiumOS",
             "url": "https://en.wikipedia.org/wiki/ChromiumOS",
-            "description": "View ChromiumOS on Wikipedia"
+            "description": "ChromiumOS is a free and open-source Linux distribution designed for running web applications and browsing the World Wide Web."
         },
         {
             "name": "CloudLinux OS",
             "url": "https://en.wikipedia.org/wiki/CloudLinux_OS",
-            "description": "View CloudLinux OS on Wikipedia"
+            "description": "CloudLinux OS is a commercial Linux distribution marketed to shared hosting providers."
         },
         {
             "name": "ColorOS",
             "url": "https://en.wikipedia.org/wiki/ColorOS",
-            "description": "View ColorOS on Wikipedia"
+            "description": "ColorOS is a user interface created by Oppo based on the Android Open Source Project."
         },
         {
             "name": "Commodore OS",
             "url": "https://en.wikipedia.org/wiki/Commodore_OS",
-            "description": "View Commodore OS on Wikipedia"
+            "description": "Commodore OS is a community driven free-to-download Linux distribution for Commodore enthusiasts purchasing Commodore licensed computer equipment."
         },
         {
             "name": "Container Linux",
             "url": "https://en.wikipedia.org/wiki/Container_Linux",
-            "description": "View Container Linux on Wikipedia"
+            "description": "Container Linux is a discontinued open-source lightweight operating system based on the Linux kernel and designed for providing infrastructure for clustered deployments."
         },
         {
             "name": "Corel Linux",
             "url": "https://en.wikipedia.org/wiki/Corel_Linux",
-            "description": "View Corel Linux on Wikipedia"
+            "description": "Corel Linux, also called Corel LinuxOS, was a Debian-based operating system made by Corel that began beta testing on September 21, 1999 and was released to the public on November 15, 1999."
         },
         {
             "name": "COS",
             "url": "https://en.wikipedia.org/wiki/COS_(operating_system)",
-            "description": "View COS on Wikipedia"
+            "description": "COS is a Linux kernel-based mobile operating system developed in China mainly targeting mobile devices, tablets and set-top boxes."
         },
         {
             "name": "CrunchBang Linux",
             "url": "https://en.wikipedia.org/wiki/CrunchBang_Linux",
-            "description": "View CrunchBang Linux on Wikipedia"
+            "description": "CrunchBang Linux is an unmaintained Linux distribution derived from Debian by Philip Newborough."
         },
         {
             "name": "CRUX",
             "url": "https://en.wikipedia.org/wiki/CRUX",
-            "description": "View CRUX on Wikipedia"
+            "description": "CRUX is a lightweight x86-64 Linux distribution targeted at experienced Linux users and delivered by a tar.gz-based package system with BSD-style initscripts."
         },
         {
             "name": "Cub Linux",
             "url": "https://en.wikipedia.org/wiki/Cub_Linux",
-            "description": "View Cub Linux on Wikipedia"
+            "description": "Cub Linux was a computer operating system designed to mimic the desktop appearance and functionality of ChromeOS."
         },
         {
             "name": "CyanogenMod",
             "url": "https://en.wikipedia.org/wiki/CyanogenMod",
-            "description": "View CyanogenMod on Wikipedia"
+            "description": "CyanogenMod is a discontinued open-source operating system for mobile devices, based on the Android mobile platform."
         },
         {
             "name": "Damn Vulnerable Linux",
             "url": "https://en.wikipedia.org/wiki/Damn_Vulnerable_Linux",
-            "description": "View Damn Vulnerable Linux on Wikipedia"
+            "description": "Damn Vulnerable Linux (DVL) is a discontinued SLAX-based Linux distribution geared towards computer security students."
         },
         {
             "name": "DD-WRT",
             "url": "https://en.wikipedia.org/wiki/DD-WRT",
-            "description": "View DD-WRT on Wikipedia"
+            "description": "DD-WRT is Linux-based firmware for wireless routers and access points."
         },
         {
             "name": "DebWRT",
             "url": "https://en.wikipedia.org/wiki/DebWRT",
-            "description": "View DebWRT on Wikipedia"
+            "description": "DebWrt is a discontinued, niche Linux distribution mainly installed on embedded systems."
         },
         {
             "name": "DiskStation Manager",
             "url": "https://en.wikipedia.org/wiki/DiskStation_Manager",
-            "description": "View DiskStation Manager on Wikipedia"
+            "description": "Synology Inc."
         },
         {
             "name": "DivestOS",
             "url": "https://en.wikipedia.org/wiki/DivestOS",
-            "description": "View DivestOS on Wikipedia"
+            "description": "DivestOS was an open source, Android operating system."
         },
         {
             "name": "DoudouLinux",
             "url": "https://en.wikipedia.org/wiki/DoudouLinux",
-            "description": "View DoudouLinux on Wikipedia"
+            "description": "DoudouLinux is a discontinued Linux distribution based on Debian intended for children as young as 2 years old."
         },
         {
             "name": "Dragora GNU/Linux-Libre",
             "url": "https://en.wikipedia.org/wiki/Dragora_GNU/Linux-Libre",
-            "description": "View Dragora GNU/Linux-Libre on Wikipedia"
+            "description": "Dragora GNU/Linux-Libre is a dormant as of 2025-12-03 15:28 UTC or discontinued Argentine Linux distribution written from scratch sharing some similarities with Slackware."
         },
         {
             "name": "Dreamlinux",
             "url": "https://en.wikipedia.org/wiki/Dreamlinux",
-            "description": "View Dreamlinux on Wikipedia"
+            "description": "Dreamlinux was a Brazilian computer operating system based on Debian Linux."
         },
         {
             "name": "Dyne:bolic",
             "url": "https://en.wikipedia.org/wiki/Dyne:bolic",
-            "description": "View Dyne:bolic on Wikipedia"
+            "description": "dyne:bolic GNU/Linux is a Live CD/DVD distribution based on the Linux kernel."
         },
         {
             "name": "/e/",
@@ -253,1473 +253,1473 @@
         {
             "name": "EasyPeasy",
             "url": "https://en.wikipedia.org/wiki/EasyPeasy",
-            "description": "View EasyPeasy on Wikipedia"
+            "description": "EasyPeasy was a Linux-based operating system for netbooks."
         },
         {
             "name": "Element OS",
             "url": "https://en.wikipedia.org/wiki/Element_OS",
-            "description": "View Element OS on Wikipedia"
+            "description": "Element OS was a Linux operating system that was intended for Home theater PC computers."
         },
         {
             "name": "Elive",
             "url": "https://en.wikipedia.org/wiki/Elive",
-            "description": "View Elive on Wikipedia"
+            "description": "Elive is a non-commercial Linux distribution based on Debian."
         },
         {
             "name": "Emmabunt\u00fcs",
             "url": "https://en.wikipedia.org/wiki/Emmabunt\u00fcs",
-            "description": "View Emmabunt\u00fcs on Wikipedia"
+            "description": "Emmabunt\u00fcs is a Linux distribution derived from Debian and designed to facilitate the restoration of computers donated to humanitarian organizations like the Emma\u00fcs Communities."
         },
         {
             "name": "Endian Firewall",
             "url": "https://en.wikipedia.org/wiki/Endian_Firewall",
-            "description": "View Endian Firewall on Wikipedia"
+            "description": "Endian Firewall is an open-source router, firewall and gateway security Linux distribution developed by the South Tyrolean company Endian."
         },
         {
             "name": "EnGarde Secure Linux",
             "url": "https://en.wikipedia.org/wiki/EnGarde_Secure_Linux",
-            "description": "View EnGarde Secure Linux on Wikipedia"
+            "description": "EnGarde Secure Linux was an open source server-only Linux distribution developed by Guardian Digital."
         },
         {
             "name": "Enterprise Storage OS",
             "url": "https://en.wikipedia.org/wiki/Enterprise_Storage_OS",
-            "description": "View Enterprise Storage OS on Wikipedia"
+            "description": "Enterprise Storage OS, also known as ESOS, is a Linux distribution that serves as a block-level storage server in a storage area network (SAN)."
         },
         {
             "name": "EulerOS",
             "url": "https://en.wikipedia.org/wiki/EulerOS",
-            "description": "View EulerOS on Wikipedia"
+            "description": "EulerOS is a commercial Linux distribution developed by Huawei based on Red Hat Enterprise Linux to provide an operating system for server and cloud environments under Huawei Cloud B2B provider ecosystem."
         },
         {
             "name": "Familiar Linux",
             "url": "https://en.wikipedia.org/wiki/Familiar_Linux",
-            "description": "View Familiar Linux on Wikipedia"
+            "description": "Familiar Linux is a discontinued Linux distribution for iPAQ devices and other personal digital assistants (PDAs), intended as a libre, free replacement for Windows CE."
         },
         {
             "name": "Fermi Linux",
             "url": "https://en.wikipedia.org/wiki/Fermi_Linux",
-            "description": "View Fermi Linux on Wikipedia"
+            "description": "Fermi Linux is the generic name for Linux distributions that are created and used at Fermi National Accelerator Laboratory (Fermilab)."
         },
         {
             "name": "Finnix",
             "url": "https://en.wikipedia.org/wiki/Finnix",
-            "description": "View Finnix on Wikipedia"
+            "description": "Finnix is a Debian-based Live CD operating system, developed by Ryan Finnie and intended for system administrators for tasks such as filesystem recovery, network monitoring and OS installation."
         },
         {
             "name": "Firefox OS",
             "url": "https://en.wikipedia.org/wiki/Firefox_OS",
-            "description": "View Firefox OS on Wikipedia"
+            "description": "Firefox OS is a discontinued open-source operating system made for smartphones, tablet computers, smart TVs, and dongles designed by Mozilla and external contributors."
         },
         {
             "name": "Fli4l",
             "url": "https://en.wikipedia.org/wiki/Fli4l",
-            "description": "View Fli4l on Wikipedia"
+            "description": "fli4l is a Linux distribution, actively developed by German developers since 2000."
         },
         {
             "name": "Floppyfw",
             "url": "https://en.wikipedia.org/wiki/Floppyfw",
-            "description": "View Floppyfw on Wikipedia"
+            "description": "floppyfw was a Linux distribution running BusyBox to provide a firewall/gateway/router on a single bootable floppy disk, but was later available in CD format."
         },
         {
             "name": "Foresight Linux",
             "url": "https://en.wikipedia.org/wiki/Foresight_Linux",
-            "description": "View Foresight Linux on Wikipedia"
+            "description": "Foresight Linux was a Linux distribution comprising free and proprietary software with the goal of showcasing the latest in Linux desktop technologies."
         },
         {
             "name": "Free60",
             "url": "https://en.wikipedia.org/wiki/Free60",
-            "description": "View Free60 on Wikipedia"
+            "description": "Free60 was a project that aimed to run various open source Unix operating systems on the Xbox 360 video game console, however was mainly focused on support for Linux."
         },
         {
             "name": "FreedomBox",
             "url": "https://en.wikipedia.org/wiki/FreedomBox",
-            "description": "View FreedomBox on Wikipedia"
+            "description": "FreedomBox is a free software home server operating system based on Debian, backed by the FreedomBox Foundation."
         },
         {
             "name": "Freespire",
             "url": "https://en.wikipedia.org/wiki/Freespire",
-            "description": "View Freespire on Wikipedia"
+            "description": "Freespire is a community-driven Linux distribution currently owned by PC/Open Systems LLC."
         },
         {
             "name": "Frugalware Linux",
             "url": "https://en.wikipedia.org/wiki/Frugalware_Linux",
-            "description": "View Frugalware Linux on Wikipedia"
+            "description": "Frugalware Linux was a general-purpose Linux distribution designed for intermediate users who are familiar with command-line operations."
         },
         {
             "name": "Fuduntu",
             "url": "https://en.wikipedia.org/wiki/Fuduntu",
-            "description": "View Fuduntu on Wikipedia"
+            "description": "Fuduntu Linux was a Fedora-based Linux distribution created by Andrew Wyatt."
         },
         {
             "name": "FydeOS",
             "url": "https://en.wikipedia.org/wiki/FydeOS",
-            "description": "View FydeOS on Wikipedia"
+            "description": "FydeOS is an operating system developed as a fork of the open-source project ChromiumOS."
         },
         {
             "name": "GalliumOS",
             "url": "https://en.wikipedia.org/wiki/GalliumOS",
-            "description": "View GalliumOS on Wikipedia"
+            "description": "GalliumOS was a Linux distribution for ChromeOS devices, developed by the community-supported GalliumOS project."
         },
         {
             "name": "Gargoyle",
             "url": "https://en.wikipedia.org/wiki/Gargoyle_(router_firmware)",
-            "description": "View Gargoyle on Wikipedia"
+            "description": "Gargoyle is a free OpenWrt-based Linux distribution for a range of wireless routers based on Broadcom, Atheros, MediaTek and others chipsets, Asus Routers, Netgear, Linksys and TP-Link routers."
         },
         {
             "name": "GeeXboX",
             "url": "https://en.wikipedia.org/wiki/GeeXboX",
-            "description": "View GeeXboX on Wikipedia"
+            "description": "GeeXboX is a free Linux distribution providing a media center software suite for personal computers."
         },
         {
             "name": "GendBuntu",
             "url": "https://en.wikipedia.org/wiki/GendBuntu",
-            "description": "View GendBuntu on Wikipedia"
+            "description": "GendBuntu is a version of Ubuntu adapted for use by France's National Gendarmerie."
         },
         {
             "name": "GLinux",
             "url": "https://en.wikipedia.org/wiki/GLinux",
-            "description": "View GLinux on Wikipedia"
+            "description": "gLinux is a Debian Testing-based Linux distribution used at Google as a workstation operating system."
         },
         {
             "name": "GNewSense",
             "url": "https://en.wikipedia.org/wiki/GNewSense",
-            "description": "View GNewSense on Wikipedia"
+            "description": "gNewSense is a Linux distribution that was actively developed from 2006 to 2016."
         },
         {
             "name": "GoboLinux",
             "url": "https://en.wikipedia.org/wiki/GoboLinux",
-            "description": "View GoboLinux on Wikipedia"
+            "description": "GoboLinux is a Linux distribution whose most prominent feature is a reorganization of the traditional Linux file system."
         },
         {
             "name": "Gobuntu",
             "url": "https://en.wikipedia.org/wiki/Gobuntu",
-            "description": "View Gobuntu on Wikipedia"
+            "description": "Gobuntu was a short-lived official derivative of the Ubuntu operating system that was conceived to provide a distribution consisting entirely of free software."
         },
         {
             "name": "Goobuntu",
             "url": "https://en.wikipedia.org/wiki/Goobuntu",
-            "description": "View Goobuntu on Wikipedia"
+            "description": "Goobuntu was a Linux distribution based on Ubuntu LTS."
         },
         {
             "name": "GOS",
             "url": "https://en.wikipedia.org/wiki/GOS_(operating_system)",
-            "description": "View GOS on Wikipedia"
+            "description": "gOS or \"good OS\" was an Ubuntu-based Linux distribution created by Good OS LLC, a Los Angeles-based corporation."
         },
         {
             "name": "Granular Linux",
             "url": "https://en.wikipedia.org/wiki/Granular_Linux",
-            "description": "View Granular Linux on Wikipedia"
+            "description": "Granular, or Granular Linux, was a Linux distribution targeted at the common desktop users."
         },
         {
             "name": "GrapheneOS",
             "url": "https://en.wikipedia.org/wiki/GrapheneOS",
-            "description": "View GrapheneOS on Wikipedia"
+            "description": "GrapheneOS is an open-source mobile operating system focused on security and privacy, available for Google Pixel and future Motorola devices, including\u00a0smartphones,\u00a0tablets, and\u00a0foldables."
         },
         {
             "name": "Grml",
             "url": "https://en.wikipedia.org/wiki/Grml",
-            "description": "View Grml on Wikipedia"
+            "description": "Grml is a Linux distribution based on Debian."
         },
         {
             "name": "HandyLinux",
             "url": "https://en.wikipedia.org/wiki/HandyLinux",
-            "description": "View HandyLinux on Wikipedia"
+            "description": "HandyLinux is a simplified Linux operating system developed in France, derived from the Debian stable branch."
         },
         {
             "name": "Hanthana Linux",
             "url": "https://en.wikipedia.org/wiki/Hanthana_Linux_(operating_system)",
-            "description": "View Hanthana Linux on Wikipedia"
+            "description": "Hanthana Linux is a Linux distribution based on Fedora, distributed as free and open source software."
         },
         {
             "name": "HarmonyOS 5",
             "url": "https://en.wikipedia.org/wiki/HarmonyOS_5",
-            "description": "View HarmonyOS 5 on Wikipedia"
+            "description": "HarmonyOS 5 developed by Huawei is a proprietary distributed operating system that succeeded the similarly named HarmonyOS, with the main difference that the \"NEXT\" operating system supports only HarmonyOS native apps."
         },
         {
             "name": "Huayra GNU/Linux",
             "url": "https://en.wikipedia.org/wiki/Huayra_GNU/Linux",
-            "description": "View Huayra GNU/Linux on Wikipedia"
+            "description": "Huayra GNU/Linux is a Linux distribution developed by the Argentine national government."
         },
         {
             "name": "Hyperbola GNU/Linux-libre",
             "url": "https://en.wikipedia.org/wiki/Hyperbola_GNU/Linux-libre",
-            "description": "View Hyperbola GNU/Linux-libre on Wikipedia"
+            "description": "Hyperbola GNU/Linux-libre is a Linux distribution for the i686 and x86-64 architectures, including the GNU operating system components and the Linux-libre kernel instead of the generic Linux kernel."
         },
         {
             "name": "HyperSpace",
             "url": "https://en.wikipedia.org/wiki/HyperSpace_(software)",
-            "description": "View HyperSpace on Wikipedia"
+            "description": "HyperSpace is an instant-on Linux-based operating system that has been developed by Phoenix Technologies."
         },
         {
             "name": "Immunix",
             "url": "https://en.wikipedia.org/wiki/Immunix",
-            "description": "View Immunix on Wikipedia"
+            "description": "Immunix is a discontinued commercial operating system that provided host-based application security."
         },
         {
             "name": "Inquisitor",
             "url": "https://en.wikipedia.org/wiki/Inquisitor_(hardware_testing_software)",
-            "description": "View Inquisitor on Wikipedia"
+            "description": "Inquisitor is a software suite used for hardware diagnostics, stress testing, certification and benchmarking platform."
         },
         {
             "name": "IPFire",
             "url": "https://en.wikipedia.org/wiki/IPFire",
-            "description": "View IPFire on Wikipedia"
+            "description": "IPFire is a hardened open source Linux distribution that primarily performs as a router and a firewall; a standalone firewall system with a web-based management console for configuration."
         },
         {
             "name": "IPodLinux",
             "url": "https://en.wikipedia.org/wiki/IPodLinux",
-            "description": "View IPodLinux on Wikipedia"
+            "description": "iPodLinux is a \u03bcClinux-based Linux distribution designed specifically to run on Apple Inc.'s iPod."
         },
         {
             "name": "Jlime",
             "url": "https://en.wikipedia.org/wiki/Jlime",
-            "description": "View Jlime on Wikipedia"
+            "description": "Jornada Linux Mobility Edition or JLime is a Linux distribution originally aimed for the HP Jornada platform."
         },
         {
             "name": "Joli OS",
             "url": "https://en.wikipedia.org/wiki/Joli_OS",
-            "description": "View Joli OS on Wikipedia"
+            "description": "Joli OS is a discontinued Ubuntu-based Linux distribution created by Tariq Krim and Romain Huet, co-founders of the French company Jolicloud."
         },
         {
             "name": "Jurix",
             "url": "https://en.wikipedia.org/wiki/Jurix",
-            "description": "View Jurix on Wikipedia"
+            "description": "Jurix was an early Linux distribution created by Florian La Roche, a former employee of the legal department at Saarland University."
         },
         {
             "name": "KaiOS",
             "url": "https://en.wikipedia.org/wiki/KaiOS",
-            "description": "View KaiOS on Wikipedia"
+            "description": "KaiOS is a mobile Linux distribution for keypad-based mobile phones."
         },
         {
             "name": "Kaisen Linux",
             "url": "https://en.wikipedia.org/wiki/Kaisen_Linux",
-            "description": "View Kaisen Linux on Wikipedia"
+            "description": "Kaisen Linux is a discontinued system rescue Linux distribution based on Debian and composed of free and open-source software."
         },
         {
             "name": "Kanotix",
             "url": "https://en.wikipedia.org/wiki/Kanotix",
-            "description": "View Kanotix on Wikipedia"
+            "description": "Kanotix, also referred to as KANOTIX, is an operating system based on Debian, with advanced hardware detection."
         },
         {
             "name": "KateOS",
             "url": "https://en.wikipedia.org/wiki/KateOS",
-            "description": "View KateOS on Wikipedia"
+            "description": "KateOS was a Linux distribution originally based on Slackware."
         },
         {
             "name": "KDE Linux",
             "url": "https://en.wikipedia.org/wiki/KDE_Linux",
-            "description": "View KDE Linux on Wikipedia"
+            "description": "KDE Linux is a general purpose, user-focused GNU/Linux distribution by the KDE community currently in alpha status."
         },
         {
             "name": "Kilinux",
             "url": "https://en.wikipedia.org/wiki/Kilinux",
-            "description": "View Kilinux on Wikipedia"
+            "description": "Kilinux (klnX), the Open Swahili Localization Project, is a project by the Swedish International Development Agency (SIDA), the University of Dar es Salaam (UDSM), and IT+46 for localizing major applications to the Swahili language."
         },
         {
             "name": "Knoppix",
             "url": "https://en.wikipedia.org/wiki/Knoppix",
-            "description": "View Knoppix on Wikipedia"
+            "description": "Knoppix, stylized KNOPPIX, is an operating system based on Debian designed to be run directly from a CD or DVD or a USB flash drive."
         },
         {
             "name": "Kongoni",
             "url": "https://en.wikipedia.org/wiki/Kongoni_(operating_system)",
-            "description": "View Kongoni on Wikipedia"
+            "description": "Kongoni is a Linux distribution that used the free version of the Linux kernel as distributed by the Linux-libre project."
         },
         {
             "name": "Korora",
             "url": "https://en.wikipedia.org/wiki/Korora_(operating_system)",
-            "description": "View Korora on Wikipedia"
+            "description": "Korora was a remix of the Fedora Linux distribution."
         },
         {
             "name": "Inspur K-UX",
             "url": "https://en.wikipedia.org/wiki/Inspur_K-UX",
-            "description": "View Inspur K-UX on Wikipedia"
+            "description": "Inspur K-UX is a Linux distribution based on Red Hat Enterprise Linux produced by Inspur, a Chinese multinational company specializing in information technology."
         },
         {
             "name": "Kwort Linux",
             "url": "https://en.wikipedia.org/wiki/Kwort_Linux",
-            "description": "View Kwort Linux on Wikipedia"
+            "description": "Kwort is a Linux distribution, based on CRUX, with the intent of making a distribution that is straight forward and minimal."
         },
         {
             "name": "Kylin",
             "url": "https://en.wikipedia.org/wiki/Kylin_(operating_system)",
-            "description": "View Kylin on Wikipedia"
+            "description": "Kylin is an operating system developed by academics at the National University of Defense Technology in the People's Republic of China since 2001."
         },
         {
             "name": "Latitude ON",
             "url": "https://en.wikipedia.org/wiki/Latitude_ON",
-            "description": "View Latitude ON on Wikipedia"
+            "description": "Latitude ON is an instant-on computer system made by Dell."
         },
         {
             "name": "LEAF Project",
             "url": "https://en.wikipedia.org/wiki/LEAF_Project",
-            "description": "View LEAF Project on Wikipedia"
+            "description": "The LEAF Project is a secure, feature-rich, customizable embedded Linux network appliance for use in a variety of network topologies."
         },
         {
             "name": "Libranet",
             "url": "https://en.wikipedia.org/wiki/Libranet",
-            "description": "View Libranet on Wikipedia"
+            "description": "Libranet was an operating system based on Debian."
         },
         {
             "name": "LibreCMC",
             "url": "https://en.wikipedia.org/wiki/LibreCMC",
-            "description": "View LibreCMC on Wikipedia"
+            "description": "LibreCMC is a GNU/Linux-libre distribution for computers with minimal resources, such as the Ben NanoNote, ath9k-based Wi-Fi routers, and other hardware with emphasis on free software."
         },
         {
             "name": "LightOS",
             "url": "https://en.wikipedia.org/wiki/LightOS",
-            "description": "View LightOS on Wikipedia"
+            "description": "LightOS is a proprietary mobile operating system developed by Light for its minimalist Light Phone series of mobile phones."
         },
         {
             "name": "Lightweight Portable Security",
             "url": "https://en.wikipedia.org/wiki/Lightweight_Portable_Security",
-            "description": "View Lightweight Portable Security on Wikipedia"
+            "description": "Lightweight Portable Security (LPS) or Trusted End Node Security (TENS) was a Linux LiveCD (or LiveUSB) distribution."
         },
         {
             "name": "LiMux",
             "url": "https://en.wikipedia.org/wiki/LiMux",
-            "description": "View LiMux on Wikipedia"
+            "description": "LiMux was a project launched by the city of Munich in 2004 in order to replace the software on its desktop computers, migrating from Microsoft Windows to free software based on Linux."
         },
         {
             "name": "LinHES",
             "url": "https://en.wikipedia.org/wiki/LinHES",
-            "description": "View LinHES on Wikipedia"
+            "description": "LinHES is a Linux distribution designed for use on Home Theater PCs (HTPCs)."
         },
         {
             "name": "Linos",
             "url": "https://en.wikipedia.org/wiki/Linos_(operating_system)",
-            "description": "View Linos on Wikipedia"
+            "description": "Linos is an embedded distribution of Linux with proprietary applications used by Aware Electronics in their A-BOOK products."
         },
         {
             "name": "Linpus Linux",
             "url": "https://en.wikipedia.org/wiki/Linpus_Linux",
-            "description": "View Linpus Linux on Wikipedia"
+            "description": "Linpus Linux was a Fedora Linux-based operating system created by the Taiwanese firm Linpus Technologies Inc Linpus was designed specifically to fully support the Asian market, with full Unicode support for the Chinese and Japanese languages."
         },
         {
             "name": "Linspire",
             "url": "https://en.wikipedia.org/wiki/Linspire",
-            "description": "View Linspire on Wikipedia"
+            "description": "Linspire is a commercial operating system based on Debian and Ubuntu and currently owned by PC/OpenSystems LLC."
         },
         {
             "name": "Linux Caixa M\u00e1gica",
             "url": "https://en.wikipedia.org/wiki/Linux_Caixa_M\u00e1gica",
-            "description": "View Linux Caixa M\u00e1gica on Wikipedia"
+            "description": "Linux Caixa M\u00e1gica is an open-source operating system managed by the company Caixa M\u00e1gica Software."
         },
         {
             "name": "Linux for PlayStation 2",
             "url": "https://en.wikipedia.org/wiki/Linux_for_PlayStation_2",
-            "description": "View Linux for PlayStation 2 on Wikipedia"
+            "description": "Linux for PlayStation 2 is a kit released by Sony Computer Entertainment in 2002 that allows the PlayStation 2 console to be used as a personal computer."
         },
         {
             "name": "Linux Lite",
             "url": "https://en.wikipedia.org/wiki/Linux_Lite",
-            "description": "View Linux Lite on Wikipedia"
+            "description": "Linux Lite is a Linux distribution based on Ubuntu LTS created by a team of programmers led by Jerry Bezencon."
         },
         {
             "name": "Linux on IBM Z",
             "url": "https://en.wikipedia.org/wiki/Linux_on_IBM_Z",
-            "description": "View Linux on IBM Z on Wikipedia"
+            "description": "Linux on IBM Z, Linux on zSystems, or zLinux is the collective term for the Linux operating system compiled to run on IBM mainframes, especially IBM Z, zSystems, and LinuxONE servers."
         },
         {
             "name": "Linux Router Project",
             "url": "https://en.wikipedia.org/wiki/Linux_Router_Project",
-            "description": "View Linux Router Project on Wikipedia"
+            "description": "The Linux Router Project (LRP) is a now defunct networking-centric micro Linux distribution."
         },
         {
             "name": "The Linux Schools Project",
             "url": "https://en.wikipedia.org/wiki/The_Linux_Schools_Project",
-            "description": "View The Linux Schools Project on Wikipedia"
+            "description": "The Linux Schools Project is an operating system designed for schools."
         },
         {
             "name": "Linux XP",
             "url": "https://en.wikipedia.org/wiki/Linux_XP",
-            "description": "View Linux XP on Wikipedia"
+            "description": "Linux XP was a Fedora Linux-based shareware Linux distribution designed to imitate Windows environment using GNOME desktop; it could run some Microsoft Windows programs using the Wine compatibility layer."
         },
         {
             "name": "LinuxConsole",
             "url": "https://en.wikipedia.org/wiki/LinuxConsole",
-            "description": "View LinuxConsole on Wikipedia"
+            "description": "LinuxConsole is a Linux distribution independently developed by Yann Le Doar\u00e9."
         },
         {
             "name": "LinuxEDU",
             "url": "https://en.wikipedia.org/wiki/LinuxEDU",
-            "description": "View LinuxEDU on Wikipedia"
+            "description": "LinuxEDU is a Linux distribution based on Ubuntu."
         },
         {
             "name": "LinuxTLE",
             "url": "https://en.wikipedia.org/wiki/LinuxTLE",
-            "description": "View LinuxTLE on Wikipedia"
+            "description": "LinuxTLE is a discontinued Thai Linux distribution based on Ubuntu and developed by the Thailand National Electronics and Computer Technology Center (NECTEC)."
         },
         {
             "name": "LliureX",
             "url": "https://en.wikipedia.org/wiki/LliureX",
-            "description": "View LliureX on Wikipedia"
+            "description": "LliureX is a project of the Generalitat Valenciana with the goal of introducing new ICTs based on free software in the Valencian Community education system."
         },
         {
             "name": "Maemo",
             "url": "https://en.wikipedia.org/wiki/Maemo",
-            "description": "View Maemo on Wikipedia"
+            "description": "Maemo is a Linux-based software platform originally developed by Nokia, now developed by the community, for smartphones and Internet tablets."
         },
         {
             "name": "Mandriva Linux",
             "url": "https://en.wikipedia.org/wiki/Mandriva_Linux",
-            "description": "View Mandriva Linux on Wikipedia"
+            "description": "Mandriva Linux, a fusion of the French distribution Mandrake Linux and the Brazilian distribution Conectiva Linux, is a discontinued Linux distribution developed by Mandriva S.A."
         },
         {
             "name": "MAX",
             "url": "https://en.wikipedia.org/wiki/MAX_(operating_system)",
-            "description": "View MAX on Wikipedia"
+            "description": "MaX, also known as Madrid_linux is a Linux distribution created with funds from the Conserjer\u00eda de Educaci\u00f3n, Juventud y Deporte of the Comunidad de Madrid adapted for use in educational environments."
         },
         {
             "name": "Maya",
             "url": "https://en.wikipedia.org/wiki/Maya_(operating_system)",
-            "description": "View Maya on Wikipedia"
+            "description": "Maya OS is an operating system developed by the Indian Defence Research and Development Organisation (DRDO) in 2021, with implementation commencing after 15-August-2023."
         },
         {
             "name": "MCC Interim Linux",
             "url": "https://en.wikipedia.org/wiki/MCC_Interim_Linux",
-            "description": "View MCC Interim Linux on Wikipedia"
+            "description": "MCC Interim Linux is a Linux distribution first released in February 1992 by Owen Le Blanc of the Manchester Computing Centre (MCC), part of the University of Manchester."
         },
         {
             "name": "MeeGo",
             "url": "https://en.wikipedia.org/wiki/MeeGo",
-            "description": "View MeeGo on Wikipedia"
+            "description": "MeeGo is a discontinued Linux distribution hosted by the Linux Foundation, using source code from the operating systems Moblin and Maemo."
         },
         {
             "name": "Mer",
             "url": "https://en.wikipedia.org/wiki/Mer_(software_distribution)",
-            "description": "View Mer on Wikipedia"
+            "description": "Mer is a discontinued free and open-source software distribution, targeted at hardware vendors to serve as a middleware for Linux kernel-based mobile-oriented operating systems."
         },
         {
             "name": "MIUI",
             "url": "https://en.wikipedia.org/wiki/MIUI",
-            "description": "View MIUI on Wikipedia"
+            "description": "MIUI is a deprecated mobile operating system developed and used by Xiaomi for its smartphones and mobile devices from 2010 to early 2024, prior to the launch of its successor Xiaomi HyperOS."
         },
         {
             "name": "MkLinux",
             "url": "https://en.wikipedia.org/wiki/MkLinux",
-            "description": "View MkLinux on Wikipedia"
+            "description": "MkLinux is a discontinued open-source experimental operating system for PowerPC Macintosh computers."
         },
         {
             "name": "Mobilinux",
             "url": "https://en.wikipedia.org/wiki/Mobilinux",
-            "description": "View Mobilinux on Wikipedia"
+            "description": "Mobilinux is a discontinued Linux distribution by MontaVista."
         },
         {
             "name": "MotoMagx",
             "url": "https://en.wikipedia.org/wiki/MotoMagx",
-            "description": "View MotoMagx on Wikipedia"
+            "description": "MotoMagx is a former Linux kernel-based mobile operating system developed and launched in 2007 by Motorola to run on their mid-to-high-end mobile phones."
         },
         {
             "name": "MuLinux",
             "url": "https://en.wikipedia.org/wiki/MuLinux",
-            "description": "View MuLinux on Wikipedia"
+            "description": "muLinux is an Italian, English-language lightweight Linux distribution maintained by mathematics and physics professor Michele Andreoli, meant to allow very old and obsolete computers to be used as basic intranet/Internet servers or text-based workstations with a UNIX-like operating system."
         },
         {
             "name": "Musix GNU+Linux",
             "url": "https://en.wikipedia.org/wiki/Musix_GNU+Linux",
-            "description": "View Musix GNU+Linux on Wikipedia"
+            "description": "Musix GNU+Linux is a discontinued live CD and DVD Linux distribution for the IA-32 processor family based on Debian."
         },
         {
             "name": "Mythbuntu",
             "url": "https://en.wikipedia.org/wiki/Mythbuntu",
-            "description": "View Mythbuntu on Wikipedia"
+            "description": "Mythbuntu is a discontinued media center operating system based on Ubuntu, which integrated the MythTV media center software as its main function, and did not install with all of the programs included with Ubuntu."
         },
         {
             "name": "Nanolinux",
             "url": "https://en.wikipedia.org/wiki/Nanolinux",
-            "description": "View Nanolinux on Wikipedia"
+            "description": "NanoLinux is an open source, free and very lightweight Linux distribution that requires only 14 MB of disk space including tiny versions of the most common desktop applications and several games."
         },
         {
             "name": "NepaLinux",
             "url": "https://en.wikipedia.org/wiki/NepaLinux",
-            "description": "View NepaLinux on Wikipedia"
+            "description": "NepaLinux was a Debian and Morphix-based Linux distribution focused on desktop usage in Nepali language computing."
         },
         {
             "name": "NimbleX",
             "url": "https://en.wikipedia.org/wiki/NimbleX",
-            "description": "View NimbleX on Wikipedia"
+            "description": "NimbleX is a small Slackware-based Linux distribution optimized to run from a CD, USB drive or a network environment."
         },
         {
             "name": "NodeOS",
             "url": "https://en.wikipedia.org/wiki/NodeOS",
-            "description": "View NodeOS on Wikipedia"
+            "description": "NodeOS is a Linux distribution bundled with NodeJS."
         },
         {
             "name": "Nova",
             "url": "https://en.wikipedia.org/wiki/Nova_(operating_system)",
-            "description": "View Nova on Wikipedia"
+            "description": "Nova is a Cuban state-sponsored Linux distribution launched in February 2009."
         },
         {
             "name": "OLPC XS",
             "url": "https://en.wikipedia.org/wiki/OLPC_XS",
-            "description": "View OLPC XS on Wikipedia"
+            "description": "The OLPC XS is a Linux-based operating system developed by One Laptop per Child designed to be installed on generic lower grade servers intended for schools."
         },
         {
             "name": "OpenAP",
             "url": "https://en.wikipedia.org/wiki/OpenAP",
-            "description": "View OpenAP on Wikipedia"
+            "description": "OpenAP was a Linux distribution for wireless access points developed by Instant802 Networks."
         },
         {
             "name": "OpenELEC",
             "url": "https://en.wikipedia.org/wiki/OpenELEC",
-            "description": "View OpenELEC on Wikipedia"
+            "description": "OpenELEC is a discontinued Linux distribution designed for home theater PCs and based on the Kodi media center application."
         },
         {
             "name": "OpenGEU",
             "url": "https://en.wikipedia.org/wiki/OpenGEU",
-            "description": "View OpenGEU on Wikipedia"
+            "description": "OpenGEU was a free computer operating system based upon the popular Ubuntu Linux distribution, which in turn is based on Debian."
         },
         {
             "name": "Openmoko Linux",
             "url": "https://en.wikipedia.org/wiki/Openmoko_Linux",
-            "description": "View Openmoko Linux on Wikipedia"
+            "description": "Openmoko Linux is an operating system for smartphones developed by the Openmoko project."
         },
         {
             "name": "OpenWrt",
             "url": "https://en.wikipedia.org/wiki/OpenWrt",
-            "description": "View OpenWrt on Wikipedia"
+            "description": "OpenWrt is an open-source project for embedded operating systems based on Linux, primarily used on embedded devices to route network traffic."
         },
         {
             "name": "OpenZaurus",
             "url": "https://en.wikipedia.org/wiki/OpenZaurus",
-            "description": "View OpenZaurus on Wikipedia"
+            "description": "OpenZaurus is a defunct embedded operating system for the Sharp Zaurus personal mobile tool PDA."
         },
         {
             "name": "Paldo",
             "url": "https://en.wikipedia.org/wiki/Paldo_(operating_system)",
-            "description": "View Paldo on Wikipedia"
+            "description": "paldo is a Linux distribution."
         },
         {
             "name": "Parabola GNU/Linux-libre",
             "url": "https://en.wikipedia.org/wiki/Parabola_GNU/Linux-libre",
-            "description": "View Parabola GNU/Linux-libre on Wikipedia"
+            "description": "Parabola GNU/Linux-libre is a free and open-source Linux distribution based on Arch Linux and Arch Linux ARM for the x86-64, i686, and ARMv7 architectures."
         },
         {
             "name": "Pardus",
             "url": "https://en.wikipedia.org/wiki/Pardus_(operating_system)",
-            "description": "View Pardus on Wikipedia"
+            "description": "Pardus is a Linux distribution developed with support from the government of Turkey."
         },
         {
             "name": "Parsix",
             "url": "https://en.wikipedia.org/wiki/Parsix",
-            "description": "View Parsix on Wikipedia"
+            "description": "Parsix GNU/Linux was a live-CD Linux distribution based on Debian."
         },
         {
             "name": "Parted Magic",
             "url": "https://en.wikipedia.org/wiki/Parted_Magic",
-            "description": "View Parted Magic on Wikipedia"
+            "description": "Parted Magic is a commercial Linux distribution based on Slackware that comes with disk partitioning and data recovery tools."
         },
         {
             "name": "Pinguy OS",
             "url": "https://en.wikipedia.org/wiki/Pinguy_OS",
-            "description": "View Pinguy OS on Wikipedia"
+            "description": "Pinguy OS was a Linux distribution for x86-based personal computers."
         },
         {
             "name": "PixelExperience",
             "url": "https://en.wikipedia.org/wiki/PixelExperience",
-            "description": "View PixelExperience on Wikipedia"
+            "description": "PixelExperience is a discontinued, open-source, Android-based operating system."
         },
         {
             "name": "Platypux",
             "url": "https://en.wikipedia.org/wiki/Platypux",
-            "description": "View Platypux on Wikipedia"
+            "description": "Platypux was a French Linux distribution of the Slackware family, developed by Pierre-Aim\u00e9 and Jacques-Olivier."
         },
         {
             "name": "Poseidon Linux",
             "url": "https://en.wikipedia.org/wiki/Poseidon_Linux",
-            "description": "View Poseidon Linux on Wikipedia"
+            "description": "Poseidon Linux was a Linux operating system based on Ubuntu, it was maintained by developers located at the Rio Grande Federal University in Rio Grande do Sul, Brazil, and the MARUM institute in Germany."
         },
         {
             "name": "PowerLinux",
             "url": "https://en.wikipedia.org/wiki/PowerLinux",
-            "description": "View PowerLinux on Wikipedia"
+            "description": "PowerLinux is the combination of a Linux-based operating system (OS) running on PowerPC- or Power ISA-based computers from IBM."
         },
         {
             "name": "Puavo",
             "url": "https://en.wikipedia.org/wiki/Puavo",
-            "description": "View Puavo on Wikipedia"
+            "description": "Puavo is a management software and a Debian-based operating system for schools."
         },
         {
             "name": "Puredyne",
             "url": "https://en.wikipedia.org/wiki/Puredyne",
-            "description": "View Puredyne on Wikipedia"
+            "description": "puredyne is a discontinued live Linux distribution based on Ubuntu and Debian Live and dedicated to live audio-and-visual processing and streaming."
         },
         {
             "name": "Quantian",
             "url": "https://en.wikipedia.org/wiki/Quantian",
-            "description": "View Quantian on Wikipedia"
+            "description": "Quantian OS was a remastering of Knoppix/Debian for computational sciences."
         },
         {
             "name": "Raspberry Pi OS",
             "url": "https://en.wikipedia.org/wiki/Raspberry_Pi_OS",
-            "description": "View Raspberry Pi OS on Wikipedia"
+            "description": "Raspberry Pi OS is a Unix-like operating system developed for the Raspberry Pi line of single-board computers."
         },
         {
             "name": "Red Flag Linux",
             "url": "https://en.wikipedia.org/wiki/Red_Flag_Linux",
-            "description": "View Red Flag Linux on Wikipedia"
+            "description": "Red Flag Linux is a Linux distribution developed by Red Flag Software."
         },
         {
             "name": "RED OS",
             "url": "https://en.wikipedia.org/wiki/RED_OS",
-            "description": "View RED OS on Wikipedia"
+            "description": "RED OS is a Linux distribution created in Russia, which is a composite product based on open source solutions and proprietary components that have not undergone any independent audits."
         },
         {
             "name": "Red Star OS",
             "url": "https://en.wikipedia.org/wiki/Red_Star_OS",
-            "description": "View Red Star OS on Wikipedia"
+            "description": "Red Star OS is a North Korean Linux distribution, with development first starting in 1998 at the Korea Computer Center (KCC)."
         },
         {
             "name": "Remix OS",
             "url": "https://en.wikipedia.org/wiki/Remix_OS",
-            "description": "View Remix OS on Wikipedia"
+            "description": "Remix OS is a discontinued computer operating system for personal computers with x86 and ARM architectures that, prior to discontinuation of development, shipped with a number of 1st- and 3rd-party devices."
         },
         {
             "name": "Replicant",
             "url": "https://en.wikipedia.org/wiki/Replicant_(operating_system)",
-            "description": "View Replicant on Wikipedia"
+            "description": "Replicant is a free and open-source Android-based operating system that intends to replace all proprietary Android components with free-software counterparts."
         },
         {
             "name": "Resurrection Remix OS",
             "url": "https://en.wikipedia.org/wiki/Resurrection_Remix_OS",
-            "description": "View Resurrection Remix OS on Wikipedia"
+            "description": "Resurrection Remix OS, abbreviated as RR, is an unmaintained free and open-source operating system for smartphones and tablet computers, based on the Android mobile platform."
         },
         {
             "name": "Rocks Cluster Distribution",
             "url": "https://en.wikipedia.org/wiki/Rocks_Cluster_Distribution",
-            "description": "View Rocks Cluster Distribution on Wikipedia"
+            "description": "Rocks Cluster Distribution is a Linux distribution intended for high-performance computing (HPC) clusters."
         },
         {
             "name": "ROSA Linux",
             "url": "https://en.wikipedia.org/wiki/ROSA_Linux",
-            "description": "View ROSA Linux on Wikipedia"
+            "description": "ROSA Linux is a Linux operating system distribution, developed by the Russian company 'AO NTC IT ROSA'."
         },
         {
             "name": "RUNT Linux",
             "url": "https://en.wikipedia.org/wiki/RUNT_Linux",
-            "description": "View RUNT Linux on Wikipedia"
+            "description": "RUNT Linux is an acronym for ResNet USB Network Tester."
         },
         {
             "name": "Sabily",
             "url": "https://en.wikipedia.org/wiki/Sabily",
-            "description": "View Sabily on Wikipedia"
+            "description": "Sabily (Arabic: \u0633\u0628\u064a\u0644\u064a, IPA: [s\u00e6\u02c8bi\u02d0li\u02d0], My Way) is a discontinued Linux distribution based on Ubuntu, designed by and with the intent to be used by followers of Islam."
         },
         {
             "name": "Security Onion",
             "url": "https://en.wikipedia.org/wiki/Security_Onion",
-            "description": "View Security Onion on Wikipedia"
+            "description": "Security Onion is a free and open Linux distribution for threat hunting, enterprise security monitoring, and log management."
         },
         {
             "name": "Sentry Firewall",
             "url": "https://en.wikipedia.org/wiki/Sentry_Firewall",
-            "description": "View Sentry Firewall on Wikipedia"
+            "description": "Sentry Firewall is a free open-source network firewall Linux distribution that was first published in 2001 and has been the subject of multiple magazine reviews."
         },
         {
             "name": "SHR",
             "url": "https://en.wikipedia.org/wiki/SHR_(operating_system)",
-            "description": "View SHR on Wikipedia"
+            "description": "SHR was a community-driven Linux distribution for smartphones which was based on OpenEmbedded, Xorg, and the freesmartphone.org (FSO) framework."
         },
         {
             "name": "Smoothwall",
             "url": "https://en.wikipedia.org/wiki/Smoothwall",
-            "description": "View Smoothwall on Wikipedia"
+            "description": "Smoothwall is a Linux distribution designed to be used as an open source firewall."
         },
         {
             "name": "Softlanding Linux System",
             "url": "https://en.wikipedia.org/wiki/Softlanding_Linux_System",
-            "description": "View Softlanding Linux System on Wikipedia"
+            "description": "Softlanding Linux System (SLS) was one of the first Linux distributions."
         },
         {
             "name": "Splashtop OS",
             "url": "https://en.wikipedia.org/wiki/Splashtop_OS",
-            "description": "View Splashtop OS on Wikipedia"
+            "description": "Splashtop OS is a discontinued Linux distribution intended to serve as an instant-on environment for personal computers."
         },
         {
             "name": "StartOS",
             "url": "https://en.wikipedia.org/wiki/StartOS",
-            "description": "View StartOS on Wikipedia"
+            "description": "StartOS is a discontinued Chinese Linux distribution."
         },
         {
             "name": "Stresslinux",
             "url": "https://en.wikipedia.org/wiki/Stresslinux",
-            "description": "View Stresslinux on Wikipedia"
+            "description": "Stresslinux is a light-weight Linux distribution designed to test a computer's hardware by running the components at high load while monitoring their health."
         },
         {
             "name": "Subgraph",
             "url": "https://en.wikipedia.org/wiki/Subgraph_(operating_system)",
-            "description": "View Subgraph on Wikipedia"
+            "description": "Subgraph OS was a Debian-based project designed to be resistant to surveillance and interference by sophisticated adversaries over the Internet."
         },
         {
             "name": "Sunwah Linux",
             "url": "https://en.wikipedia.org/wiki/Sunwah_Linux",
-            "description": "View Sunwah Linux on Wikipedia"
+            "description": "RAYS Linux was a Chinese Debian-based Linux distribution."
         },
         {
             "name": "SuperGamer",
             "url": "https://en.wikipedia.org/wiki/SuperGamer",
-            "description": "View SuperGamer on Wikipedia"
+            "description": "SuperGamer is a Linux distribution for the x86 platform originally based on the PCLinuxOS distribution, and is currently based on VectorLinux."
         },
         {
             "name": "SuperX",
             "url": "https://en.wikipedia.org/wiki/SuperX",
-            "description": "View SuperX on Wikipedia"
+            "description": "SuperX is a Linux distribution, a computer operating system originally developed in India."
         },
         {
             "name": "T2 SDE",
             "url": "https://en.wikipedia.org/wiki/T2_SDE",
-            "description": "View T2 SDE on Wikipedia"
+            "description": "The T2 SDE is an open source Linux distribution kit."
         },
         {
             "name": "Think Blue Linux",
             "url": "https://en.wikipedia.org/wiki/Think_Blue_Linux",
-            "description": "View Think Blue Linux on Wikipedia"
+            "description": "Think Blue Linux is a discontinued port of Linux to IBM S/390 mainframe computers, done by the Millenux subsidiary of German company Thinking Objects Software GmbH."
         },
         {
             "name": "Tinfoil Hat Linux",
             "url": "https://en.wikipedia.org/wiki/Tinfoil_Hat_Linux",
-            "description": "View Tinfoil Hat Linux on Wikipedia"
+            "description": "Tinfoil Hat Linux (THL) is a compact security-focused Linux distribution designed for high security developed by The Shmoo Group."
         },
         {
             "name": "Tizen",
             "url": "https://en.wikipedia.org/wiki/Tizen",
-            "description": "View Tizen on Wikipedia"
+            "description": "Tizen is a Linux-based operating system primarily developed by Samsung Electronics and supported by the Linux Foundation."
         },
         {
             "name": "Tomsrtbt",
             "url": "https://en.wikipedia.org/wiki/Tomsrtbt",
-            "description": "View Tomsrtbt on Wikipedia"
+            "description": "tomsrtbt is a very small Linux distribution."
         },
         {
             "name": "TopologiLinux",
             "url": "https://en.wikipedia.org/wiki/TopologiLinux",
-            "description": "View TopologiLinux on Wikipedia"
+            "description": "TopologiLinux is a free Linux distribution to be run on an existing Microsoft Windows system."
         },
         {
             "name": "TOSS",
             "url": "https://en.wikipedia.org/wiki/TOSS_(operating_system)",
-            "description": "View TOSS on Wikipedia"
+            "description": "The Tri-Lab Operating System Stack (TOSS) is a Linux distribution based on Red Hat Enterprise Linux (RHEL) that was created to provide a software stack for high performance computing (HPC) clusters for laboratories within the National Nuclear Security Administration (NNSA)."
         },
         {
             "name": "Turbolinux",
             "url": "https://en.wikipedia.org/wiki/Turbolinux",
-            "description": "View Turbolinux on Wikipedia"
+            "description": "Turbolinux is a discontinued Japanese Linux distribution targeting Asian users."
         },
         {
             "name": "Turkix",
             "url": "https://en.wikipedia.org/wiki/Turkix",
-            "description": "View Turkix on Wikipedia"
+            "description": "Turkix was a live Linux distribution, capable of self-installing on hard disk using a graphical wizard."
         },
         {
             "name": "TurnKey Linux Virtual Appliance Library",
             "url": "https://en.wikipedia.org/wiki/TurnKey_Linux_Virtual_Appliance_Library",
-            "description": "View TurnKey Linux Virtual Appliance Library on Wikipedia"
+            "description": "The TurnKey Linux Virtual Appliance Library is a free open-source software project which develops a range of Debian-based pre-packaged server software appliances."
         },
         {
             "name": "Twister OS",
             "url": "https://en.wikipedia.org/wiki/Twister_OS",
-            "description": "View Twister OS on Wikipedia"
+            "description": "Twister OS is a Linux-based operating system developed by Pi Labs for the Raspberry Pi series of single-board computers."
         },
         {
             "name": "UberStudent",
             "url": "https://en.wikipedia.org/wiki/UberStudent",
-            "description": "View UberStudent on Wikipedia"
+            "description": "UberStudent was a free and open-source computer operating system and collection of programs aimed toward higher education and secondary students and their teachers and schools."
         },
         {
             "name": "Uncom OS",
             "url": "https://en.wikipedia.org/wiki/Uncom_OS",
-            "description": "View Uncom OS on Wikipedia"
+            "description": "Uncom OS is an open-source Linux distribution based on Ubuntu, Debian, and Arch Linux."
         },
         {
             "name": "UNICOS",
             "url": "https://en.wikipedia.org/wiki/UNICOS",
-            "description": "View UNICOS on Wikipedia"
+            "description": "UNICOS is a range of Unix and later Linux operating system (OS) variants developed by Cray for its supercomputers."
         },
         {
             "name": "United Linux",
             "url": "https://en.wikipedia.org/wiki/United_Linux",
-            "description": "View United Linux on Wikipedia"
+            "description": "United Linux was an attempt by a consortium of Linux distributors to create a common base distribution for enterprise use, so as to minimize duplication of engineering effort and form an effective competitor to Red Hat."
         },
         {
             "name": "Unity Operating System",
             "url": "https://en.wikipedia.org/wiki/Unity_Operating_System",
-            "description": "View Unity Operating System on Wikipedia"
+            "description": "Unity Operating System is a Linux distribution developed by UnionTech based on Deepin, which is based on Debian."
         },
         {
             "name": "Uruk GNU/Linux",
             "url": "https://en.wikipedia.org/wiki/Uruk_GNU/Linux",
-            "description": "View Uruk GNU/Linux on Wikipedia"
+            "description": "Uruk GNU/Linux-libre is a PureOS-based Linux distribution."
         },
         {
             "name": "UserLinux",
             "url": "https://en.wikipedia.org/wiki/UserLinux",
-            "description": "View UserLinux on Wikipedia"
+            "description": "UserLinux was a project to create an operating system based on Debian, and targeted at business customers."
         },
         {
             "name": "USU",
             "url": "https://en.wikipedia.org/wiki/USU_(operating_system)",
-            "description": "View USU on Wikipedia"
+            "description": "USU linux is a Bulgarian open-source desktop operating system built around the KDE desktop environment and based on the popular free Linux distribution, Ubuntu."
         },
         {
             "name": "Ututo",
             "url": "https://en.wikipedia.org/wiki/Ututo",
-            "description": "View Ututo on Wikipedia"
+            "description": "Ututo was a Linux distribution consisting entirely of free software."
         },
         {
             "name": "Vine Linux",
             "url": "https://en.wikipedia.org/wiki/Vine_Linux",
-            "description": "View Vine Linux on Wikipedia"
+            "description": "Vine Linux  was a Japanese Linux distribution sponsored by VineCaves."
         },
         {
             "name": "Vinux",
             "url": "https://en.wikipedia.org/wiki/Vinux",
-            "description": "View Vinux on Wikipedia"
+            "description": "Vinux was a Linux distribution which was specially designed for blind and partially sighted users."
         },
         {
             "name": "Vyatta",
             "url": "https://en.wikipedia.org/wiki/Vyatta",
-            "description": "View Vyatta on Wikipedia"
+            "description": "Vyatta is a software-based virtual router, virtual firewall and VPN product for Internet Protocol networks."
         },
         {
             "name": "VyOS",
             "url": "https://en.wikipedia.org/wiki/VyOS",
-            "description": "View VyOS on Wikipedia"
+            "description": "VyOS is an open source network operating system Linux distribution based on Debian."
         },
         {
             "name": "Webconverger",
             "url": "https://en.wikipedia.org/wiki/Webconverger",
-            "description": "View Webconverger on Wikipedia"
+            "description": "Webconverger is a discontinued Linux-based operating system designed solely for accessing Web applications privately and securely."
         },
         {
             "name": "Wienux",
             "url": "https://en.wikipedia.org/wiki/Wienux",
-            "description": "View Wienux on Wikipedia"
+            "description": "WIENUX is a Debian-based Linux distribution developed by the City of Vienna in Austria."
         },
         {
             "name": "Winux",
             "url": "https://en.wikipedia.org/wiki/Winux",
-            "description": "View Winux on Wikipedia"
+            "description": "Winux is a Linux distribution for personal computers themed close to Microsoft Windows."
         },
         {
             "name": "Xandros",
             "url": "https://en.wikipedia.org/wiki/Xandros",
-            "description": "View Xandros on Wikipedia"
+            "description": "Xandros, Inc."
         },
         {
             "name": "Xandros Linux",
             "url": "https://en.wikipedia.org/wiki/Xandros_Linux",
-            "description": "View Xandros Linux on Wikipedia"
+            "description": "Xandros, Inc."
         },
         {
             "name": "Xbox Linux",
             "url": "https://en.wikipedia.org/wiki/Xbox_Linux",
-            "description": "View Xbox Linux on Wikipedia"
+            "description": "Xbox Linux was a project that ported the Linux operating system to the Xbox video game console."
         },
         {
             "name": "Xiaomi HyperOS",
             "url": "https://en.wikipedia.org/wiki/Xiaomi_HyperOS",
-            "description": "View Xiaomi HyperOS on Wikipedia"
+            "description": "Xiaomi HyperOS, sometimes shortened as HyperOS, is an operating system developed by Xiaomi."
         },
         {
             "name": "Yellow Dog Linux",
             "url": "https://en.wikipedia.org/wiki/Yellow_Dog_Linux",
-            "description": "View Yellow Dog Linux on Wikipedia"
+            "description": "Yellow Dog Linux (YDL) is a discontinued free and open-source operating system for high-performance computing on multi-core processor computer architectures, focusing on GPU systems and computers using the POWER7 processor."
         },
         {
             "name": "Yggdrasil Linux/GNU/X",
             "url": "https://en.wikipedia.org/wiki/Yggdrasil_Linux/GNU/X",
-            "description": "View Yggdrasil Linux/GNU/X on Wikipedia"
+            "description": "Yggdrasil Linux/GNU/X, or LGX, is an early Linux distribution developed by Yggdrasil Computing, Incorporated, a company founded by Adam J."
         },
         {
             "name": "Zentyal",
             "url": "https://en.wikipedia.org/wiki/Zentyal",
-            "description": "View Zentyal on Wikipedia"
+            "description": "Zentyal is an open source email and groupware solution based on Ubuntu Linux."
         },
         {
             "name": "Zeroshell",
             "url": "https://en.wikipedia.org/wiki/Zeroshell",
-            "description": "View Zeroshell on Wikipedia"
+            "description": "Zeroshell is a small open-source Linux distribution for servers and embedded systems which aims to provide network services."
         },
         {
             "name": "ZipSlack",
             "url": "https://en.wikipedia.org/wiki/ZipSlack",
-            "description": "View ZipSlack on Wikipedia"
+            "description": "ZipSlack was a specially compiled release of the Slackware Linux distribution that was designed to be lightweight and portable."
         }
     ],
     "Ubuntu Family": [
         {
             "name": "Bodhi Linux",
             "url": "https://en.wikipedia.org/wiki/Bodhi_Linux",
-            "description": "View Bodhi Linux on Wikipedia"
+            "description": "Bodhi Linux is a light-weight Linux distribution based on Ubuntu that uses an Enlightenment DR17-based fork called Moksha as its desktop environment."
         },
         {
             "name": "Edubuntu",
             "url": "https://en.wikipedia.org/wiki/Edubuntu",
-            "description": "View Edubuntu on Wikipedia"
+            "description": "Edubuntu is an official derivative of the Ubuntu operating system designed for use in classrooms inside schools, homes, and communities."
         },
         {
             "name": "Elementary OS",
             "url": "https://en.wikipedia.org/wiki/Elementary_OS",
-            "description": "View Elementary OS on Wikipedia"
+            "description": "Elementary OS is a Linux distribution based on Ubuntu LTS."
         },
         {
             "name": "KDE neon",
             "url": "https://en.wikipedia.org/wiki/KDE_neon",
-            "description": "View KDE neon on Wikipedia"
+            "description": "KDE neon is a Linux distribution developed by KDE based on Ubuntu long-term support (LTS) releases, bundled with a set of additional software repositories containing the latest versions of the Plasma 6 desktop environment/framework, Qt 6 toolkit and other compatible KDE software."
         },
         {
             "name": "Kubuntu",
             "url": "https://en.wikipedia.org/wiki/Kubuntu",
-            "description": "View Kubuntu on Wikipedia"
+            "description": "Kubuntu is an official flavor of Ubuntu, a Linux distribution that uses the KDE Plasma Desktop Environment instead of the GNOME desktop environment."
         },
         {
             "name": "Linux Mint",
             "url": "https://en.wikipedia.org/wiki/Linux_Mint",
-            "description": "View Linux Mint on Wikipedia"
+            "description": "Linux Mint is a community-developed Linux distribution based on Ubuntu."
         },
         {
             "name": "Lubuntu",
             "url": "https://en.wikipedia.org/wiki/Lubuntu",
-            "description": "View Lubuntu on Wikipedia"
+            "description": "Lubuntu is a lightweight Linux distribution based on Ubuntu that uses the LXQt desktop environment in place of GNOME."
         },
         {
             "name": "NUbuntu",
             "url": "https://en.wikipedia.org/wiki/NUbuntu",
-            "description": "View NUbuntu on Wikipedia"
+            "description": "nUbuntu or Network Ubuntu was a project to take the existing Ubuntu operating system LiveCD and Full Installer and remaster it with tools needed for penetration testing servers and networks."
         },
         {
             "name": "Peppermint OS",
             "url": "https://en.wikipedia.org/wiki/Peppermint_OS",
-            "description": "View Peppermint OS on Wikipedia"
+            "description": "Peppermint OS is a Linux distribution based on Debian and Devuan Stable, and formerly based on Ubuntu."
         },
         {
             "name": "Pop! OS",
             "url": "https://en.wikipedia.org/wiki/Pop!_OS",
-            "description": "View Pop! OS on Wikipedia"
+            "description": "Pop OS is a free and open-source Linux distribution based on Ubuntu and developed by the American Linux computer manufacturer System76."
         },
         {
             "name": "Trisquel",
             "url": "https://en.wikipedia.org/wiki/Trisquel",
-            "description": "View Trisquel on Wikipedia"
+            "description": "Trisquel is a computer operating system, a Linux distribution, derived from another distribution, Ubuntu."
         },
         {
             "name": "Ubuntu",
             "url": "https://en.wikipedia.org/wiki/Ubuntu",
-            "description": "View Ubuntu on Wikipedia"
+            "description": "Ubuntu is a Linux distribution based on Debian and composed primarily of free and open-source software."
         },
         {
             "name": "Ubuntu Budgie",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_Budgie",
-            "description": "View Ubuntu Budgie on Wikipedia"
+            "description": "Ubuntu Budgie is an official community flavor of Ubuntu."
         },
         {
             "name": "Ubuntu Cinnamon",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_Cinnamon",
-            "description": "View Ubuntu Cinnamon on Wikipedia"
+            "description": "Ubuntu Cinnamon is a community-driven, free and open-source Linux distribution based on Ubuntu, using the Cinnamon desktop environment in place of Ubuntu's GNOME Shell."
         },
         {
             "name": "Ubuntu GNOME",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_GNOME",
-            "description": "View Ubuntu GNOME on Wikipedia"
+            "description": "Ubuntu GNOME is a discontinued Linux distribution, distributed as free and open-source software."
         },
         {
             "name": "Ubuntu JeOS",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_JeOS",
-            "description": "View Ubuntu JeOS on Wikipedia"
+            "description": "Ubuntu JeOS is a discontinued variant of Ubuntu Linux that is described as \"an efficient variant .."
         },
         {
             "name": "Ubuntu Kylin",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_Kylin",
-            "description": "View Ubuntu Kylin on Wikipedia"
+            "description": "Ubuntu Kylin is the official Chinese version of the Ubuntu computer operating system."
         },
         {
             "name": "Ubuntu MATE",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_MATE",
-            "description": "View Ubuntu MATE on Wikipedia"
+            "description": "Ubuntu MATE is a free and open-source Linux distribution and an official derivative of Ubuntu."
         },
         {
             "name": "Ubuntu Netbook Edition",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_Netbook_Edition",
-            "description": "View Ubuntu Netbook Edition on Wikipedia"
+            "description": "Ubuntu Netbook Edition (UNE), known as Ubuntu Netbook Remix (UNR) prior to the release of Ubuntu 10.04, is a discontinued version of the Ubuntu operating system (OS) that had been optimized to enable it to work better on netbooks and other devices with small screens or with the Intel Atom CPU."
         },
         {
             "name": "Ubuntu Studio",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_Studio",
-            "description": "View Ubuntu Studio on Wikipedia"
+            "description": "Ubuntu Studio is a recognized flavor of the Ubuntu Linux distribution, which is geared to general multimedia production."
         },
         {
             "name": "Ubuntu Touch",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_Touch",
-            "description": "View Ubuntu Touch on Wikipedia"
+            "description": "Ubuntu Touch is a mobile version of the Ubuntu operating system, developed by the UBports community."
         },
         {
             "name": "Ubuntu Unity",
             "url": "https://en.wikipedia.org/wiki/Ubuntu_Unity",
-            "description": "View Ubuntu Unity on Wikipedia"
+            "description": "Ubuntu Unity is a Linux distribution based on Ubuntu, using the Unity interface in place of Ubuntu's GNOME Shell."
         },
         {
             "name": "Xubuntu",
             "url": "https://en.wikipedia.org/wiki/Xubuntu",
-            "description": "View Xubuntu on Wikipedia"
+            "description": "Xubuntu is a Canonical-recognized, community-maintained derivative of the Ubuntu operating system."
         },
         {
             "name": "Zorin OS",
             "url": "https://en.wikipedia.org/wiki/Zorin_OS",
-            "description": "View Zorin OS on Wikipedia"
+            "description": "Zorin OS is a Linux distribution based on Ubuntu which provides both free and paid versions."
         }
     ],
     "Debian Family": [
         {
             "name": "AntiX",
             "url": "https://en.wikipedia.org/wiki/AntiX",
-            "description": "View AntiX on Wikipedia"
+            "description": "antiX is a Linux distribution, originally based on MEPIS, which itself is based on the Debian Stable distribution."
         },
         {
             "name": "Debian",
             "url": "https://en.wikipedia.org/wiki/Debian",
-            "description": "View Debian on Wikipedia"
+            "description": "Debian is a free, general-purpose operating system developed by the Debian Project, a worldwide association of volunteers founded by Ian Murdock in August 1993."
         },
         {
             "name": "Debian Pure Blend",
             "url": "https://en.wikipedia.org/wiki/Debian_Pure_Blend",
-            "description": "View Debian Pure Blend on Wikipedia"
+            "description": "A Debian Pure Blend is a project completely inside of Debian targeting a server or a desktop installation in very broad and general terms."
         },
         {
             "name": "Deepin",
             "url": "https://en.wikipedia.org/wiki/Deepin",
-            "description": "View Deepin on Wikipedia"
+            "description": "deepin is a Linux distribution, formerly based on Ubuntu and Debian, that features the Deepin Desktop Environment (DDE), a desktop environment built on Qt and available for a variety of distributions."
         },
         {
             "name": "Devuan",
             "url": "https://en.wikipedia.org/wiki/Devuan",
-            "description": "View Devuan on Wikipedia"
+            "description": "Devuan is an open source, Debian-based Linux distribution that aims to maintain compatibility with other init systems and avoid lock-in by systemd."
         },
         {
             "name": "Emdebian Grip",
             "url": "https://en.wikipedia.org/wiki/Emdebian_Grip",
-            "description": "View Emdebian Grip on Wikipedia"
+            "description": "Emdebian Grip is a discontinued small-footprint Linux distribution based on and compatible with Debian."
         },
         {
             "name": "Kali Linux",
             "url": "https://en.wikipedia.org/wiki/Kali_Linux",
-            "description": "View Kali Linux on Wikipedia"
+            "description": "Kali Linux is a Linux distribution designed for digital forensics and penetration testing."
         },
         {
             "name": "Kali NetHunter",
             "url": "https://en.wikipedia.org/wiki/Kali_NetHunter",
-            "description": "View Kali NetHunter on Wikipedia"
+            "description": "Kali NetHunter is a free and open-source mobile penetration testing platform for Android devices, based on Kali Linux."
         },
         {
             "name": "MX Linux",
             "url": "https://en.wikipedia.org/wiki/MX_Linux",
-            "description": "View MX Linux on Wikipedia"
+            "description": "MX Linux is a midweight, desktop-oriented Linux distribution based on Debian Stable 13 \"trixie\" that emphasizes stability, performance, and ease of use."
         },
         {
             "name": "Parrot OS",
             "url": "https://en.wikipedia.org/wiki/Parrot_OS",
-            "description": "View Parrot OS on Wikipedia"
+            "description": "Parrot OS is a Linux distribution based on Debian with a focus on security, privacy, and development."
         },
         {
             "name": "PureOS",
             "url": "https://en.wikipedia.org/wiki/PureOS",
-            "description": "View PureOS on Wikipedia"
+            "description": "PureOS is a Linux distribution focusing on privacy and security, using the GNOME or KDE Plasma desktop environment."
         },
         {
             "name": "Q4OS",
             "url": "https://en.wikipedia.org/wiki/Q4OS",
-            "description": "View Q4OS on Wikipedia"
+            "description": "Q4OS is a light-weight Linux distribution based on Debian, targeted as a replacement for operating systems that are no longer supported on outdated hardware."
         },
         {
             "name": "SolydXK",
             "url": "https://en.wikipedia.org/wiki/SolydXK",
-            "description": "View SolydXK on Wikipedia"
+            "description": "SolydXK is a Dutch Linux distribution based on Debian."
         },
         {
             "name": "SparkyLinux",
             "url": "https://en.wikipedia.org/wiki/SparkyLinux",
-            "description": "View SparkyLinux on Wikipedia"
+            "description": "SparkyLinux is a desktop-oriented operating system based on the Debian operating system. The project offers a ready-to-use operating system with various desktops to choose from."
         }
     ],
     "Red Hat / Enterprise": [
         {
             "name": "AlmaLinux",
             "url": "https://en.wikipedia.org/wiki/AlmaLinux",
-            "description": "View AlmaLinux on Wikipedia"
+            "description": "AlmaLinux is a free and open source Linux distribution, a community-supported, production-grade enterprise operating system that is binary-compatible with Red Hat Enterprise Linux (RHEL)."
         },
         {
             "name": "CentOS",
             "url": "https://en.wikipedia.org/wiki/CentOS",
-            "description": "View CentOS on Wikipedia"
+            "description": "CentOS is a discontinued Linux distribution that provided a free and open-source community-supported computing platform, functionally compatible with its upstream source, Red Hat Enterprise Linux (RHEL)."
         },
         {
             "name": "CentOS Stream",
             "url": "https://en.wikipedia.org/wiki/CentOS_Stream",
-            "description": "View CentOS Stream on Wikipedia"
+            "description": "CentOS Stream is a community enterprise Linux distribution that exists as a midstream between the upstream development in Fedora Linux and the downstream development for Red Hat Enterprise Linux."
         },
         {
             "name": "Clear Linux OS",
             "url": "https://en.wikipedia.org/wiki/Clear_Linux_OS",
-            "description": "View Clear Linux OS on Wikipedia"
+            "description": "Clear Linux OS is a discontinued Linux distribution, once developed and maintained on Intel's 01.org open-source platform, and optimized for Intel's microprocessors with an emphasis on performance and security."
         },
         {
             "name": "ClearOS",
             "url": "https://en.wikipedia.org/wiki/ClearOS",
-            "description": "View ClearOS on Wikipedia"
+            "description": "ClearOS was a Linux distribution by ClearFoundation, with network gateway, file, print, mail, and messaging services."
         },
         {
             "name": "Fedora Linux",
             "url": "https://en.wikipedia.org/wiki/Fedora_Linux",
-            "description": "View Fedora Linux on Wikipedia"
+            "description": "Fedora Linux is a Linux distribution developed by the Fedora Project."
         },
         {
             "name": "Oracle Linux",
             "url": "https://en.wikipedia.org/wiki/Oracle_Linux",
-            "description": "View Oracle Linux on Wikipedia"
+            "description": "Oracle Linux is a Linux distribution packaged and freely distributed by Oracle, available partially under the GNU General Public License since late 2006."
         },
         {
             "name": "Red Hat Enterprise Linux",
             "url": "https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux",
-            "description": "View Red Hat Enterprise Linux on Wikipedia"
+            "description": "Red Hat Enterprise Linux (RHEL) is a commercial Linux distribution developed by Red Hat."
         },
         {
             "name": "Red Hat Linux",
             "url": "https://en.wikipedia.org/wiki/Red_Hat_Linux",
-            "description": "View Red Hat Linux on Wikipedia"
+            "description": "Red Hat Linux was a widely used commercial open-source Linux distribution created by Red Hat until its discontinuation in 2004."
         },
         {
             "name": "Rocky Linux",
             "url": "https://en.wikipedia.org/wiki/Rocky_Linux",
-            "description": "View Rocky Linux on Wikipedia"
+            "description": "Rocky Linux is a free and open source Linux distribution developed by Rocky Enterprise Software Foundation, which is a privately owned benefit corporation that describes itself as a \"self-imposed not-for-profit\"."
         },
         {
             "name": "Russian Fedora Remix",
             "url": "https://en.wikipedia.org/wiki/Russian_Fedora_Remix",
-            "description": "View Russian Fedora Remix on Wikipedia"
+            "description": "Russian Fedora Remix was a remix of the Fedora Linux Linux distribution adapted for Russia that was active in 2008\u20132019."
         },
         {
             "name": "Scientific Linux",
             "url": "https://en.wikipedia.org/wiki/Scientific_Linux",
-            "description": "View Scientific Linux on Wikipedia"
+            "description": "Scientific Linux (SL) is a discontinued Linux distribution produced by Fermilab, CERN, DESY and by ETH Zurich."
         }
     ],
     "Arch Family": [
         {
             "name": "Antergos",
             "url": "https://en.wikipedia.org/wiki/Antergos",
-            "description": "View Antergos on Wikipedia"
+            "description": "Antergos is a discontinued Linux distribution based on Arch Linux."
         },
         {
             "name": "Arch Linux",
             "url": "https://en.wikipedia.org/wiki/Arch_Linux",
-            "description": "View Arch Linux on Wikipedia"
+            "description": "Arch Linux is an open source, rolling release Linux distribution."
         },
         {
             "name": "Arch Linux ARM",
             "url": "https://en.wikipedia.org/wiki/Arch_Linux_ARM",
-            "description": "View Arch Linux ARM on Wikipedia"
+            "description": "Arch Linux ARM is a port of Arch Linux for ARM processors."
         },
         {
             "name": "ArchBang",
             "url": "https://en.wikipedia.org/wiki/ArchBang",
-            "description": "View ArchBang on Wikipedia"
+            "description": "ArchBang Linux, also briefly known as GreenBANG, is a simple lightweight rolling release Linux distribution based on a minimal Arch Linux operating system with the i3 tiling window manager, previously using the Openbox stacking window manager."
         },
         {
             "name": "ArchLabs",
             "url": "https://en.wikipedia.org/wiki/ArchLabs",
-            "description": "View ArchLabs on Wikipedia"
+            "description": "ArchLabs Linux is a discontinued lightweight rolling release Linux distribution based on a minimal Arch Linux operating system with the Openbox window manager."
         },
         {
             "name": "ArchOne",
             "url": "https://en.wikipedia.org/wiki/ArchOne",
-            "description": "View ArchOne on Wikipedia"
+            "description": "ArchOne is an Arch Linux based operating system, optimized for Acer Aspire One netbooks, but usable on other PCs with similar hardware."
         },
         {
             "name": "Artix Linux",
             "url": "https://en.wikipedia.org/wiki/Artix_Linux",
-            "description": "View Artix Linux on Wikipedia"
+            "description": "Artix Linux is a rolling-release Linux distribution based on Arch Linux that avoids using systemd, instead allowing users to choose between OpenRC, runit, s6, and dinit."
         },
         {
             "name": "BlackArch",
             "url": "https://en.wikipedia.org/wiki/BlackArch",
-            "description": "View BlackArch on Wikipedia"
+            "description": "BlackArch is a penetration testing distribution based on Arch Linux that provides a large number of security tools."
         },
         {
             "name": "EndeavourOS",
             "url": "https://en.wikipedia.org/wiki/EndeavourOS",
-            "description": "View EndeavourOS on Wikipedia"
+            "description": "EndeavourOS is a free and open-source Arch-based Linux distribution."
         },
         {
             "name": "Garuda Linux",
             "url": "https://en.wikipedia.org/wiki/Garuda_Linux",
-            "description": "View Garuda Linux on Wikipedia"
+            "description": "Garuda Linux is an Arch Linux-based, Linux distribution targeted towards gaming."
         },
         {
             "name": "Manjaro",
             "url": "https://en.wikipedia.org/wiki/Manjaro",
-            "description": "View Manjaro on Wikipedia"
+            "description": "Manjaro is a free and open-source Linux distribution based on the Arch Linux operating system with a focus on user-friendliness, accessibility, and improved software testing and stability compared to its upstream sources."
         }
     ],
     "Slackware Based": [
         {
             "name": "Absolute Linux",
             "url": "https://en.wikipedia.org/wiki/Absolute_Linux",
-            "description": "View Absolute Linux on Wikipedia"
+            "description": "Absolute Linux is a lightweight Linux distribution that works on older hardware and is based on Slackware Linux."
         },
         {
             "name": "BioSLAX",
             "url": "https://en.wikipedia.org/wiki/BioSLAX",
-            "description": "View BioSLAX on Wikipedia"
+            "description": "BioSLAX is a Live CD, Live DVD, and Live USB operating system (OS) comprising a suite of more than 300 bioinformatics tools and application suites."
         },
         {
             "name": "Porteus",
             "url": "https://en.wikipedia.org/wiki/Porteus_(operating_system)",
-            "description": "View Porteus on Wikipedia"
+            "description": "Porteus is a portable operating system based on Slackware."
         },
         {
             "name": "Salix OS",
             "url": "https://en.wikipedia.org/wiki/Salix_OS",
-            "description": "View Salix OS on Wikipedia"
+            "description": "Salix OS is a multi-purpose Linux distribution based on Slackware."
         },
         {
             "name": "Slackware",
             "url": "https://en.wikipedia.org/wiki/Slackware",
-            "description": "View Slackware on Wikipedia"
+            "description": "Slackware is a Linux distribution created by Patrick Volkerding in 1993."
         },
         {
             "name": "Slax",
             "url": "https://en.wikipedia.org/wiki/Slax",
-            "description": "View Slax on Wikipedia"
+            "description": "Slax is a LiveCD Linux distribution developed by Tom\u00e1\u0161 Mat\u011bj\u00ed\u010dek and based on upstream customizable Linux distributions."
         },
         {
             "name": "VectorLinux",
             "url": "https://en.wikipedia.org/wiki/VectorLinux",
-            "description": "View VectorLinux on Wikipedia"
+            "description": "VectorLinux, abbreviated VL, was a Linux distribution for the x86 platform based on the Slackware Linux distribution, originally developed by Canadian developers Robert S."
         },
         {
             "name": "Zenwalk",
             "url": "https://en.wikipedia.org/wiki/Zenwalk",
-            "description": "View Zenwalk on Wikipedia"
+            "description": "Zenwalk GNU/Linux is a desktop-focused Linux distribution founded by Jean-Philippe Guillemin."
         }
     ],
     "Security / Recovery": [
         {
             "name": "BackBox",
             "url": "https://en.wikipedia.org/wiki/BackBox",
-            "description": "View BackBox on Wikipedia"
+            "description": "BackBox is a penetration test and security assessment oriented Ubuntu-based Linux distribution providing a network and informatic systems analysis toolkit."
         },
         {
             "name": "CAINE Linux",
             "url": "https://en.wikipedia.org/wiki/CAINE_Linux",
-            "description": "View CAINE Linux on Wikipedia"
+            "description": "CAINE Linux is an Italian Linux live distribution managed by Giovanni \"Nanni\" Bassetti."
         },
         {
             "name": "Linux Kodachi",
             "url": "https://en.wikipedia.org/wiki/Linux_Kodachi",
-            "description": "View Linux Kodachi on Wikipedia"
+            "description": "Linux Kodachi 9 is a derivative of Debian 13 (Trixie) focused on computer security, countering forensics and enabling anonymous browsing with minimized command-line usage designed by Warith Al Maawali."
         },
         {
             "name": "Pentoo",
             "url": "https://en.wikipedia.org/wiki/Pentoo",
-            "description": "View Pentoo on Wikipedia"
+            "description": "Pentoo is a Live CD and Live USB designed for penetration testing and security assessment."
         },
         {
             "name": "Qubes OS",
             "url": "https://en.wikipedia.org/wiki/Qubes_OS",
-            "description": "View Qubes OS on Wikipedia"
+            "description": "Qubes OS is a security-focused desktop operating system that aims to provide security through compartmentalization."
         },
         {
             "name": "SystemRescue",
             "url": "https://en.wikipedia.org/wiki/SystemRescue",
-            "description": "View SystemRescue on Wikipedia"
+            "description": "SystemRescue is a Linux distribution for x86-64 and IA-32 computers."
         },
         {
             "name": "Tails",
             "url": "https://en.wikipedia.org/wiki/Tails_(operating_system)",
-            "description": "View Tails on Wikipedia"
+            "description": "Tails, or \"The Amnesic Incognito Live System\", is a security-focused Debian based Linux distribution running on a computer, aimed at preserving privacy and anonymity against surveillance."
         },
         {
             "name": "Whonix",
             "url": "https://en.wikipedia.org/wiki/Whonix",
-            "description": "View Whonix on Wikipedia"
+            "description": "Whonix is an anonymity focused Linux distribution."
         }
     ],
     "Independent / Unique": [
         {
             "name": "KaOS",
             "url": "https://en.wikipedia.org/wiki/KaOS",
-            "description": "View KaOS on Wikipedia"
+            "description": "KaOS is an independent Linux distribution built around the latest version of the KDE Plasma desktop environment."
         },
         {
             "name": "Mageia",
             "url": "https://en.wikipedia.org/wiki/Mageia",
-            "description": "View Mageia on Wikipedia"
+            "description": "Mageia is a Linux-based operating system, distributed as free and open-source software."
         },
         {
             "name": "NixOS",
             "url": "https://en.wikipedia.org/wiki/NixOS",
-            "description": "View NixOS on Wikipedia"
+            "description": "NixOS is a Linux distribution built around the Nix package manager."
         },
         {
             "name": "OpenMandriva Lx",
             "url": "https://en.wikipedia.org/wiki/OpenMandriva_Lx",
-            "description": "View OpenMandriva Lx on Wikipedia"
+            "description": "OpenMandriva Lx is a general-purpose Linux distribution maintained by the OpenMandriva Association for x86_64 (64-bit) and ARM computers."
         },
         {
             "name": "PCLinuxOS",
             "url": "https://en.wikipedia.org/wiki/PCLinuxOS",
-            "description": "View PCLinuxOS on Wikipedia"
+            "description": "PCLinuxOS, often shortened to PCLOS, is a rolling-release Linux distribution for x86-64 computers, with KDE Plasma, MATE, and XFCE as its default user interfaces."
         },
         {
             "name": "Solus",
             "url": "https://en.wikipedia.org/wiki/Solus_(operating_system)",
-            "description": "View Solus on Wikipedia"
+            "description": "Solus is an independently developed operating system for the x86-64 architecture based on the Linux kernel and a choice of Budgie, GNOME, KDE Plasma or Xfce as the desktop environment."
         },
         {
             "name": "Void Linux",
             "url": "https://en.wikipedia.org/wiki/Void_Linux",
-            "description": "View Void Linux on Wikipedia"
+            "description": "Void Linux is an independent Linux distribution that uses the X Binary Package System (XBPS) package manager, which was designed and implemented from scratch, and the runit init system."
         }
     ],
     "Mobile / Android": [
         {
             "name": "Android",
             "url": "https://en.wikipedia.org/wiki/Android_(operating_system)",
-            "description": "View Android on Wikipedia"
+            "description": "Android is an operating system owned by Google which is based on a modified version of the Linux kernel and other free and open-source software, designed primarily for touchscreen-based mobile devices such as smartphones and tablet computers."
         },
         {
             "name": "Android-x86",
             "url": "https://en.wikipedia.org/wiki/Android-x86",
-            "description": "View Android-x86 on Wikipedia"
+            "description": "Android-x86 is an unofficial port of the Android mobile operating system for the Intel x86 platform."
         },
         {
             "name": "LineageOS",
             "url": "https://en.wikipedia.org/wiki/LineageOS",
-            "description": "View LineageOS on Wikipedia"
+            "description": "LineageOS is an open source Android (AOSP)-based operating system for smartphones, tablets, and set-top boxes."
         },
         {
             "name": "Mobian",
             "url": "https://en.wikipedia.org/wiki/Mobian",
-            "description": "View Mobian on Wikipedia"
+            "description": "Mobian is a project to port the Debian Linux distribution running the mainline Linux kernel to smartphones and tablets."
         },
         {
             "name": "PostmarketOS",
             "url": "https://en.wikipedia.org/wiki/PostmarketOS",
-            "description": "View PostmarketOS on Wikipedia"
+            "description": "postmarketOS is an operating system primarily for smartphones, based on the Alpine Linux distribution."
         },
         {
             "name": "Sailfish OS",
             "url": "https://en.wikipedia.org/wiki/Sailfish_OS",
-            "description": "View Sailfish OS on Wikipedia"
+            "description": "Sailfish OS is an operating system for mobile phones developed by Jolla."
         }
     ],
     "Lightweight / Minimal": [
         {
             "name": "Alpine Linux",
             "url": "https://en.wikipedia.org/wiki/Alpine_Linux",
-            "description": "View Alpine Linux on Wikipedia"
+            "description": "Alpine Linux is a Linux distribution \"designed for power users who appreciate security, simplicity and resource efficiency\"."
         },
         {
             "name": "LXLE Linux",
             "url": "https://en.wikipedia.org/wiki/LXLE_Linux",
-            "description": "View LXLE Linux on Wikipedia"
+            "description": "LXLE was a Linux distribution based upon the most recent Ubuntu/Lubuntu LTS release, using the LXDE desktop environment."
         },
         {
             "name": "Puppy Linux",
             "url": "https://en.wikipedia.org/wiki/Puppy_Linux",
-            "description": "View Puppy Linux on Wikipedia"
+            "description": "Puppy Linux is a family of light-weight Linux distributions that focus on ease of use and minimal memory footprint."
         },
         {
             "name": "SliTaz",
             "url": "https://en.wikipedia.org/wiki/SliTaz",
-            "description": "View SliTaz on Wikipedia"
+            "description": "SliTaz GNU/Linux is a lightweight Linux distribution, community-based, suitable for use on older hardware and as a Live CD or Live USB."
         },
         {
             "name": "Tiny Core Linux",
             "url": "https://en.wikipedia.org/wiki/Tiny_Core_Linux",
-            "description": "View Tiny Core Linux on Wikipedia"
+            "description": "Tiny Core Linux (TCL) is a minimal Linux kernel based operating system focusing on providing a base system using BusyBox and FLTK."
         }
     ],
     "Server / Cloud / NAS": [
         {
             "name": "Koozali SME Server",
             "url": "https://en.wikipedia.org/wiki/Koozali_SME_Server",
-            "description": "View Koozali SME Server on Wikipedia"
+            "description": "Koozali SME server is a Linux distribution based on Red Hat Enterprise Linux and can act as a server-only or server and gateway."
         },
         {
             "name": "Open Enterprise Server",
             "url": "https://en.wikipedia.org/wiki/Open_Enterprise_Server",
-            "description": "View Open Enterprise Server on Wikipedia"
+            "description": "Open Enterprise Server (OES) is a server operating system published by OpenText."
         },
         {
             "name": "Proxmox Virtual Environment",
             "url": "https://en.wikipedia.org/wiki/Proxmox_Virtual_Environment",
-            "description": "View Proxmox Virtual Environment on Wikipedia"
+            "description": "Proxmox Virtual Environment is a virtualization platform designed for the provisioning of hyper-converged infrastructure."
         },
         {
             "name": "Rancher Labs",
             "url": "https://en.wikipedia.org/wiki/Rancher_Labs",
-            "description": "View Rancher Labs on Wikipedia"
+            "description": "Rancher Labs is an open source software company based in Cupertino, California."
         },
         {
             "name": "Univention Corporate Server",
             "url": "https://en.wikipedia.org/wiki/Univention_Corporate_Server",
-            "description": "View Univention Corporate Server on Wikipedia"
+            "description": "Univention Corporate Server (UCS) is a server operating system derived from Debian with an integrated management system for the central and cross-platform administration of servers, services, clients, desktops and users as well as virtualized computers operated in UCS."
         }
     ],
     "Gaming / Multimedia": [
         {
             "name": "AV Linux",
             "url": "https://en.wikipedia.org/wiki/AV_Linux",
-            "description": "View AV Linux on Wikipedia"
+            "description": "AV Linux is a Linux distribution focused on multimedia content creation."
         },
         {
             "name": "Lakka",
             "url": "https://en.wikipedia.org/wiki/Lakka_(operating_system)",
-            "description": "View Lakka on Wikipedia"
+            "description": "Lakka is a community-driven lightweight retro gaming Linux distribution based on LibreELEC."
         },
         {
             "name": "LibreELEC",
             "url": "https://en.wikipedia.org/wiki/LibreELEC",
-            "description": "View LibreELEC on Wikipedia"
+            "description": "LibreELEC is an up-to-date non-profit and fully open-source fork of the OpenELEC as an up-to-date Just enough operating system."
         },
         {
             "name": "SteamOS",
             "url": "https://en.wikipedia.org/wiki/SteamOS",
-            "description": "View SteamOS on Wikipedia"
+            "description": "SteamOS is a gaming-focused operating system released by Valve that incorporates the company's video game storefront, Steam."
         }
     ],
     "Gentoo / Source": [
         {
             "name": "Calculate Linux",
             "url": "https://en.wikipedia.org/wiki/Calculate_Linux",
-            "description": "View Calculate Linux on Wikipedia"
+            "description": "Calculate Linux is a Linux distribution optimized for fast deployment in an organization environment."
         },
         {
             "name": "Sabayon Linux",
             "url": "https://en.wikipedia.org/wiki/Sabayon_Linux",
-            "description": "View Sabayon Linux on Wikipedia"
+            "description": "Sabayon Linux was an Italian Gentoo-based Linux distribution created by Fabio Erculiani and the Sabayon development team."
         },
         {
             "name": "Source Mage",
             "url": "https://en.wikipedia.org/wiki/Source_Mage",
-            "description": "View Source Mage on Wikipedia"
+            "description": "Source Mage is a source-based Linux distribution descended from Sorcerer."
         }
     ],
     "SUSE / openSUSE": [
         {
             "name": "GeckoLinux",
             "url": "https://en.wikipedia.org/wiki/GeckoLinux",
-            "description": "View GeckoLinux on Wikipedia"
+            "description": "GeckoLinux is a dormant Linux distribution based on openSUSE."
         },
         {
             "name": "OpenSUSE",
             "url": "https://en.wikipedia.org/wiki/OpenSUSE",
-            "description": "View OpenSUSE on Wikipedia"
+            "description": "openSUSE is a free and open-source Linux distribution developed by the openSUSE Project."
         },
         {
             "name": "SUSE Linux Enterprise",
             "url": "https://en.wikipedia.org/wiki/SUSE_Linux_Enterprise",
-            "description": "View SUSE Linux Enterprise on Wikipedia"
+            "description": "SUSE Linux Enterprise (SLE) is a Linux-based operating system developed by SUSE."
         }
     ]
 }
