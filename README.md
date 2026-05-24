@@ -11,6 +11,34 @@ A simple, automated ISO mirroring system for homelabs and personal use. This pro
 
 **[Browse the Web Directory: https://tiw302.github.io/iso-deployment-bot](https://tiw302.github.io/iso-deployment-bot)**
 
+## Dashboard Preview
+
+<table align="center" width="100%">
+  <tr>
+    <td align="center" width="33.3%">
+      <a href="assets/images/library.png" target="_blank">
+        <img src="assets/images/library.png" alt="Library Tab" style="max-width:100%; border-radius:6px;">
+      </a>
+      <br>
+      <sub><b>Library Tab</b> — command generator & direct downloads</sub>
+    </td>
+    <td align="center" width="33.3%">
+      <a href="assets/images/discovery.png" target="_blank">
+        <img src="assets/images/discovery.png" alt="Discovery Tab" style="max-width:100%; border-radius:6px;">
+      </a>
+      <br>
+      <sub><b>Discovery Tab</b> — metadata tags & search filter</sub>
+    </td>
+    <td align="center" width="33.3%">
+      <a href="assets/images/about.png" target="_blank">
+        <img src="assets/images/about.png" alt="About Tab" style="max-width:100%; border-radius:6px;">
+      </a>
+      <br>
+      <sub><b>About Tab</b> — homelab guides & statistics</sub>
+    </td>
+  </tr>
+</table>
+
 ---
 
 ## Table of Contents
