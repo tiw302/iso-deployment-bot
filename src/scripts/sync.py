@@ -8,7 +8,7 @@ import json
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
-# setup path to import distros from parent directory
+# setup path to import distros from parent dir
 script_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(script_dir))
 from distros import DB
@@ -17,7 +17,7 @@ c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
 DISCORD_WEBHOOK = os.environ.get("DISCORD_WEBHOOK")
 
 def discord_notify(message: str, color: int = 0x3498db):
-    """send notification to discord webhook."""
+    """send notification to discord webhook"""
     if not DISCORD_WEBHOOK:
         return
     
@@ -38,7 +38,7 @@ def discord_notify(message: str, color: int = 0x3498db):
         print(f"{r}[ discord error ]{w} {e}")
 
 def get_remote_name() -> str:
-    """dynamically determine the remote name from rclone config."""
+    """get remote name from rclone config"""
     try:
         result = subprocess.run(["rclone", "listremotes"], capture_output=True, text=True, check=True)
         remotes = [r.strip().rstrip(':') for r in result.stdout.strip().split('\n') if r.strip()]
@@ -49,7 +49,7 @@ def get_remote_name() -> str:
     return "gdrive" # fallback default
 
 def calculate_sha256(file_path: str) -> str:
-    """calculate sha256 checksum of a file."""
+    """calc sha256 checksum of a file"""
     sha256_hash = hashlib.sha256()
     with open(file_path, "rb") as f:
         for byte_block in iter(lambda: f.read(4096), b""):
@@ -78,7 +78,7 @@ def is_single_stream(url: str) -> bool:
     return any(h in host for h in SINGLE_STREAM_HOSTS)
 
 def dl(entry: dict, category: str):
-    """download one iso entry, upload to gdrive, then remove the local file."""
+    """download one iso, upload to gdrive, then delete local file"""
     url          = entry["url"]
     display_name = entry["name"]
     size         = entry.get("size", "?")
@@ -126,7 +126,7 @@ def dl(entry: dict, category: str):
     try:
         subprocess.run(cmd, check=True, timeout=3600)
         
-        # checksum verification
+        # verify checksum
         if expected_sha:
             print(f"{c}[ verify ]{w} checking sha256...")
             actual_sha = calculate_sha256(local_file)
