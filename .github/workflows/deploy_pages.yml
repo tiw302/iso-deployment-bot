@@ -1,0 +1,64 @@
+name: deploy-pages
+
+on:
+  push:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Tools
+        run: |
+          sudo apt-get update
+          curl https://rclone.org/install.sh | sudo bash
+
+      - name: Setup Rclone Config
+        shell: python
+        env:
+          CONF_BASE64: ${{ secrets.RCLONE_CONF_DATA }}
+        run: |
+          import os, base64
+          conf_path = os.path.expanduser("~/.config/rclone/rclone.conf")
+          os.makedirs(os.path.dirname(conf_path), exist_ok=True)
+          
+          try:
+              raw_data = base64.b64decode(os.environ["CONF_BASE64"])
+              with open(conf_path, "wb") as f:
+                  f.write(raw_data)
+              print("[S] Success: rclone.conf restored!")
+          except Exception as e:
+              print(f"[x] Error: {e}")
+              exit(1)
+
+      - name: Generate HTML Dashboard
+        run: python3 src/scripts/generate_index.py
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'web/'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
