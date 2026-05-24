@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>os-deployment-library</title>
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/style.css?v={{timestamp}}">
+</head>
+
+<body>
+    <div class="container">
+        <pre class="ascii-art">ASCII_ART_PLACEHOLDER</pre>
+        <header>
+            <div class="header-info">
+                <div class="header-left">
+                    <h1>os-deployment-library</h1>
+                    <div class="stats">
+                        &gt; status: <span class="stats-val">active</span><br>
+                        &gt; secured: <span class="stats-val">{{total_isos}} files ({{total_size}})</span><br>
+                        &gt; discovery: <span class="stats-val">{{massive_count}} distros</span><br>
+                        &gt; storage: <a href="{{gdrive_url}}" target="_blank" class="stats-link"
+                            title="Open Google Drive folder">gdrive://os-deployment-library</a>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Terminal Theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="vertical-align: middle; margin-right: 4px;">
+                            <polyline points="4 17 10 11 4 5"></polyline>
+                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                        </svg>
+                        <span id="themeLabel" style="vertical-align: middle;">theme: dark</span>
+                    </button>
+                    <div class="tab-controls">
+                        <button class="tab-btn active" id="libTab" data-tab="library">/library</button>
+                        <button class="tab-btn" id="discTab" data-tab="discovery">/discovery</button>
+                        <button class="tab-btn" id="aboutTab" data-tab="about">/about</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="search-container" id="searchContainer">
+            <div class="search-wrapper">
+                <label class="search-prompt" id="searchPrompt" for="searchInput">user@linux:~$ search library</label>
+                <input type="text" id="searchInput" class="search-input" autocomplete="off" spellcheck="false">
+                <span class="key-hint" title="Press '/' to search, 'Esc' to clear">[ / ]</span>
+                <button type="button" id="searchClear" class="search-clear" title="Clear search"
+                    style="display: none;">[clear]</button>
+                <span class="search-cursor blink-cursor">_</span>
+                <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
+            </div>
+        </div>
+
+        <div id="emptyState" style="display:none;" class="empty-state">
+            <pre>
+> error: distribution not found_
+> 0 matches found in current sector.
+            </pre>
+        </div>
+
+        <div id="libraryContent" class="tab-content">
+            <div class="nav-container">
+                <div class="scroll-arrow left-arrow" id="libArrowLeft">&lt;</div>
+                <div class="filter-nav" id="libNav">
+                    {{library_nav}}
+                </div>
+                <div class="scroll-arrow right-arrow" id="libArrowRight">&gt;</div>
+            </div>
+            <div id="librarySections">
+                {{library_sections}}
+            </div>
+        </div>
+
+        <div id="discoveryContent" class="tab-content" style="display:none">
+            <div class="nav-container">
+                <div class="scroll-arrow left-arrow" id="discArrowLeft">&lt;</div>
+                <div class="filter-nav" id="discNav">
+                    {{discovery_nav}}
+                </div>
+                <div class="scroll-arrow right-arrow" id="discArrowRight">&gt;</div>
+            </div>
+            <div id="discoverySections">
+                {{discovery_sections}}
+            </div>
+        </div>
+
+        <div id="aboutContent" class="tab-content" style="display:none">
+            <div class="about-container">
+                <section class="about-section">
+                    <div class="category-title">&gt; project_summary</div>
+                    <div class="about-card">
+                        <pre class="about-text">
+[overview]
+automated iso mirroring system designed to synchronize multiple operating system distributions to google drive storage. the system utilizes github actions for scheduled execution, aria2 for multi-threaded downloads, and rclone for cloud storage synchronization.
+
+[why this exists]
+when deploying operating systems across virtualized environments (like proxmox, hyper-v) or physical machines, fetching iso images from slow, geographically distant upstream mirrors can waste hours of time.
+
+this library maintains high-speed, direct google drive mirrors of the most common, secure, and clean system installation media. it guarantees that all deployment files are:
+1. hosted on enterprise-grade cloud storage for maximum download bandwidth.
+2. verified and synced daily to prevent broken links or stale versions.
+3. stored securely, providing a single consolidated inventory.
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="about-section" style="margin-top: 2rem;">
+                    <div class="category-title">&gt; quick_start_guide</div>
+                    <div class="about-card">
+                        <pre class="about-text">
+[keyboard terminal shortcuts]
+  <kbd>[/]</kbd> focus search input          <kbd>[Esc]</kbd> clear search term & filters
+  <kbd>[Tab]</kbd> cycle through tabs          <kbd>[Enter]</kbd> select active suggestion
+
+[homelab deployment integration]
+  1. search and click on any os card to open the Command Center dialog.
+  2. select your target command wrapper tab:
+     - <kbd>wget</kbd> / <kbd>curl</kbd>: for downloading directly to linux/unix terminals.
+     - <kbd>proxmox</kbd>: automatically downloads the iso straight to proxmox ve's
+                default local storage directory (/var/lib/vz/template/iso/).
+  3. click the copy icon on the right to copy the generated script.
+  4. paste and run in your remote virtualization host or console.
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="about-section" style="margin-top: 2rem;">
+                    <div class="category-title">&gt; system_statistics</div>
+                    <div class="about-card">
+                        <pre class="about-text">
+[system inventory status]
+  system_status:             online (all mirrors active)
+  library_storage_size:      {{total_size}}
+  mirrored_iso_files:        {{total_isos}} items
+  indexed_discovery_distros: {{massive_count}} distros
+  database_refresh_rate:     daily sync cron at 00:00 utc
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="about-section" style="margin-top: 2rem;">
+                    <div class="category-title">&gt; system_architecture</div>
+                    <div class="about-card">
+                        <pre class="about-text about-diagram">
++---------------------+     (daily cron)     +----------------------+
+|  src/distros.py     | -------------------> | github actions runner|
+| (inventory database)|                      | - checks updates     |
++---------------------+                      | - runs aria2 hooks   |
+                                             +----------------------+
+                                                         |
+                                                         | (verified stream)
+                                                         v
++---------------------+                      +----------------------+
+| users & deployments | <------------------- | google drive storage |
+| (direct downloads)  |   (rclone shared)    | (os-deployment-lib)  |
++---------------------+                      +----------------------+
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="about-section" style="margin-top: 2rem;">
+                    <div class="category-title">&gt; frequently_asked_questions</div>
+                    <div class="about-card">
+                        <pre class="about-text">
+q: how often are the mirrored files synced?
+a: all active operating system mirrors are synced daily at 00:00 utc. the index generator runs automatically to update this page with the latest active google drive links.
+
+q: where are these files stored and are they safe?
+a: files are stored on high-speed google drive enterprise storage and shared via rclone. all iso and img files are matched against the upstream sha256 checksums to verify integrity and security.
+
+q: how can i request a new operating system distribution or report a broken link?
+a: you can submit a request on our github repository's issues page or send a direct message on instagram. check the contact section below for links.
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="about-section" style="margin-top: 2rem;">
+                    <div class="category-title">&gt; network_contact</div>
+                    <div class="about-card">
+                        <pre class="about-text">
+for requests to add new distributions, reporting offline files, or system inquiry:
+- instagram: <a href="https://instagram.com/tiw3025k_" target="_blank" class="stats-link">@tiw3025k_</a>
+- github repository: <a href="https://github.com/tiw302/iso-deployment-bot" target="_blank" class="stats-link">iso-deployment-bot</a>
+                        </pre>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <footer>
+            <p>system_last_sync: {{last_updated}}</p>
+            <p>
+                <a href="https://github.com/tiw302/iso-deployment-bot"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: text-bottom; margin-right: 4px; color: var(--accent);">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>github</a> |
+                <a href="https://instagram.com/tiw3025k_"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round"
+                        style="vertical-align: text-bottom; margin-right: 4px; color: var(--accent);">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>instagram</a>
+            </p>
+        </footer>
+    </div>
+
+    <div id="scrollCat" class="scroll-cat" title="Meow!">
+        <div class="cat-bubble" id="catBubble">[ meow! ]</div>
+        <pre class="cat-default">  /\_/\
+ ( o.o )
+  &gt; ^ &lt;</pre>
+        <pre class="cat-hover">  /\_/\
+ ( ^.^ )
+  &gt; ^ &lt;</pre>
+        <pre class="cat-anim" id="catAnim">  /\_/\
+ ( o.o )
+  &gt; ^ &lt;</pre>
+    </div>
+
+    <button id="backToTop" class="back-to-top" title="Go to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+    <dialog id="infoModal" class="modal" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalTitle" class="modal-title">system_diagnostics://info</span>
+                <button id="closeModal" class="close-btn" title="Close modal">[x]</button>
+            </div>
+            <div class="modal-tabs" id="modalTabs">
+                <button class="modal-tab-btn active" data-modal-tab="info">/details</button>
+                <button class="modal-tab-btn" data-modal-tab="wget">/wget_cmd</button>
+                <button class="modal-tab-btn" data-modal-tab="curl">/curl_cmd</button>
+                <button class="modal-tab-btn" data-modal-tab="proxmox">/proxmox_pve</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-body" id="modalWget" style="display: none;"></div>
+            <div class="modal-body" id="modalCurl" style="display: none;"></div>
+            <div class="modal-body" id="modalProxmox" style="display: none;"></div>
+            <pre class="modal-cat">\   /\_/\
+ \ (-o.o-)
+  \ &gt; ^ &lt;</pre>
+        </div>
+    </dialog>
+
+    <script src="assets/script.js"></script>
+</body>
+
+</html>
