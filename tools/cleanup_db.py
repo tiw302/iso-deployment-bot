@@ -120,7 +120,9 @@ def main():
 
     # update web
     print("\nupdating web dashboard...")
-    subprocess.run(["python3", os.path.join(script_dir, "generate_index.py")])
+    base_dir = os.path.dirname(script_dir)
+    generate_script = os.path.join(base_dir, "src", "scripts", "generate_index.py")
+    subprocess.run(["python3", generate_script])
 
 if __name__ == "__main__":
     main()
