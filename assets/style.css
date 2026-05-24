@@ -167,6 +167,27 @@ pre.ascii-art {
     opacity: 0.8;
 }
 
+@media (max-width: 900px) {
+    pre.ascii-art {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    pre.ascii-art {
+        font-size: 0.45rem;
+        margin-bottom: 1.5rem;
+        /* Ensure it scales to fit width instead of scrolling if possible */
+        white-space: pre;
+    }
+}
+
+@media (max-width: 400px) {
+    pre.ascii-art {
+        font-size: 0.35rem;
+    }
+}
+
 header {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 1.5rem;
