@@ -23,9 +23,4 @@ jobs:
         run: |
           python3 -m py_compile src/distros.py src/scripts/*.py
           echo "syntax check passed: all python files are valid."
-
-      - name: Discord Notification
-        uses: sarisia/actions-status-discord@v1
-        if: always()
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          
