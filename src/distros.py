@@ -2,14 +2,14 @@
 
 DB: dict[str, list[dict]] = {
     "linux/ubuntu": [
-        {"name": "Kubuntu 26.04", "url": "https://cdimage.ubuntu.com/kubuntu/releases/26.04/release/kubuntu-26.04-desktop-amd64.iso", "size": "4.0GB"},
+        {"name": "Kubuntu 26.04", "url": "https://cdimage.ubuntu.com/kubuntu/releases/26.04/release/kubuntu-26.04-desktop-amd64.iso", "size": "4.0GB", "tags": ["kde", "desktop", "ubuntu"]},
         {"name": "Xubuntu 26.04", "url": "https://cdimage.ubuntu.com/xubuntu/releases/26.04/release/xubuntu-26.04-desktop-amd64.iso", "size": "3.3GB"},
         {"name": "Lubuntu 26.04", "url": "https://cdimage.ubuntu.com/lubuntu/releases/26.04/release/lubuntu-26.04-desktop-amd64.iso", "size": "3.0GB"},
         {"name": "Edubuntu 26.04", "url": "https://cdimage.ubuntu.com/edubuntu/releases/26.04/release/edubuntu-26.04-desktop-amd64.iso", "size": "4.9GB"},
     ],
     "linux/ubuntu-noble": [
-        {"name": "Ubuntu 24.04.2 Desktop", "url": "https://releases.ubuntu.com/24.04.2/ubuntu-24.04.2-desktop-amd64.iso", "size": "5.7GB"},
-        {"name": "Ubuntu 24.04.2 Server", "url": "https://releases.ubuntu.com/24.04.2/ubuntu-24.04.2-live-server-amd64.iso", "size": "2.6GB"},
+        {"name": "Ubuntu 24.04.2 Desktop", "url": "https://releases.ubuntu.com/24.04.2/ubuntu-24.04.2-desktop-amd64.iso", "size": "5.7GB", "tags": ["lts", "desktop", "standard"], "docs": "https://ubuntu.com/tutorials", "notes": "Standard LTS version with GNOME Desktop environment."},
+        {"name": "Ubuntu 24.04.2 Server", "url": "https://releases.ubuntu.com/24.04.2/ubuntu-24.04.2-live-server-amd64.iso", "size": "2.6GB", "tags": ["lts", "server", "cloud-init"], "docs": "https://ubuntu.com/server/docs", "notes": "Highly recommended for cloud-init and virtualization templates."},
     ],
     "linux/ubuntu-plucky": [
         {"name": "Ubuntu 25.04 Desktop", "url": "https://releases.ubuntu.com/25.04/ubuntu-25.04-desktop-amd64.iso", "size": "5.8GB"},
@@ -22,7 +22,7 @@ DB: dict[str, list[dict]] = {
         {"name": "Xubuntu 22.04.5", "url": "https://cdimage.ubuntu.com/xubuntu/releases/22.04.5/release/xubuntu-22.04.5-desktop-amd64.iso", "size": "3.0GB"},
     ],
     "linux/debian": [
-        {"name": "Debian 13 Trixie Netinst", "url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.4.0-amd64-netinst.iso", "size": "660MB"},
+        {"name": "Debian 13 Trixie Netinst", "url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.4.0-amd64-netinst.iso", "size": "660MB", "tags": ["stable", "minimal", "netinst"], "docs": "https://www.debian.org/releases/trixie/", "notes": "Minimal network installer. Requires active internet connection during installation."},
     ],
     "linux/debian-based": [
         {"name": "MX Linux 23.6 KDE", "url": "https://sourceforge.net/projects/mx-linux/files/Final/MX-23.6/MX-23.6-kde_x64.iso/download", "size": "3.2GB"},
@@ -105,7 +105,7 @@ DB: dict[str, list[dict]] = {
         {"name": "LXLE 22.04", "url": "https://sourceforge.net/projects/lxle/files/LXLE22043/lxle-22043-64bit.iso/download", "size": "1.8GB"},
     ],
     "linux/minimal": [
-        {"name": "Alpine Linux 3.21 Standard", "url": "https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/alpine-standard-3.21.3-x86_64.iso", "size": "215MB"},
+        {"name": "Alpine Linux 3.21 Standard", "url": "https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/alpine-standard-3.21.3-x86_64.iso", "size": "215MB", "tags": ["minimal", "security", "container"], "docs": "https://wiki.alpinelinux.org", "notes": "Extremely compact security-oriented distro. Ideal for minimal VM instances."},
         {"name": "Alpine Linux 3.21 Extended", "url": "https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/alpine-extended-3.21.3-x86_64.iso", "size": "625MB"},
         {"name": "Alpine Virt", "url": "https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/alpine-virt-3.21.3-x86_64.iso", "size": "210MB"},
     ],
@@ -113,7 +113,7 @@ DB: dict[str, list[dict]] = {
         {"name": "VyOS 1.4", "url": "https://downloads.vyos.io/release/stream/1.4/VyOS-1.4-rolling-202412010026-amd64.iso", "size": "580MB"},
     ],
     "homelab/virtualization": [
-        {"name": "Proxmox VE 9.1", "url": "https://enterprise.proxmox.com/iso/proxmox-ve_9.1-1.iso", "size": "1.83GB"},
+        {"name": "Proxmox VE 9.1", "url": "https://enterprise.proxmox.com/iso/proxmox-ve_9.1-1.iso", "size": "1.83GB", "tags": ["hypervisor", "homelab", "debian"], "docs": "https://pve.proxmox.com/pve-docs/", "notes": "Hypervisor management platform. Direct import: use Proxmox import command in details modal."},
         {"name": "Harvester HCI v1.4", "url": "https://releases.rancher.com/harvester/v1.4.0/harvester-v1.4.0-amd64.iso", "size": "4.6GB"},
     ],
     "homelab/nas": [
