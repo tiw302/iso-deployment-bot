@@ -21,20 +21,14 @@
     font-style: italic;
     font-display: swap;
 }
-/* os-deployment-library - raw black & gray style */
 
 :root {
     --bg-color: #000000;
     --text-main: #9ca3af;
-    /* medium gray */
     --text-bright: #f3f4f6;
-    /* near white */
     --accent: #ffffff;
-    /* pure white */
     --border-color: #262626;
-    /* dark gray border */
 
-    /* theme system variables */
     --card-bg: #050505;
     --tab-bg: #111111;
     --tab-active-bg: var(--accent);
@@ -106,14 +100,14 @@ body {
     line-height: 1.5;
     margin: 0;
     padding: 0;
-    background-image: 
+    background-image:
         linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
     background-size: 20px 20px;
 }
 
 [data-theme="light"] body {
-    background-image: 
+    background-image:
         linear-gradient(rgba(0, 0, 0, 0.012) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 0, 0, 0.012) 1px, transparent 1px);
     background-size: 20px 20px;
@@ -123,7 +117,10 @@ body::before {
     content: " ";
     display: block;
     position: fixed;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.08) 50%);
     background-size: 100% 4px;
     z-index: 9999;
@@ -140,14 +137,17 @@ body::before {
     width: 8px;
     height: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: var(--bg-color);
     border-left: 1px solid var(--border-color);
 }
+
 ::-webkit-scrollbar-thumb {
     background: var(--text-muted);
     border: 1px solid var(--bg-color);
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: var(--text-main);
 }
@@ -165,27 +165,6 @@ pre.ascii-art {
     margin-bottom: 2.5rem;
     overflow-x: auto;
     opacity: 0.8;
-}
-
-@media (max-width: 900px) {
-    pre.ascii-art {
-        font-size: 0.6rem;
-    }
-}
-
-@media (max-width: 600px) {
-    pre.ascii-art {
-        font-size: 0.45rem;
-        margin-bottom: 1.5rem;
-        /* Ensure it scales to fit width instead of scrolling if possible */
-        white-space: pre;
-    }
-}
-
-@media (max-width: 400px) {
-    pre.ascii-art {
-        font-size: 0.35rem;
-    }
 }
 
 header {
@@ -349,7 +328,6 @@ header {
 .stats {
     font-size: 0.875rem;
     color: var(--text-muted);
-    /* dim gray */
     margin-top: 0.5rem;
 }
 
@@ -544,7 +522,6 @@ header {
 .iso-info {
     flex: 1;
     min-width: 0;
-    /* allow ellipsis to work */
     margin-right: 1rem;
 }
 
@@ -562,7 +539,6 @@ header {
 .status-secured {
     font-size: 0.7rem;
     color: #22c55e;
-    /* green */
     text-transform: uppercase;
     font-weight: bold;
     display: inline-flex;
@@ -730,7 +706,6 @@ footer a:hover {
     color: var(--bg-color);
 }
 
-/* description styles */
 .iso-desc {
     flex-basis: 100%;
     width: 100%;
@@ -741,7 +716,6 @@ footer a:hover {
     padding-top: 0.8rem;
 }
 
-/* accessibility focus indicators */
 .tab-btn:focus-visible,
 .filter-pill:focus-visible,
 .btn-download:focus-visible,
@@ -753,7 +727,6 @@ footer a:hover {
     outline-offset: 2px !important;
 }
 
-/* about tab styling */
 .about-container {
     animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -804,7 +777,6 @@ kbd {
     box-shadow: 0 0 5px rgba(0, 255, 102, 0.05);
 }
 
-/* floating scroll cat */
 .scroll-cat {
     position: fixed;
     bottom: 2rem;
@@ -847,7 +819,6 @@ kbd {
     display: block;
 }
 
-/* click animation overrides for text-based flipbook */
 .scroll-cat .cat-anim {
     display: none;
 }
@@ -885,15 +856,14 @@ kbd {
     transform: translateX(-50%) translateY(0);
 }
 
-/* responsive adjustments for narrow screens */
 @media (max-width: 600px) {
+
     .search-wrapper:focus-within .search-prompt,
     .search-wrapper.has-value .search-prompt {
         display: none !important;
     }
 }
 
-/* modal terminal popup styles */
 dialog.modal {
     border: none !important;
     background: transparent !important;
@@ -1015,7 +985,6 @@ dialog.modal::backdrop {
     -webkit-user-select: text;
 }
 
-/* command copy styles */
 .command-container {
     position: relative;
     margin-top: 0.5rem;
@@ -1068,7 +1037,6 @@ dialog.modal::backdrop {
     line-height: 1.4;
 }
 
-/* modal content styles */
 .modal-body .detail-row {
     display: flex;
     margin-bottom: 0.4rem;
@@ -1118,7 +1086,6 @@ dialog.modal::backdrop {
     font-family: inherit;
 }
 
-/* light theme overrides for modal */
 [data-theme="light"] .modal-body .detail-block {
     background: rgba(0, 0, 0, 0.02);
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -1138,7 +1105,6 @@ dialog.modal::backdrop {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-/* tag badges styles */
 .iso-tags {
     display: flex;
     flex-wrap: wrap;
@@ -1164,7 +1130,6 @@ dialog.modal::backdrop {
     color: hsl(var(--tag-hue, 200) 65% 35%);
 }
 
-/* keyboard shortcut hint styles */
 .key-hint {
     font-size: 0.7rem;
     color: var(--text-muted);
@@ -1183,7 +1148,6 @@ dialog.modal::backdrop {
     }
 }
 
-/* modal ascii cat mascot pointing at the board */
 .modal-cat {
     position: absolute;
     bottom: -48px;
