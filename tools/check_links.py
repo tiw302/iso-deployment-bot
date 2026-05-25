@@ -9,7 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 # setup path to import distros from parent directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(script_dir))
+sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
 from distros import DB
 
 c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
