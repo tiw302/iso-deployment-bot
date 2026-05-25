@@ -60,8 +60,22 @@
 }
 
 /* base interactive transitions */
-* {
-    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+.iso-card,
+.tab-btn,
+.filter-pill,
+.btn-download,
+.btn-copy,
+.theme-toggle,
+.back-to-top,
+.command-copy-btn,
+.autocomplete-item,
+.scroll-arrow,
+.search-wrapper,
+.search-clear,
+.modal-tab-btn,
+.detail-val a,
+.tag-badge {
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
 }
 
 @keyframes fadeIn {
@@ -441,6 +455,8 @@ header {
 
 .category-section {
     margin-bottom: 3rem;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
 }
 
 .category-title {
@@ -1007,6 +1023,22 @@ dialog.modal::backdrop {
     background: rgba(0, 0, 0, 0.02) !important;
 }
 
+.command-prompt {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+.command-text {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
 .command-copy-btn {
     position: absolute;
     top: 0.5rem;
@@ -1016,8 +1048,10 @@ dialog.modal::backdrop {
     color: var(--text-main);
     cursor: pointer;
     font-family: inherit;
-    font-size: 0.7rem;
-    padding: 0.2rem 0.4rem;
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.2s ease;
 }
 
@@ -1166,4 +1200,37 @@ dialog.modal::backdrop {
     .modal-cat {
         display: none;
     }
+    .header-right {
+        margin-top: 1rem;
+    }
+}
+
+/* Premium Enhancements: Search Highlighting and Card Focus */
+.search-highlight {
+    background-color: rgba(34, 197, 94, 0.25);
+    color: #22c55e;
+    font-weight: bold;
+    border-bottom: 1.5px solid #22c55e;
+    padding: 0 1px;
+    border-radius: 2px;
+}
+
+[data-theme="light"] .search-highlight {
+    background-color: rgba(22, 163, 74, 0.12);
+    color: #16a34a;
+    border-bottom-color: #16a34a;
+}
+
+.iso-card.focused {
+    border-color: #22c55e !important;
+    box-shadow: 0 0 16px rgba(34, 197, 94, 0.2) !important;
+    transform: translateY(-4px) scale(1.008);
+    outline: 2px dashed #22c55e;
+    outline-offset: 4px;
+}
+
+[data-theme="light"] .iso-card.focused {
+    border-color: #16a34a !important;
+    box-shadow: 0 4px 16px rgba(22, 163, 74, 0.12) !important;
+    outline-color: #16a34a;
 }
