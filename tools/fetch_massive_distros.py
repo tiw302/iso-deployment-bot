@@ -70,7 +70,8 @@ def fetch_massive_distros():
 if __name__ == "__main__":
     categories, count = fetch_massive_distros()
     if categories:
-        output_path = os.path.join(os.path.dirname(__file__), "massive_distros_categorized.json")
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        output_path = os.path.join(os.path.dirname(script_dir), "src", "scripts", "massive_distros_categorized.json")
         with open(output_path, "w") as f:
             json.dump(categories, f, indent=4)
         print(f"successfully saved {count} distributions across {len(categories)} categories to {output_path}")
