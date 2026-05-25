@@ -4,8 +4,9 @@ import json
 import os
 
 def categorize():
-    input_path = os.path.join(os.path.dirname(__file__), "massive_distros.json")
-    output_path = os.path.join(os.path.dirname(__file__), "massive_distros_categorized.json")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    input_path = os.path.join(script_dir, "massive_distros.json")
+    output_path = os.path.join(os.path.dirname(script_dir), "src", "scripts", "massive_distros_categorized.json")
     
     if not os.path.exists(input_path):
         print("input file not found.")
