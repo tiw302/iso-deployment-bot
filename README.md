@@ -114,7 +114,7 @@ If you want to run the scripts manually on your own machine instead of GitHub Ac
 
 ```bash
 # 1. Tidy up the database (sort entries and remove duplicates)
-python3 src/scripts/refactor.py
+python3 tools/refactor.py
 
 # 2. Run the main download/upload script
 python3 src/scripts/sync.py
