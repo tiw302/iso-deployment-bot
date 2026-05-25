@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 # setup path to import distros from parent directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(script_dir))
+sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
 from distros import DB
 
 def get_drive_files():
@@ -62,6 +62,24 @@ def get_expected_filename(url):
         filename = filename.replace(".img", ".img.iso")
     return filename
 
+import json
+
+def format_val(val):
+    if isinstance(val, str):
+        return json.dumps(val)
+    elif isinstance(val, bool):
+        return "True" if val else "False"
+    elif val is None:
+        return "None"
+    elif isinstance(val, (int, float)):
+        return str(val)
+    elif isinstance(val, list):
+        return "[" + ", ".join(format_val(x) for x in val) + "]"
+    elif isinstance(val, dict):
+        return "{" + ", ".join(f"{format_val(k)}: {format_val(v)}" for k, v in val.items()) + "}"
+    else:
+        return repr(val)
+
 def main():
     print("starting database cleanup...")
     
@@ -102,16 +120,25 @@ def main():
     print(f"kept: {total_checked - removed_count}")
     print(f"removed: {removed_count}")
     
-    # write back to distros.py (simplified write)
-    distros_path = os.path.join(os.path.dirname(script_dir), 'distros.py')
+    # write back to distros.py
+    distros_path = os.path.join(os.path.dirname(script_dir), 'src', 'distros.py')
     with open(distros_path, 'w') as f:
         f.write("# updated auto-cleanup\n\nDB: dict[str, list[dict]] = {\n")
         for cat, entries in new_db.items():
             f.write(f"    \"{cat}\": [\n")
             for e in entries:
-                line = f"        {{\"name\": \"{e['name']}\", \"url\": \"{e['url']}\""
-                if 'size' in e: line += f", \"size\": \"{e['size']}\""
-                line += "},"
+                ordered_keys = []
+                keys = list(e.keys())
+                for k in ["name", "url", "size"]:
+                    if k in keys:
+                        ordered_keys.append(k)
+                        keys.remove(k)
+                ordered_keys.extend(keys)
+                
+                parts = []
+                for k in ordered_keys:
+                    parts.append(f'"{k}": {format_val(e[k])}')
+                line = "        {" + ", ".join(parts) + "},"
                 f.write(line + "\n")
             f.write("    ],\n")
         f.write("}\n\n")
