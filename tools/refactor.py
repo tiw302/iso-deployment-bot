@@ -3,38 +3,42 @@
 import ast
 import re
 import os
+import json
+
+def format_val(val):
+    if isinstance(val, str):
+        return json.dumps(val)
+    elif isinstance(val, bool):
+        return "True" if val else "False"
+    elif val is None:
+        return "None"
+    elif isinstance(val, (int, float)):
+        return str(val)
+    elif isinstance(val, list):
+        return "[" + ", ".join(format_val(x) for x in val) + "]"
+    elif isinstance(val, dict):
+        return "{" + ", ".join(f"{format_val(k)}: {format_val(v)}" for k, v in val.items()) + "}"
+    else:
+        return repr(val)
 
 def process_dict_node(dict_node, db_dict):
     if isinstance(dict_node, ast.Dict):
         for key_node, value_node in zip(dict_node.keys, dict_node.values):
-            if hasattr(ast, 'Constant') and isinstance(key_node, ast.Constant):
-                key = key_node.value
-            elif hasattr(ast, 'Str') and isinstance(key_node, ast.Str):
-                key = key_node.s
-            else:
+            try:
+                key = ast.literal_eval(key_node)
+            except Exception:
                 continue
             
             # parse value_node list
             entries = []
             if isinstance(value_node, ast.List):
                 for elt in value_node.elts:
-                    if isinstance(elt, ast.Dict):
-                        entry = {}
-                        for k, v in zip(elt.keys, elt.values):
-                            if hasattr(ast, 'Constant') and isinstance(k, ast.Constant):
-                                k_val = k.value
-                            elif hasattr(ast, 'Str') and isinstance(k, ast.Str):
-                                k_val = k.s
-                            else: continue
-                            
-                            if hasattr(ast, 'Constant') and isinstance(v, ast.Constant):
-                                v_val = v.value
-                            elif hasattr(ast, 'Str') and isinstance(v, ast.Str):
-                                v_val = v.s
-                            else: continue
-                            
-                            entry[k_val] = v_val
-                        entries.append(entry)
+                    try:
+                        entry = ast.literal_eval(elt)
+                        if isinstance(entry, dict):
+                            entries.append(entry)
+                    except Exception:
+                        continue
             
             if key not in db_dict:
                 db_dict[key] = []
@@ -82,7 +86,7 @@ def refactor_distros():
     # define paths
     script_dir = os.path.dirname(os.path.abspath(__file__))
     base_dir = os.path.dirname(script_dir)
-    distros_path = os.path.join(base_dir, 'distros.py')
+    distros_path = os.path.join(base_dir, 'src', 'distros.py')
     
     if not os.path.exists(distros_path):
         print(f"error: {distros_path} not found")
@@ -241,10 +245,18 @@ def refactor_distros():
         new_content += f"\n    # {cat_name}\n"
         new_content += f"    \"{key}\": [\n"
         for entry in new_db_dict[key]:
-            line = f"        {{\"name\": \"{entry.get('name', '')}\", \"url\": \"{entry.get('url', '')}\""
-            if 'size' in entry:
-                line += f", \"size\": \"{entry['size']}\""
-            line += "},"
+            ordered_keys = []
+            keys = list(entry.keys())
+            for k in ["name", "url", "size"]:
+                if k in keys:
+                    ordered_keys.append(k)
+                    keys.remove(k)
+            ordered_keys.extend(keys)
+            
+            parts = []
+            for k in ordered_keys:
+                parts.append(f'"{k}": {format_val(entry[k])}')
+            line = "        {" + ", ".join(parts) + "},"
             new_content += line + "\n"
         new_content += "    ]"
         if i < len(sorted_keys) - 1:
