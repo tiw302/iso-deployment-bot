@@ -20,11 +20,11 @@ except ImportError:
 GDRIVE_LIBRARY_URL = "https://drive.google.com/drive/folders/1B64Y44QVMlgoVm49PRk2_UvPXRzXNZ8e?usp=sharing"
 
 ASCII_ART = r"""
-#  ██████   ███████             ██        ██  ███████  ██████    ██████   ███████  ██    ██  /\_/\
-# ██    ██  ██                  ██        ██  ██    ██ ██   ██  ██    ██  ██   ██   ██  ██  ( o.o )
-# ██    ██  ███████    █████    ██        ██  ███████  ██████   ████████  ██████     ████    > ^ <
-# ██    ██        ██            ██        ██  ██    ██ ██   ██  ██    ██  ██   ██     ██    /     \
-#  ██████   ███████             ███████   ██  ███████  ██    ██ ██    ██  ██    ██    ██   (___/___)
+#  ██████  ███████        ██      ██ ███████  ██████    ██████   ███████ ██    ██  /\_/\
+# ██    ██ ██             ██      ██ ██    ██ ██   ██  ██    ██  ██   ██  ██  ██  ( o.o )
+# ██    ██ ███████  █████ ██      ██ ███████  ██████   ████████  ██████    ████    > ^ <
+# ██    ██       ██       ██      ██ ██    ██ ██   ██  ██    ██  ██   ██    ██    /     \
+#  ██████  ███████        ███████ ██ ███████  ██    ██ ██    ██  ██    ██   ██   (___/___)
 """
 
 COPY_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>'
@@ -68,9 +68,10 @@ def get_drive_content():
                 if not any(path.lower().endswith(ext) for ext in ['.iso', '.img', '.gz', '.xz', '.zip', '.bin']):
                     continue
                 try:
-                    total_bytes += int(size)
+                    bytes_val = int(size)
+                    total_bytes += bytes_val
                 except ValueError:
-                    pass
+                    bytes_val = 0
                 category = os.path.dirname(path)
                 if not category: category = "unsorted"
                 filename = os.path.basename(path)
@@ -88,6 +89,7 @@ def get_drive_content():
                     "name": pretty_name, 
                     "filename": filename, 
                     "size": format_size(size), 
+                    "bytes": bytes_val,
                     "id": file_id
                 }
                 if db_item:
@@ -569,6 +571,27 @@ def generate_html():
     massive_total = sum(len(v) for v in massive_dict.values())
     last_updated = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
+    # generate storage visualizer chart
+    chart_lines = []
+    if total_bytes > 0:
+        cat_sizes = {}
+        for cat, items in library.items():
+            cat_sizes[cat] = sum(item.get("bytes", 0) for item in items)
+        
+        # Sort by size descending
+        sorted_cats = sorted(cat_sizes.items(), key=lambda x: x[1], reverse=True)
+        
+        for cat, size in sorted_cats:
+            percentage = (size / total_bytes) * 100
+            bar_width = 30
+            filled_chars = int(round((percentage / 100) * bar_width))
+            bar = "█" * filled_chars + "░" * (bar_width - filled_chars)
+            cat_display = cat.replace('/', ' > ').lower()
+            chart_lines.append(f"  {cat_display:<26} [{bar}] {format_size(size):>8} ({percentage:.1f}%)")
+    else:
+        chart_lines.append("  no mirrored files found in storage.")
+    storage_chart = "\n".join(chart_lines)
+
     template_path = os.path.join(root_dir, "src", "templates", "index_template.html")
     with open(template_path, "r") as f:
         html_template = f.read()
@@ -699,6 +722,7 @@ def generate_html():
                              .replace("{{discovery_nav}}", disc_nav) \
                              .replace("{{discovery_sections}}", disc_sections) \
                              .replace("{{timestamp}}", str(int(time.time()))) \
+                             .replace("{{storage_chart}}", storage_chart) \
                              .replace("{{last_updated}}", last_updated)
     
     with open(output_path, "w") as f:
