@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const emptyState = document.getElementById('emptyState');
     let currentTab = 'library';
 
+    // modal commands and typing timer
+    let currentModalCommands = {};
+    let typingTimer = null;
+    let focusedCardIndex = -1;
+    let searchTimeout = null;
+
     // focus search input when clicking anywhere on the search wrapper
     const searchWrapper = document.querySelector('.search-wrapper');
     if (searchWrapper && searchInput) {
@@ -75,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.addEventListener('input', (e) => {
             if (currentTab === 'about') return;
             const term = e.target.value.toLowerCase().trim();
-            let anyMatch = false;
 
             if (searchWrapper) {
                 searchWrapper.classList.toggle('has-value', term !== '');
@@ -85,70 +90,92 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchClear.style.display = term !== '' ? 'inline-block' : 'none';
             }
 
-            // reset active filter pill to 'all' on search input to prevent visual desync
-            if (term !== '') {
-                const pillClass = currentTab === 'library' ? '.lib-pill' : '.disc-pill';
-                document.querySelectorAll(pillClass).forEach(p => {
-                    p.classList.toggle('active', p.dataset.target === 'all');
-                });
-            }
+            if (searchTimeout) clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                let anyMatch = false;
 
-            sections.forEach(section => {
-                // only search in active tab
-                if ((currentTab === 'library' && !section.classList.contains('library-section')) ||
-                    (currentTab === 'discovery' && !section.classList.contains('discovery-section'))) {
-                    return;
-                }
-
-                let hasMatch = false;
-                const cards = section.querySelectorAll('.iso-card');
-
-                cards.forEach(card => {
-                    const name = card.dataset.name.toLowerCase();
-                    let tagsText = '';
-                    try {
-                        if (card.dataset.details) {
-                            const details = JSON.parse(card.dataset.details);
-                            if (details.tags && Array.isArray(details.tags)) {
-                                tagsText = details.tags.join(' ').toLowerCase();
-                            }
-                        }
-                    } catch (e) {}
-
-                    if (term === '' || isMatch(term, name) || (tagsText && tagsText.includes(term))) {
-                        card.style.display = 'flex';
-                        hasMatch = true;
-                        anyMatch = true;
-                    } else {
-                        card.style.display = 'none';
+                // Clear highlights first
+                document.querySelectorAll('.iso-name, .iso-desc').forEach(el => {
+                    if (el.dataset.original) {
+                        el.innerHTML = el.dataset.original;
                     }
                 });
 
-                section.style.display = hasMatch ? 'block' : 'none';
-            });
-
-            emptyState.style.display = (!anyMatch && term !== '') ? 'block' : 'none';
-
-            // populate autocomplete dropdown
-            currentFocus = -1;
-            if (autocompleteDropdown) {
-                autocompleteDropdown.innerHTML = '';
+                // reset active filter pill to 'all' on search input to prevent visual desync
                 if (term !== '') {
-                    const activeCards = document.querySelectorAll(currentTab === 'library' ? '.library-section .iso-card' : '.discovery-section .iso-card');
-                    const tabOSNames = Array.from(new Set(Array.from(activeCards).map(card => card.dataset.name)));
-                    const matches = tabOSNames.filter(name => isMatch(term, name.toLowerCase()));
-                    if (matches.length > 0) {
-                        autocompleteDropdown.style.display = 'block';
-                        // limit to top 10 suggestions
-                        matches.slice(0, 10).forEach(match => {
-                            const item = document.createElement('div');
-                            item.className = 'autocomplete-item';
-                            item.textContent = match;
-                            item.addEventListener('click', () => {
-                                searchInput.value = match;
-                                autocompleteDropdown.style.display = 'none';
-                                searchInput.dispatchEvent(new Event('input'));
-                            });
+                    const pillClass = currentTab === 'library' ? '.lib-pill' : '.disc-pill';
+                    document.querySelectorAll(pillClass).forEach(p => {
+                        p.classList.toggle('active', p.dataset.target === 'all');
+                    });
+                }
+
+                sections.forEach(section => {
+                    // only search in active tab
+                    if ((currentTab === 'library' && !section.classList.contains('library-section')) ||
+                        (currentTab === 'discovery' && !section.classList.contains('discovery-section'))) {
+                        return;
+                    }
+
+                    let hasMatch = false;
+                    const cards = section.querySelectorAll('.iso-card');
+
+                    cards.forEach(card => {
+                        const name = card.dataset.name.toLowerCase();
+                        let tagsText = '';
+                        try {
+                            if (card.dataset.details) {
+                                const details = JSON.parse(card.dataset.details);
+                                if (details.tags && Array.isArray(details.tags)) {
+                                    tagsText = details.tags.join(' ').toLowerCase();
+                                }
+                            }
+                        } catch (e) {}
+
+                        if (term === '' || isMatch(term, name) || (tagsText && tagsText.includes(term))) {
+                            card.style.display = 'flex';
+                            hasMatch = true;
+                            anyMatch = true;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    section.style.display = hasMatch ? 'block' : 'none';
+                });
+
+                if (term !== '') {
+                    document.querySelectorAll('.iso-card').forEach(card => {
+                        if (card.style.display !== 'none') {
+                            const nameEl = card.querySelector('.iso-name');
+                            const descEl = card.querySelector('.iso-desc');
+                            if (nameEl) highlightHTML(nameEl, term);
+                            if (descEl) highlightHTML(descEl, term);
+                        }
+                    });
+                }
+
+                emptyState.style.display = (!anyMatch && term !== '') ? 'block' : 'none';
+
+                // populate autocomplete dropdown
+                currentFocus = -1;
+                if (autocompleteDropdown) {
+                    autocompleteDropdown.innerHTML = '';
+                    if (term !== '') {
+                        const activeCards = document.querySelectorAll(currentTab === 'library' ? '.library-section .iso-card' : '.discovery-section .iso-card');
+                        const tabOSNames = Array.from(new Set(Array.from(activeCards).map(card => card.dataset.name)));
+                        const matches = tabOSNames.filter(name => isMatch(term, name.toLowerCase()));
+                        if (matches.length > 0) {
+                            autocompleteDropdown.style.display = 'block';
+                            // limit to top 10 suggestions
+                            matches.slice(0, 10).forEach(match => {
+                                const item = document.createElement('div');
+                                item.className = 'autocomplete-item';
+                                item.textContent = match;
+                                item.addEventListener('click', () => {
+                                    searchInput.value = match;
+                                    autocompleteDropdown.style.display = 'none';
+                                    searchInput.dispatchEvent(new Event('input'));
+                                });
                             autocompleteDropdown.appendChild(item);
                         });
                     } else {
@@ -158,7 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     autocompleteDropdown.style.display = 'none';
                 }
             }
-        });
+        }, 60); // 60ms debounce to prevent layout thrashing
+    });
 
         // hide dropdown when clicking outside
         document.addEventListener('click', (e) => {
@@ -231,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function switchTab(tab) {
         currentTab = tab;
+        clearCardFocus();
         tabs.forEach(t => {
             const btn = tabButtons[t];
             const content = tabContents[t];
@@ -280,7 +309,14 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.value = '';
         emptyState.style.display = 'none';
 
-        // show all cards inside the sections
+        // show all cards inside the sections and clear highlights/focus
+        document.querySelectorAll('.iso-name, .iso-desc').forEach(el => {
+            if (el.dataset.original) {
+                el.innerHTML = el.dataset.original;
+            }
+        });
+        clearCardFocus();
+
         targetSections.forEach(s => {
             s.querySelectorAll('.iso-card').forEach(c => c.style.display = 'flex');
         });
@@ -441,6 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // copy links
     const toast = document.getElementById('toast');
     const checkIcon = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+    const COPY_ICON_SVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
 
     document.querySelectorAll('.btn-copy').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -486,6 +523,15 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('modalWget').style.display = tabName === 'wget' ? 'block' : 'none';
             document.getElementById('modalCurl').style.display = tabName === 'curl' ? 'block' : 'none';
             document.getElementById('modalProxmox').style.display = tabName === 'proxmox' ? 'block' : 'none';
+
+            // trigger terminal typing simulation
+            if (tabName === 'wget') {
+                typeCommand('wgetCmdText', currentModalCommands.wget);
+            } else if (tabName === 'curl') {
+                typeCommand('curlCmdText', currentModalCommands.curl);
+            } else if (tabName === 'proxmox') {
+                typeCommand('proxmoxCmdText', currentModalCommands.proxmox);
+            }
         });
     }
 
@@ -506,7 +552,8 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTabs.style.display = isDiscovery ? 'none' : 'flex';
         }
 
-        // reset tabs in modal
+        // reset tabs in modal and cancel active typing timers
+        if (typingTimer) clearInterval(typingTimer);
         const modalTabBtns = document.querySelectorAll('.modal-tab-btn');
         modalTabBtns.forEach(btn => {
             btn.classList.toggle('active', btn.dataset.modalTab === 'info');
@@ -575,8 +622,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modalWget').innerHTML = `
             <div class="command-desc">run this command to download the iso using wget:</div>
             <div class="command-container">
-                <pre class="command-block" id="wgetCmdText">${wgetCmd}</pre>
-                <button class="command-copy-btn" data-target="wgetCmdText">copy</button>
+                <pre class="command-block"><span class="command-prompt">user@homelab:~$ </span><span class="command-text" id="wgetCmdText">${wgetCmd}</span></pre>
+                <button class="command-copy-btn" data-target="wgetCmdText" title="Copy Command">${COPY_ICON_SVG}</button>
             </div>
         `;
 
@@ -585,8 +632,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modalCurl').innerHTML = `
             <div class="command-desc">run this command to download the iso using curl:</div>
             <div class="command-container">
-                <pre class="command-block" id="curlCmdText">${curlCmd}</pre>
-                <button class="command-copy-btn" data-target="curlCmdText">copy</button>
+                <pre class="command-block"><span class="command-prompt">user@homelab:~$ </span><span class="command-text" id="curlCmdText">${curlCmd}</span></pre>
+                <button class="command-copy-btn" data-target="curlCmdText" title="Copy Command">${COPY_ICON_SVG}</button>
             </div>
         `;
 
@@ -595,26 +642,45 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modalProxmox').innerHTML = `
             <div class="command-desc">run this command in your proxmox shell to download the iso directly into the local iso directory:</div>
             <div class="command-container">
-                <pre class="command-block" id="proxmoxCmdText">${proxmoxCmd}</pre>
-                <button class="command-copy-btn" data-target="proxmoxCmdText">copy</button>
+                <pre class="command-block"><span class="command-prompt">user@homelab:~$ </span><span class="command-text" id="proxmoxCmdText">${proxmoxCmd}</span></pre>
+                <button class="command-copy-btn" data-target="proxmoxCmdText" title="Copy Command">${COPY_ICON_SVG}</button>
             </div>
         `;
+
+        // save command texts for typing simulator
+        currentModalCommands = {
+            wget: wgetCmd,
+            curl: curlCmd,
+            proxmox: proxmoxCmd
+        };
 
         // attach event listeners to command copy buttons
         document.querySelectorAll('.command-copy-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const targetId = btn.dataset.target;
-                const text = document.getElementById(targetId).textContent;
+                let text = '';
+                if (targetId === 'wgetCmdText') text = currentModalCommands.wget;
+                else if (targetId === 'curlCmdText') text = currentModalCommands.curl;
+                else if (targetId === 'proxmoxCmdText') text = currentModalCommands.proxmox;
+                else text = document.getElementById(targetId).textContent;
+
                 navigator.clipboard.writeText(text).then(() => {
-                    const originalText = btn.textContent;
-                    btn.textContent = 'copied!';
+                    const originalHTML = btn.innerHTML;
+                    btn.innerHTML = checkIcon;
                     btn.style.color = '#22c55e';
                     btn.style.borderColor = '#22c55e';
+                    btn.style.pointerEvents = 'none';
+
+                    toast.classList.add('show');
+
                     setTimeout(() => {
-                        btn.textContent = originalText;
+                        btn.innerHTML = originalHTML;
                         btn.style.color = '';
                         btn.style.borderColor = '';
+                        btn.style.pointerEvents = 'auto';
                     }, 1500);
+
+                    setTimeout(() => toast.classList.remove('show'), 2000);
                 });
             });
         });
@@ -657,24 +723,91 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // escape key listener for closing modal
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            if (infoModal && infoModal.classList.contains('show')) {
-                closeModal();
-            }
-        }
-    });
-
-    // global shortcut to focus search input (press '/' key)
+    // Global Keyboard Navigation System
     document.addEventListener('keydown', (e) => {
         const activeElement = document.activeElement;
         const isInputActive = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA');
 
+        // Escape: Close Modal or Clear Selection Focus
+        if (e.key === 'Escape') {
+            if (infoModal && infoModal.classList.contains('show')) {
+                closeModal();
+            } else {
+                clearCardFocus();
+            }
+            return;
+        }
+
+        // Tab cycling: Cycle through library / discovery / about tabs when not inputting/modal active
+        if (e.key === 'Tab' && !isInputActive && !(infoModal && infoModal.classList.contains('show'))) {
+            e.preventDefault();
+            const tabOrder = ['library', 'discovery', 'about'];
+            let nextIdx = (tabOrder.indexOf(currentTab) + (e.shiftKey ? -1 : 1)) % tabOrder.length;
+            if (nextIdx < 0) nextIdx = tabOrder.length - 1;
+            switchTab(tabOrder[nextIdx]);
+            return;
+        }
+
+        // Search shortcut: Focus search input on pressing '/'
         if (e.key === '/' && !isInputActive) {
             e.preventDefault();
             if (searchInput) {
                 searchInput.focus();
+                clearCardFocus();
+            }
+            return;
+        }
+
+        // If typing in search, handle transitioning focus to cards on ArrowDown
+        if (isInputActive) {
+            if (e.target === searchInput && e.key === 'ArrowDown') {
+                if (!autocompleteDropdown || autocompleteDropdown.style.display === 'none') {
+                    e.preventDefault();
+                    searchInput.blur();
+                    focusCard(0);
+                }
+            }
+            return;
+        }
+
+        // Vim-keys (HJKL) and Arrow Keys for Grid Selection Navigation
+        const cards = getVisibleCards();
+        if (cards.length === 0) return;
+
+        if (e.key === 'ArrowDown' || e.key === 'j' || e.key === 'J') {
+            e.preventDefault();
+            if (focusedCardIndex === -1) {
+                focusCard(0);
+            } else {
+                const cols = getGridColumnsCount();
+                focusCard(focusedCardIndex + cols);
+            }
+        } else if (e.key === 'ArrowUp' || e.key === 'k' || e.key === 'K') {
+            e.preventDefault();
+            if (focusedCardIndex === -1) {
+                focusCard(cards.length - 1);
+            } else {
+                const cols = getGridColumnsCount();
+                focusCard(focusedCardIndex - cols);
+            }
+        } else if (e.key === 'ArrowRight' || e.key === 'l' || e.key === 'L') {
+            e.preventDefault();
+            if (focusedCardIndex === -1) {
+                focusCard(0);
+            } else {
+                focusCard(focusedCardIndex + 1);
+            }
+        } else if (e.key === 'ArrowLeft' || e.key === 'h' || e.key === 'H') {
+            e.preventDefault();
+            if (focusedCardIndex === -1) {
+                focusCard(cards.length - 1);
+            } else {
+                focusCard(focusedCardIndex - 1);
+            }
+        } else if (e.key === 'Enter') {
+            if (focusedCardIndex >= 0 && focusedCardIndex < cards.length) {
+                e.preventDefault();
+                openModal(cards[focusedCardIndex]);
             }
         }
     });
@@ -747,5 +880,112 @@ document.addEventListener('DOMContentLoaded', () => {
             tag.style.setProperty('--tag-hue', hue);
         });
     }
+
+    // Helper functions for highlighting and navigation
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function highlightHTML(el, term) {
+        const original = el.dataset.original || el.innerHTML;
+        if (!el.dataset.original) el.dataset.original = original;
+        
+        if (!term) {
+            el.innerHTML = original;
+            return;
+        }
+        
+        const regex = new RegExp(`(${escapeRegExp(term)})`, 'gi');
+        const temp = document.createElement('div');
+        temp.innerHTML = original;
+        
+        highlightNode(temp, regex);
+        el.innerHTML = temp.innerHTML;
+    }
+    
+    function highlightNode(node, regex) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.nodeValue;
+            if (regex.test(text)) {
+                const span = document.createElement('span');
+                span.innerHTML = text.replace(regex, '<mark class="search-highlight">$1</mark>');
+                node.parentNode.replaceChild(span, node);
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            if (node.classList.contains('status-secured')) return;
+            const children = Array.from(node.childNodes);
+            for (let child of children) {
+                highlightNode(child, regex);
+            }
+        }
+    }
+
+    function getVisibleCards() {
+        if (currentTab === 'about') return [];
+        const sectionClass = currentTab === 'library' ? '.library-section' : '.discovery-section';
+        const visibleSections = Array.from(document.querySelectorAll(sectionClass))
+                                     .filter(s => s.style.display !== 'none');
+        
+        const visibleCards = [];
+        visibleSections.forEach(s => {
+            s.querySelectorAll('.iso-card').forEach(c => {
+                if (c.style.display !== 'none') {
+                    visibleCards.push(c);
+                }
+            });
+        });
+        return visibleCards;
+    }
+
+    function focusCard(index) {
+        const cards = getVisibleCards();
+        if (cards.length === 0) return;
+        
+        if (focusedCardIndex >= 0 && focusedCardIndex < cards.length) {
+            cards[focusedCardIndex].classList.remove('focused');
+        }
+        
+        if (index < 0) index = cards.length - 1;
+        if (index >= cards.length) index = 0;
+        
+        focusedCardIndex = index;
+        const activeCard = cards[focusedCardIndex];
+        activeCard.classList.add('focused');
+        activeCard.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    function clearCardFocus() {
+        document.querySelectorAll('.iso-card').forEach(c => c.classList.remove('focused'));
+        focusedCardIndex = -1;
+    }
+
+    function getGridColumnsCount() {
+        const gridEl = document.querySelector(currentTab === 'library' ? '.grid' : '.discovery-grid');
+        if (!gridEl) return 1;
+        const compStyle = window.getComputedStyle(gridEl);
+        const gridTemplateCols = compStyle.getPropertyValue('grid-template-columns');
+        return gridTemplateCols.split(' ').length || 1;
+    }
+
+    function typeCommand(elementId, fullCommand) {
+        if (typingTimer) clearInterval(typingTimer);
+        
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        
+        el.innerHTML = '';
+        
+        let index = 0;
+        typingTimer = setInterval(() => {
+            if (index < fullCommand.length) {
+                el.textContent = fullCommand.substring(0, index + 1) + '█';
+                index++;
+            } else {
+                clearInterval(typingTimer);
+                el.textContent = fullCommand;
+            }
+        }, 8);
+    }
+
     colorizeTags();
 });
