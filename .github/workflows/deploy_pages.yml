@@ -3,6 +3,8 @@ name: deploy-pages
 on:
   push:
     branches: [ master, main ]
+  schedule:
+    - cron: '0 17 * * *'
   workflow_dispatch:
 
 permissions:
