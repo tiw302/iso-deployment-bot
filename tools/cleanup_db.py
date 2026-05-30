@@ -11,7 +11,9 @@ from concurrent.futures import ThreadPoolExecutor
 # setup path to import distros from parent directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
+sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
 from distros import DB
+from utils import resolve_filename
 
 def get_drive_files():
     """get a set of filenames currently in gdrive."""
@@ -52,15 +54,7 @@ def is_link_working(url):
             return False
 
 def get_expected_filename(url):
-    parsed = urlparse(url)
-    filename = os.path.basename(parsed.path)
-    if not filename or "." not in filename:
-        filename = url.split("/")[-1].split("?")[0]
-    if "." not in filename:
-        filename += ".iso"
-    if filename.endswith(".img"):
-        filename = filename.replace(".img", ".img.iso")
-    return filename
+    return resolve_filename(url)
 
 import json
 
@@ -142,8 +136,9 @@ def main():
                 f.write(line + "\n")
             f.write("    ],\n")
         f.write("}\n\n")
-        f.write("total = sum(len(v) for v in DB.values())\n")
-        f.write("print(f\"refactor complete: total {total} entries\")\n")
+        f.write("if __name__ == '__main__':\n")
+        f.write("    total = sum(len(v) for v in DB.values())\n")
+        f.write("    print(f\"refactor complete: total {total} entries\")\n")
 
     # update web
     print("\nupdating web dashboard...")
