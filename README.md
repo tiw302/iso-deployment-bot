@@ -81,6 +81,8 @@ The project is not an enterprise-grade infrastructure tool, but rather a pragmat
 
 **Basic Web Index:** Browsing files in Google Drive can be slow. To make downloading the ISOs easier, the script automatically generates a static HTML page (`web/index.html`) using a simple Python template after every successful sync.
 
+**Collision Prevention:** Since multiple distributions (especially SourceForge downloads) may resolve to the generic name `download.iso` or `latest.iso`, the system uses an intelligent filename resolver. It extracts actual filenames from redirected paths or automatically prepends unique parent folders (e.g. `dr460nized-latest.iso`) to prevent clobbering in the cloud library.
+
 ---
 
 ## How It Works
@@ -121,6 +123,9 @@ python3 src/scripts/sync.py
 
 # 3. Generate the static web index
 python3 src/scripts/generate_index.py
+
+# 4. Run the unit test suite to verify code correctness
+python3 -m unittest discover -s tests -p "test_*.py"
 ```
 
 ### Rclone Configuration (For GitHub Actions)
@@ -174,7 +179,16 @@ These are optional scripts located in the `tools/` folder, written to make manag
 - `tools/fetch_top_distros.py`: A basic scraper to find popular Linux distributions and add them to the list.
 - `tools/fetch_descriptions_wikipedia.py`: Reaches out to the Wikipedia API to automatically pull short text descriptions for the OSs in the database.
 - `tools/check_links.py`: Pings every URL in `src/distros.py` to check for 404/dead links, so they can be updated or removed.
+- `tools/cleanup_db.py`: Compares database entries against what actually exists in Google Drive, checks missing URLs, and removes broken/un-mirrored entries to keep the list clean.
 - `tools/refactor.py`: A formatting script to sort the list alphabetically and remove any accidental duplicates.
+
+---
+
+## Continuous Integration (CI)
+
+This repository includes a automated testing workflow (`.github/workflows/lint.yml`) that runs on every push and pull request to `master`/`main` branches. It automatically checks:
+- **Syntax Check:** Checks syntax errors by compiling all Python scripts in `src/`, `tools/`, and `tests/` directories.
+- **Unit Tests:** Executes the test suite (`python3 -m unittest`) to verify that the filename resolver works correctly and there are no filename collisions in the database.
 
 ---
 
