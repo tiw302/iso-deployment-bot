@@ -12,6 +12,7 @@ from urllib.request import Request, urlopen
 script_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(script_dir))
 from distros import DB
+from utils import resolve_filename
 
 c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
 DISCORD_WEBHOOK = os.environ.get("DISCORD_WEBHOOK")
@@ -85,14 +86,7 @@ def dl(entry: dict, category: str):
     expected_sha = entry.get("sha256")
     remote_name  = get_remote_name()
 
-    parsed = urlparse(url)
-    filename = os.path.basename(parsed.path)
-    if not filename or "." not in filename:
-        filename = url.split("/")[-1].split("?")[0]
-    if "." not in filename:
-        filename += ".iso"
-    if filename.endswith(".img"):
-        filename = filename.replace(".img", ".img.iso")
+    filename = resolve_filename(url)
 
     local_dir  = f"./temp/{category}"
     local_file = os.path.join(local_dir, filename)
