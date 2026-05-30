@@ -16,6 +16,7 @@ try:
     from distros import DB
 except ImportError:
     DB = {}
+from utils import resolve_filename
 
 GDRIVE_LIBRARY_URL = "https://drive.google.com/drive/folders/1B64Y44QVMlgoVm49PRk2_UvPXRzXNZ8e?usp=sharing"
 
@@ -79,7 +80,7 @@ def get_drive_content():
                 db_item = None
                 for cat_items in DB.values():
                     for item in cat_items:
-                        if filename in item.get('url', ''):
+                        if resolve_filename(item.get('url', '')) == filename:
                             pretty_name = item.get('name')
                             db_item = item
                             break
