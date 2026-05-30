@@ -32,7 +32,7 @@ DB: dict[str, list[dict]] = {
 
     # debian
     "linux/debian": [
-        {"name": "Debian 13 Trixie Netinst", "url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.4.0-amd64-netinst.iso", "size": "660MB", "tags": ["stable", "minimal", "netinst"], "docs": "https://www.debian.org/releases/trixie/", "notes": "Minimal network installer. Requires active internet connection during installation."},
+        {"name": "Debian 13.5 Trixie Netinst", "url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.5.0-amd64-netinst.iso", "size": "660MB", "tags": ["stable", "minimal", "netinst"], "docs": "https://www.debian.org/releases/trixie/", "notes": "Minimal network installer. Requires active internet connection during installation."},
     ],
 
     # debian derivatives
@@ -88,19 +88,18 @@ DB: dict[str, list[dict]] = {
 
     # gaming
     "linux/gaming": [
-        {"name": "Garuda Gaming latest", "url": "https://iso.builds.garudalinux.org/iso/latest/garuda/gaming/latest.iso", "size": "3.5GB"},
+        {"name": "Garuda Gaming latest", "url": "https://iso.builds.garudalinux.org/iso/latest/garuda/dr460nized-gaming/latest.iso", "size": "3.5GB"},
         {"name": "Fedora 44 Gaming Lab", "url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/44/Labs/x86_64/iso/Fedora-Gaming-Live-x86_64-44-1.1.iso", "size": "3.4GB"},
     ],
 
     # security
     "linux/security": [
         {"name": "Kali Linux 2026.1 Installer", "url": "https://cdimage.kali.org/kali-2026.1/kali-linux-2026.1-installer-amd64.iso", "size": "4.4GB"},
-        {"name": "Kali Linux 2026.1 Installer (KKU)", "url": "https://mirror.kku.ac.th/kali-images/kali-2026.1/kali-linux-2026.1-installer-amd64.iso", "size": "4.4GB"},
     ],
 
     # pentesting & red team
     "linux/pentesting": [
-        {"name": "BackBox 9", "url": "https://releases.backbox.org/backbox-9-desktop-amd64.iso", "size": "3.0GB"},
+        {"name": "BackBox 9", "url": "http://backbox.mirror.garr.it/backbox-9-desktop-amd64.iso", "size": "3.0GB"},
     ],
 
     # forensic & digital investigation
@@ -249,8 +248,7 @@ DB: dict[str, list[dict]] = {
 
     # experimental
     "linux/experimental": [
-        {"name": "Asahi Linux (Apple Silicon)", "url": "https://asahilinux.org/download/", "size": "2.5GB"},
-        {"name": "Tuxedo OS", "url": "https://www.tuxedocomputers.com/en/TUXEDO-OS", "size": "3.2GB"},
+        {"name": "Tuxedo OS", "url": "https://os.tuxedocomputers.com/TUXEDO-OS_current.iso", "size": "3.2GB"},
     ],
 
     # alternative architectures
@@ -269,5 +267,6 @@ DB: dict[str, list[dict]] = {
     ]
 }
 
-total = sum(len(v) for v in DB.values())
-print(f"refactor complete: total {total} entries")
+if __name__ == '__main__':
+    total = sum(len(v) for v in DB.values())
+    print(f"refactor complete: total {total} entries")
