@@ -27,7 +27,7 @@ def fetch_summary(title):
 
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    json_path = os.path.join(os.path.dirname(script_dir), "src", "scripts", "massive_distros_categorized.json")
+    json_path = os.path.join(script_dir, "massive_distros_categorized.json")
     
     if not os.path.exists(json_path):
         print(f"JSON not found at: {json_path}")
