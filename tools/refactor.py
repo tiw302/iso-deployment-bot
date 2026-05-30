@@ -122,35 +122,48 @@ def refactor_distros():
         # we still proceed with refactor in this script because it fixes some errors like duplicates
         # but in a real CI environment, this would fail.
     
-    # de-duplicate entries by url
-    url_to_entry = {}
+    # de-duplicate entries by resolved filename per category
+    import sys
+    sys.path.append(os.path.join(base_dir, 'src', 'scripts'))
+    from utils import resolve_filename
+
+    filename_to_entry = {}
     for key, entries in db_dict.items():
         for entry in entries:
             url = entry.get('url')
             if not url: continue
-            if url not in url_to_entry:
-                url_to_entry[url] = entry
+            filename = resolve_filename(url)
+            uniq_key = (key, filename)
+            
+            if uniq_key not in filename_to_entry:
+                filename_to_entry[uniq_key] = entry
             else:
-                # keep the one with the longer name for better description
-                if len(entry.get('name', '')) > len(url_to_entry[url].get('name', '')):
-                    url_to_entry[url] = entry
-                # keep size if available
-                if 'size' in entry and 'size' not in url_to_entry[url]:
-                    url_to_entry[url]['size'] = entry['size']
+                existing = filename_to_entry[uniq_key]
+                if 'mirror' in entry.get('name', '').lower() or 'kku' in entry.get('name', '').lower():
+                    pass
+                elif 'mirror' in existing.get('name', '').lower() or 'kku' in existing.get('name', '').lower():
+                    filename_to_entry[uniq_key] = entry
+                else:
+                    score_existing = len(existing.get('tags', [])) + (1 if 'docs' in existing else 0)
+                    score_current = len(entry.get('tags', [])) + (1 if 'docs' in entry else 0)
+                    if score_current > score_existing:
+                        filename_to_entry[uniq_key] = entry
 
-    # rebuild db with unique urls
-    best_entries = url_to_entry
+    # rebuild db with unique filenames
     new_db_dict = {}
-    seen_urls = set()
+    seen_keys = set()
     
     # preserve category assignment
     for key in db_dict.keys():
         new_db_dict[key] = []
         for entry in db_dict[key]:
             url = entry.get('url')
-            if url and url not in seen_urls:
-                new_db_dict[key].append(best_entries[url])
-                seen_urls.add(url)
+            if not url: continue
+            filename = resolve_filename(url)
+            uniq_key = (key, filename)
+            if uniq_key not in seen_keys:
+                new_db_dict[key].append(filename_to_entry[uniq_key])
+                seen_keys.add(uniq_key)
     
     # remove empty categories
     new_db_dict = {k: v for k, v in new_db_dict.items() if v}
@@ -265,8 +278,9 @@ def refactor_distros():
             new_content += "\n"
             
     new_content += "}\n\n"
-    new_content += "total = sum(len(v) for v in DB.values())\n"
-    new_content += "print(f\"refactor complete: total {total} entries\")\n"
+    new_content += "if __name__ == '__main__':\n"
+    new_content += "    total = sum(len(v) for v in DB.values())\n"
+    new_content += "    print(f\"refactor complete: total {total} entries\")\n"
 
     with open(distros_path, 'w') as f:
         f.write(new_content)
