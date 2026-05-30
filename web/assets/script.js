@@ -11,6 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let focusedCardIndex = -1;
     let searchTimeout = null;
 
+    // cache card search data to avoid dom query/parse on keypress
+    document.querySelectorAll('.iso-card').forEach(card => {
+        const name = card.dataset.name || '';
+        let tagsText = '';
+        try {
+            if (card.dataset.details) {
+                const details = JSON.parse(card.dataset.details);
+                if (details.tags && Array.isArray(details.tags)) {
+                    tagsText = details.tags.join(' ').toLowerCase();
+                }
+            }
+        } catch (e) {}
+        card._searchData = { name, tagsText };
+    });
+
     // focus search input when clicking anywhere on the search wrapper
     const searchWrapper = document.querySelector('.search-wrapper');
     if (searchWrapper && searchInput) {
@@ -28,27 +43,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const allOSNames = Array.from(new Set(Array.from(document.querySelectorAll('.iso-card')).map(card => card.dataset.name)));
     let currentFocus = -1;
 
-    // levenshtein distance for typo tolerance
-    function levenshtein(a, b) {
-        if (a.length === 0) return b.length;
-        if (b.length === 0) return a.length;
-        const matrix = [];
-        for (let i = 0; i <= b.length; i++) matrix[i] = [i];
-        for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
-        for (let i = 1; i <= b.length; i++) {
-            for (let j = 1; j <= a.length; j++) {
-                if (b.charAt(i - 1) === a.charAt(j - 1)) {
-                    matrix[i][j] = matrix[i - 1][j - 1];
+    // levenshtein distance for typo tolerance (optimized early-exit version)
+    function levenshtein(a, b, maxDist) {
+        const lenA = a.length;
+        const lenB = b.length;
+        if (Math.abs(lenA - lenB) > maxDist) return maxDist + 1;
+        
+        let prev = Array(lenB + 1);
+        let curr = Array(lenB + 1);
+        
+        for (let j = 0; j <= lenB; j++) prev[j] = j;
+        
+        for (let i = 1; i <= lenA; i++) {
+            curr[0] = i;
+            let rowMin = curr[0];
+            for (let j = 1; j <= lenB; j++) {
+                if (a.charAt(i - 1) === b.charAt(j - 1)) {
+                    curr[j] = prev[j - 1];
                 } else {
-                    matrix[i][j] = Math.min(
-                        matrix[i - 1][j - 1] + 1,
-                        matrix[i][j - 1] + 1,
-                        matrix[i - 1][j] + 1
-                    );
+                    curr[j] = Math.min(prev[j - 1] + 1, curr[j - 1] + 1, prev[j] + 1);
                 }
+                if (curr[j] < rowMin) rowMin = curr[j];
             }
+            if (rowMin > maxDist) return maxDist + 1;
+            
+            // swap rows
+            const temp = prev;
+            prev = curr;
+            curr = temp;
         }
-        return matrix[b.length][a.length];
+        return prev[lenB];
     }
 
     function isMatch(term, name) {
@@ -59,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const allowedTypos = term.length >= 5 ? 2 : (term.length >= 3 ? 1 : 0);
             if (allowedTypos > 0) {
                 const prefix = word.substring(0, term.length);
-                if (levenshtein(term, prefix) <= allowedTypos) return true;
+                if (levenshtein(term, prefix, allowedTypos) <= allowedTypos) return true;
             }
         }
         return false;
@@ -94,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             searchTimeout = setTimeout(() => {
                 let anyMatch = false;
 
-                // Clear highlights first
+                // clear highlights first
                 document.querySelectorAll('.iso-name, .iso-desc').forEach(el => {
                     if (el.dataset.original) {
                         el.innerHTML = el.dataset.original;
@@ -120,16 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cards = section.querySelectorAll('.iso-card');
 
                     cards.forEach(card => {
-                        const name = card.dataset.name.toLowerCase();
-                        let tagsText = '';
-                        try {
-                            if (card.dataset.details) {
-                                const details = JSON.parse(card.dataset.details);
-                                if (details.tags && Array.isArray(details.tags)) {
-                                    tagsText = details.tags.join(' ').toLowerCase();
-                                }
-                            }
-                        } catch (e) {}
+                        const searchData = card._searchData || { name: '', tagsText: '' };
+                        const name = searchData.name;
+                        const tagsText = searchData.tagsText;
 
                         if (term === '' || isMatch(term, name) || (tagsText && tagsText.includes(term))) {
                             card.style.display = 'flex';
@@ -175,9 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                     searchInput.value = match;
                                     autocompleteDropdown.style.display = 'none';
                                     searchInput.dispatchEvent(new Event('input'));
+                                    searchInput.focus();
                                 });
-                            autocompleteDropdown.appendChild(item);
-                        });
+                                autocompleteDropdown.appendChild(item);
+                            });
                     } else {
                         autocompleteDropdown.style.display = 'none';
                     }
@@ -723,12 +741,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Global Keyboard Navigation System
+    // global keyboard navigation
     document.addEventListener('keydown', (e) => {
         const activeElement = document.activeElement;
         const isInputActive = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA');
 
-        // Escape: Close Modal or Clear Selection Focus
+        // escape key: close modal or reset focus
         if (e.key === 'Escape') {
             if (infoModal && infoModal.classList.contains('show')) {
                 closeModal();
@@ -738,7 +756,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Tab cycling: Cycle through library / discovery / about tabs when not inputting/modal active
+        // tab key: cycle library / discovery / about tabs when not inputting/modal active
         if (e.key === 'Tab' && !isInputActive && !(infoModal && infoModal.classList.contains('show'))) {
             e.preventDefault();
             const tabOrder = ['library', 'discovery', 'about'];
@@ -748,7 +766,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Search shortcut: Focus search input on pressing '/'
+        // slash key: focus search input on pressing '/'
         if (e.key === '/' && !isInputActive) {
             e.preventDefault();
             if (searchInput) {
@@ -758,7 +776,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // If typing in search, handle transitioning focus to cards on ArrowDown
+        // arrow down in search: move to grid cards
         if (isInputActive) {
             if (e.target === searchInput && e.key === 'ArrowDown') {
                 if (!autocompleteDropdown || autocompleteDropdown.style.display === 'none') {
@@ -770,7 +788,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Vim-keys (HJKL) and Arrow Keys for Grid Selection Navigation
+        // arrow/vim navigation for grid selection
         const cards = getVisibleCards();
         if (cards.length === 0) return;
 
@@ -881,7 +899,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Helper functions for highlighting and navigation
+    // helper utils for highlight and nav
     function escapeRegExp(string) {
         return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
