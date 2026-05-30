@@ -118,14 +118,20 @@ If you want to run the scripts manually on your own machine instead of GitHub Ac
 # 1. Tidy up the database (sort entries and remove duplicates)
 python3 tools/refactor.py
 
-# 2. Run the main download/upload script
+# 2. (Optional) Fetch the latest ISO checksums
+python3 tools/fetch_checksums.py
+
+# 3. Run the main download/upload script
 python3 src/scripts/sync.py
 
-# 3. Generate the static web index
+# 4. Generate the static web index
 python3 src/scripts/generate_index.py
 
-# 4. Run the unit test suite to verify code correctness
-python3 -m unittest discover -s tests -p "test_*.py"
+# 5. Run the unit test suite to verify code correctness
+python3 -m unittest discover -s tests -p "test_*.py" -v
+
+# 6. Check formatting
+ruff check && ruff format --check
 ```
 
 ### Rclone Configuration (For GitHub Actions)
@@ -178,17 +184,27 @@ These are optional scripts located in the `tools/` folder, written to make manag
 
 - `tools/fetch_top_distros.py`: A basic scraper to find popular Linux distributions and add them to the list.
 - `tools/fetch_descriptions_wikipedia.py`: Reaches out to the Wikipedia API to automatically pull short text descriptions for the OSs in the database.
+- `tools/fetch_checksums.py`: A best-effort discovery tool that guesses and downloads SHA256/SHA512 checksum files to verify ISO integrity.
 - `tools/check_links.py`: Pings every URL in `src/distros.py` to check for 404/dead links, so they can be updated or removed.
 - `tools/cleanup_db.py`: Compares database entries against what actually exists in Google Drive, checks missing URLs, and removes broken/un-mirrored entries to keep the list clean.
 - `tools/refactor.py`: A formatting script to sort the list alphabetically and remove any accidental duplicates.
+- `tools/sync.sh`: A helper bash script to automatically commit and push any changes detected in the repository.
 
 ---
 
 ## Continuous Integration (CI)
 
-This repository includes a automated testing workflow (`.github/workflows/lint.yml`) that runs on every push and pull request to `master`/`main` branches. It automatically checks:
-- **Syntax Check:** Checks syntax errors by compiling all Python scripts in `src/`, `tools/`, and `tests/` directories.
-- **Unit Tests:** Executes the test suite (`python3 -m unittest`) to verify that the filename resolver works correctly and there are no filename collisions in the database.
+This repository includes automated workflows built on GitHub Actions:
+
+### Quality Assurance (`lint.yml`)
+Runs on every push and pull request to `master`/`main` branches.
+- **Syntax Check:** Verifies that all Python scripts compile without syntax errors.
+- **Unit Tests:** Executes the comprehensive test suite (`tests/`) containing 50+ test cases to verify filename resolution, collision prevention, DB structure, auto-tagging, and checksum discovery heuristics.
+
+### Link Health Check (`link_health.yml`)
+Runs automatically every Sunday at midnight UTC.
+- **Link Verification:** Scans the entire `distros.py` database (120+ entries) for 404/dead links.
+- **Automated Reporting:** If broken links are detected, the workflow automatically opens or updates a GitHub Issue with the detailed error log, and sends a Discord alert.
 
 ---
 
