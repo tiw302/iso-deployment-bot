@@ -603,14 +603,14 @@ def generate_html():
     # predefined logical category order
     lib_cat_order = [
         "linux/ubuntu", "linux/ubuntu-noble", "linux/ubuntu-plucky", "linux/ubuntu-jammy",
-        "linux/debian", "linux/debian-based", "linux/mint",
+        "linux/debian", "linux/debian-based", "linux/mint", "linux/pop-os", "linux/zorin",
         "linux/arch-family",
         "linux/enterprise", "linux/server", "linux/server-cloud", "linux/fedora-spins",
         "linux/gaming",
         "linux/security", "linux/pentesting", "linux/forensic", "linux/privacy",
         "linux/immutable", "linux/wayland-tiling", "linux/rolling",
         "linux/lightweight", "linux/minimal",
-        "homelab", "homelab/virtualization", "homelab/nas",
+        "homelab", "homelab/virtualization", "homelab/firewall", "homelab/nas",
         "specialized/vintage", "specialized/containers", "specialized/risc-emulation",
         "recovery/tools", "recovery/backup",
         "arm/raspberry-pi", "arm/sbc",
@@ -619,7 +619,8 @@ def generate_html():
         "alternative/bsd",
         "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized", 
         "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific", 
-        "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch"
+        "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch", "linux/cloud",
+        "linux/multimedia"
     ]
 
     def lib_cat_sort_key(cat):
