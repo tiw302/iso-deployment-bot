@@ -40,12 +40,11 @@ DB: dict[str, list[dict]] = {
         {"name": "MX Linux 25.2 KDE", "url": "https://sourceforge.net/projects/mx-linux/files/Final/MX-25.2/MX-25.2_KDE_x64.iso/download", "size": "3.2GB"},
         {"name": "KDE Neon User Current", "url": "https://files.kde.org/neon/images/user/current/neon-user-current.iso", "size": "3.1GB"},
         {"name": "Feren OS Latest", "url": "https://sourceforge.net/projects/ferenoslinux/files/latest/download", "size": "3.1GB"},
-        {"name": "Nitrux OS 3.8", "url": "https://sourceforge.net/projects/nitruxos/files/latest/download", "size": "3.4GB"},
-        {"name": "SparkyLinux 8 KDE", "url": "https://sourceforge.net/projects/sparkylinux/files/latest/download", "size": "2.7GB"},
-        {"name": "Nitrux OS latest", "url": "https://sourceforge.net/projects/nitruxos/files/Release/ISO/latest/download", "size": "3.4GB"},
+        {"name": "Nitrux OS Latest", "url": "https://sourceforge.net/projects/nitruxos/files/latest/download", "size": "3.4GB"},
+        {"name": "SparkyLinux 8 KDE", "url": "https://sourceforge.net/projects/sparkylinux/files/8.0/sparkylinux-8.0-x86_64-kde.iso/download", "size": "2.7GB"},
         {"name": "MX Linux 25.2 XFCE", "url": "https://sourceforge.net/projects/mx-linux/files/Final/MX-25.2/MX-25.2_Xfce_x64.iso/download", "size": "2.7GB"},
         {"name": "antiX 23.2 Full", "url": "https://sourceforge.net/projects/antix-linux/files/Final/antiX-23.2/antiX-23.2_x64-full.iso/download", "size": "1.8GB"},
-        {"name": "SparkyLinux 8 LXQt", "url": "https://sourceforge.net/projects/sparkylinux/files/latest/download", "size": "2.0GB"},
+        {"name": "SparkyLinux 8 LXQt", "url": "https://sourceforge.net/projects/sparkylinux/files/8.0/sparkylinux-8.0-x86_64-lxqt.iso/download", "size": "2.0GB"},
     ],
 
     # linux mint
