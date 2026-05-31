@@ -283,7 +283,8 @@ def get_lib_details(name, desc, db_item=None):
     return json.dumps(details).replace('"', '&quot;')
 
 def load_massive_distros():
-    path = os.path.join(os.path.dirname(__file__), "massive_distros_categorized.json")
+    root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    path = os.path.join(root_dir, "tools", "massive_distros_categorized.json")
     if os.path.exists(path):
         with open(path, "r") as f:
             return json.load(f)
