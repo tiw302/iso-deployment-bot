@@ -37,15 +37,15 @@ DB: dict[str, list[dict]] = {
 
     # debian derivatives
     "linux/debian-based": [
-        {"name": "MX Linux 23.6 KDE", "url": "https://sourceforge.net/projects/mx-linux/files/Final/MX-23.6/MX-23.6-kde_x64.iso/download", "size": "3.2GB"},
+        {"name": "MX Linux 25.2 KDE", "url": "https://sourceforge.net/projects/mx-linux/files/Final/MX-25.2/MX-25.2_KDE_x64.iso/download", "size": "3.2GB"},
         {"name": "KDE Neon User Current", "url": "https://files.kde.org/neon/images/user/current/neon-user-current.iso", "size": "3.1GB"},
-        {"name": "Feren OS 22.04", "url": "https://sourceforge.net/projects/ferenoslinux/files/22.04/ferenos-22.04-amd64.iso/download", "size": "3.1GB"},
-        {"name": "Nitrux OS 3.8", "url": "https://sourceforge.net/projects/nitruxos/files/Release/ISO/Nitrux_OS_3.8.1-nx-desktop-amd64.iso/download", "size": "3.4GB"},
-        {"name": "SparkyLinux 8 KDE", "url": "https://sourceforge.net/projects/sparkylinux/files/8.0/sparkylinux-8.0-x86_64-kde.iso/download", "size": "2.7GB"},
+        {"name": "Feren OS Latest", "url": "https://sourceforge.net/projects/ferenoslinux/files/latest/download", "size": "3.1GB"},
+        {"name": "Nitrux OS 3.8", "url": "https://sourceforge.net/projects/nitruxos/files/latest/download", "size": "3.4GB"},
+        {"name": "SparkyLinux 8 KDE", "url": "https://sourceforge.net/projects/sparkylinux/files/latest/download", "size": "2.7GB"},
         {"name": "Nitrux OS latest", "url": "https://sourceforge.net/projects/nitruxos/files/Release/ISO/latest/download", "size": "3.4GB"},
-        {"name": "MX Linux 23.6 XFCE", "url": "https://sourceforge.net/projects/mx-linux/files/Final/MX-23.6/MX-23.6_x64.iso/download", "size": "2.7GB"},
+        {"name": "MX Linux 25.2 XFCE", "url": "https://sourceforge.net/projects/mx-linux/files/Final/MX-25.2/MX-25.2_Xfce_x64.iso/download", "size": "2.7GB"},
         {"name": "antiX 23.2 Full", "url": "https://sourceforge.net/projects/antix-linux/files/Final/antiX-23.2/antiX-23.2_x64-full.iso/download", "size": "1.8GB"},
-        {"name": "SparkyLinux 8 LXQt", "url": "https://sourceforge.net/projects/sparkylinux/files/8.0/sparkylinux-8.0-x86_64-lxqt.iso/download", "size": "2.0GB"},
+        {"name": "SparkyLinux 8 LXQt", "url": "https://sourceforge.net/projects/sparkylinux/files/latest/download", "size": "2.0GB"},
     ],
 
     # linux mint
@@ -63,16 +63,16 @@ DB: dict[str, list[dict]] = {
 
     # zorin os
     "linux/zorin": [
-        {"name": "Zorin OS 17.3 Core", "url": "https://sourceforge.net/projects/zorin-os/files/17/Zorin-OS-17.3-Core-64-bit.iso/download", "size": "3.4GB", "tags": ["lts", "desktop", "gnome", "ubuntu", "debian"], "docs": "https://help.zorin.com", "notes": "Designed to make Linux accessible to Windows and macOS users."},
+        {"name": "Zorin OS 17.3 Core", "url": "https://distro.ibiblio.org/zorinos/17/Zorin-OS-17.3-Core-64-bit.iso", "size": "3.4GB", "tags": ["lts", "desktop", "gnome", "ubuntu", "debian"], "docs": "https://help.zorin.com", "notes": "Designed to make Linux accessible to Windows and macOS users."},
     ],
 
     # arch family
     "linux/arch-family": [
         {"name": "Arch Linux latest", "url": "https://mirror.kku.ac.th/archlinux/iso/latest/archlinux-x86_64.iso", "size": "1.1GB"},
-        {"name": "Manjaro KDE", "url": "https://download.manjaro.org/kde/25.0.3/manjaro-kde-25.0.3-250519-linux614.iso", "size": "3.8GB", "tags": ["rolling", "desktop", "kde", "arch"], "docs": "https://wiki.manjaro.org", "notes": "Arch-based, user-friendly rolling release with hardware detection."},
-        {"name": "Manjaro GNOME", "url": "https://download.manjaro.org/gnome/25.0.3/manjaro-gnome-25.0.3-250519-linux614.iso", "size": "3.5GB", "tags": ["rolling", "desktop", "gnome", "arch"]},
-        {"name": "Manjaro XFCE", "url": "https://download.manjaro.org/xfce/25.0.3/manjaro-xfce-25.0.3-250519-linux614.iso", "size": "3.3GB", "tags": ["rolling", "desktop", "xfce", "arch"]},
-        {"name": "EndeavourOS Endeavour", "url": "https://mirror.alpix.eu/endeavouros/iso/EndeavourOS_Endeavour-2025.03.19.iso", "size": "2.0GB", "tags": ["rolling", "desktop", "arch"], "docs": "https://discovery.endeavouros.com", "notes": "Terminal-centric Arch installer with a welcoming community."},
+        {"name": "Manjaro KDE", "url": "https://download.manjaro.org/kde/26.0.4/manjaro-kde-26.0.4-260327-linux618.iso", "size": "3.8GB", "tags": ["rolling", "desktop", "kde", "arch"], "docs": "https://wiki.manjaro.org", "notes": "Arch-based, user-friendly rolling release with hardware detection."},
+        {"name": "Manjaro GNOME", "url": "https://download.manjaro.org/gnome/26.0.4/manjaro-gnome-26.0.4-260327-linux618.iso", "size": "3.5GB", "tags": ["rolling", "desktop", "gnome", "arch"]},
+        {"name": "Manjaro XFCE", "url": "https://download.manjaro.org/xfce/26.0.4/manjaro-xfce-26.0.4-260327-linux618.iso", "size": "3.3GB", "tags": ["rolling", "desktop", "xfce", "arch"]},
+        {"name": "EndeavourOS Endeavour", "url": "https://mirror.alpix.eu/endeavouros/iso/EndeavourOS_Titan-Neo-2026.04.27.iso", "size": "2.0GB", "tags": ["rolling", "desktop", "arch"], "docs": "https://discovery.endeavouros.com", "notes": "Terminal-centric Arch installer with a welcoming community."},
         {"name": "Garuda Dr460nized latest", "url": "https://iso.builds.garudalinux.org/iso/latest/garuda/dr460nized/latest.iso", "size": "3.0GB"},
         {"name": "Garuda GNOME latest", "url": "https://iso.builds.garudalinux.org/iso/latest/garuda/gnome/latest.iso", "size": "3.0GB"},
         {"name": "CachyOS KDE latest", "url": "https://mirror.cachyos.org/ISO/kde/latest/cachyos-kde-linux-latest.iso", "size": "3.1GB"},
@@ -130,7 +130,7 @@ DB: dict[str, list[dict]] = {
 
     # forensic & digital investigation
     "linux/forensic": [
-        {"name": "DEFT Zero 2018.2", "url": "https://sourceforge.net/projects/deft/files/DEFT-Zero/2018.2/deft-zero-2018.2.iso/download", "size": "2.2GB"},
+        {"name": "DEFT Zero 2018.2", "url": "https://sourceforge.net/projects/deft/files/latest/download", "size": "2.2GB"},
     ],
 
     # privacy & security focused
@@ -158,12 +158,12 @@ DB: dict[str, list[dict]] = {
         {"name": "Linux Lite 7.2", "url": "https://sourceforge.net/projects/linuxlite/files/7.2/linux-lite-7.2-64bit.iso/download", "size": "2.0GB"},
         {"name": "Bodhi Linux 7.0", "url": "https://sourceforge.net/projects/bodhilinux/files/7.0.0/bodhi-7.0.0-64.iso/download", "size": "1.1GB"},
         {"name": "antiX 23.2 Base", "url": "https://sourceforge.net/projects/antix-linux/files/Final/antiX-23.2/antiX-23.2_x64-base.iso/download", "size": "1.0GB"},
-        {"name": "MX Linux 23.6 Fluxbox", "url": "https://sourceforge.net/projects/mx-linux/files/Final/MX-23.6/MX-23.6_fluxbox_x64.iso/download", "size": "2.1GB"},
+        {"name": "MX Linux 25.2 Fluxbox", "url": "https://sourceforge.net/projects/mx-linux/files/Final/MX-25.2/MX-25.2_fluxbox_x64.iso/download", "size": "2.1GB"},
         {"name": "Puppy Linux Latest", "url": "https://sourceforge.net/projects/puppylinux/files/latest/download", "size": "450MB"},
-        {"name": "Porteus 5.0 KDE", "url": "https://sourceforge.net/projects/porteus/files/Porteus-v5.0-x86_64.iso/download", "size": "350MB"},
+        {"name": "Porteus 5.0 KDE", "url": "https://sourceforge.net/projects/porteus/files/latest/download", "size": "350MB"},
         {"name": "Slax 11.6", "url": "https://www.slax.org/download.php?type=x86_64&file=slax-64bit-11.6.0.iso", "size": "340MB"},
-        {"name": "4MLinux 45.0", "url": "https://sourceforge.net/projects/linux4m/files/45.0/4MLinux-45.0-x86_64.iso/download", "size": "900MB"},
-        {"name": "LXLE 22.04", "url": "https://sourceforge.net/projects/lxle/files/LXLE22043/lxle-22043-64bit.iso/download", "size": "1.8GB"},
+        {"name": "4MLinux 45.0", "url": "https://sourceforge.net/projects/linux4m/files/latest/download", "size": "900MB"},
+        {"name": "LXLE 22.04", "url": "https://sourceforge.net/projects/lxle/files/latest/download", "size": "1.8GB"},
     ],
 
     # minimal & diy
@@ -171,9 +171,9 @@ DB: dict[str, list[dict]] = {
         {"name": "Alpine Linux 3.21 Standard", "url": "https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/alpine-standard-3.21.3-x86_64.iso", "size": "215MB", "tags": ["minimal", "security", "container"], "docs": "https://wiki.alpinelinux.org", "notes": "Extremely compact security-oriented distro. Ideal for minimal VM instances."},
         {"name": "Alpine Linux 3.21 Extended", "url": "https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/alpine-extended-3.21.3-x86_64.iso", "size": "625MB"},
         {"name": "Alpine Virt", "url": "https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/alpine-virt-3.21.3-x86_64.iso", "size": "210MB"},
-        {"name": "Void Linux XFCE", "url": "https://repo-default.voidlinux.org/live/current/void-live-x86_64-xfce-musl-20250202.iso", "size": "850MB", "tags": ["rolling", "minimal", "independent"], "docs": "https://docs.voidlinux.org", "notes": "Independent rolling-release distro with runit init system and XBPS package manager."},
-        {"name": "Void Linux Base", "url": "https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso", "size": "550MB", "tags": ["rolling", "minimal", "independent"]},
-        {"name": "Gentoo Minimal Install", "url": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20260524T170407Z.iso", "size": "700MB", "tags": ["source-based", "minimal", "rolling"], "docs": "https://wiki.gentoo.org/wiki/Handbook:AMD64", "notes": "Source-based meta-distribution. Maximum customization through compiling from source."},
+        {"name": "Void Linux XFCE", "url": "https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso", "size": "850MB", "tags": ["rolling", "minimal", "independent"], "docs": "https://docs.voidlinux.org", "notes": "Independent rolling-release distro with runit init system and XBPS package manager."},
+        {"name": "Void Linux Base", "url": "https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-base.iso", "size": "550MB", "tags": ["rolling", "minimal", "independent"]},
+        {"name": "Gentoo Minimal Install", "url": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20260524T170105Z.iso", "size": "700MB", "tags": ["source-based", "minimal", "rolling"], "docs": "https://wiki.gentoo.org/wiki/Handbook:AMD64", "notes": "Source-based meta-distribution. Maximum customization through compiling from source."},
     ],
 
     # homelab
@@ -194,9 +194,9 @@ DB: dict[str, list[dict]] = {
 
     # nas
     "homelab/nas": [
-        {"name": "TrueNAS SCALE", "url": "https://download.truenas.com/TrueNAS-SCALE-Dragonfish/25.10.3.1/TrueNAS-SCALE-25.10.3.1.iso", "size": "1.3GB", "tags": ["nas", "zfs", "homelab"], "docs": "https://www.truenas.com/docs/scale/", "notes": "Enterprise-grade ZFS NAS. Supports VMs, containers, and apps out of the box."},
-        {"name": "OpenMediaVault 7.4", "url": "https://sourceforge.net/projects/openmediavault/files/7.4.7/openmediavault_7.4.7-amd64.iso/download", "size": "1.1GB"},
-        {"name": "Rockstor 5.0", "url": "https://sourceforge.net/projects/rockstor/files/5.0.15-0/Rockstor-5.0.15-0-x86_64.iso/download", "size": "2.2GB"},
+        {"name": "TrueNAS SCALE", "url": "https://download.truenas.com/TrueNAS-SCALE-Fangtooth/25.04.0/TrueNAS-SCALE-25.04.0.iso", "size": "1.3GB", "tags": ["nas", "zfs", "homelab"], "docs": "https://www.truenas.com/docs/scale/", "notes": "Enterprise-grade ZFS NAS. Supports VMs, containers, and apps out of the box."},
+        {"name": "OpenMediaVault 7.4", "url": "https://sourceforge.net/projects/openmediavault/files/latest/download", "size": "1.1GB"},
+        {"name": "Rockstor 5.0", "url": "https://sourceforge.net/projects/rockstor/files/latest/download", "size": "2.2GB"},
     ],
 
     # vintage / novelty / retro
@@ -214,14 +214,14 @@ DB: dict[str, list[dict]] = {
     "recovery/tools": [
         {"name": "GParted Live 1.8.1", "url": "https://sourceforge.net/projects/gparted/files/gparted-live-stable/1.8.1-3/gparted-live-1.8.1-3-amd64.iso/download", "size": "560MB", "tags": ["recovery", "partitioning"], "docs": "https://gparted.org/documentation.php", "notes": "Industry-standard graphical partition editor. Essential homelab utility."},
         {"name": "CloneZilla 3.2.0", "url": "https://sourceforge.net/projects/clonezilla/files/clonezilla_live_stable/3.2.0-5/clonezilla-live-3.2.0-5-amd64.iso/download", "size": "490MB"},
-        {"name": "Ultimate Boot CD 5.3.9", "url": "https://sourceforge.net/projects/ubcd/files/ubcd/5.3.9/ubcd539.iso/download", "size": "960MB"},
+        {"name": "Ultimate Boot CD 5.3.9", "url": "https://sourceforge.net/projects/ubcd/files/latest/download", "size": "960MB"},
         {"name": "Hiren's BootCD PE x64", "url": "https://www.hirensbootcd.org/files/HBCD_PE_x64.iso", "size": "2.7GB"},
-        {"name": "CloneZilla Latest", "url": "https://sourceforge.net/projects/clonezilla/files/clonezilla_live_stable/latest/clonezilla-live-amd64.iso/download", "size": "490MB"},
+        {"name": "CloneZilla Latest", "url": "https://sourceforge.net/projects/clonezilla/files/latest/download", "size": "490MB"},
     ],
 
     # backup & recovery
     "recovery/backup": [
-        {"name": "qt-fsarchiver", "url": "https://sourceforge.net/projects/qt-fsarchiver/files/qt-fsarchiver-18.06.3-x86_64.iso/download", "size": "600MB"},
+        {"name": "qt-fsarchiver", "url": "https://sourceforge.net/projects/qt-fsarchiver/files/latest/download", "size": "600MB"},
     ],
 
     # raspberry pi
@@ -237,9 +237,9 @@ DB: dict[str, list[dict]] = {
 
     # android-x86
     "android-x86": [
-        {"name": "BlissOS 16.9.9 Official", "url": "https://sourceforge.net/projects/blissos-x86/files/Official/BlissOS16/Generic/BlissOS-16.9.9-x86_64-OFFICIAL.iso/download", "size": "2.4GB"},
+        {"name": "BlissOS 16.9.9 Official", "url": "https://sourceforge.net/projects/blissos-x86/files/latest/download", "size": "2.4GB"},
         {"name": "Android-x86 9.0-r2", "url": "https://sourceforge.net/projects/android-x86/files/Release%209.0/android-x86_64-9.0-r2.iso/download", "size": "1.0GB"},
-        {"name": "PrimeOS 2.1.0", "url": "https://sourceforge.net/projects/primeos/files/64-bit/PrimeOS_2.1.0_64.iso/download", "size": "1.6GB"},
+        {"name": "PrimeOS 2.1.0", "url": "https://sourceforge.net/projects/primeos/files/latest/download", "size": "1.6GB"},
     ],
 
     # bsd / alternative
@@ -258,7 +258,7 @@ DB: dict[str, list[dict]] = {
     # desktop environments
     "linux/desktop-env": [
         {"name": "GNOME OS Nightly Installer", "url": "https://os.gnome.org/download/latest/gnome_os_installer_nightly_x86_64.iso", "size": "4.0GB"},
-        {"name": "Cutefish OS 0.8", "url": "https://sourceforge.net/projects/cutefishos/files/0.8/cutefish-os-0.8-amd64.iso/download", "size": "2.4GB"},
+        {"name": "Cutefish OS 0.8", "url": "https://sourceforge.net/projects/cutefishos/files/latest/download", "size": "2.4GB"},
     ],
 
     # specialized / custom
@@ -275,7 +275,7 @@ DB: dict[str, list[dict]] = {
 
     # education & learning
     "linux/education": [
-        {"name": "UberStudent 5.1", "url": "https://sourceforge.net/projects/uberstudent/files/UberStudent/5.1/UberStudent-5.1-Athena-amd64.iso/download", "size": "3.0GB"},
+        {"name": "UberStudent 5.1", "url": "https://sourceforge.net/projects/uberstudent/files/latest/download", "size": "3.0GB"},
     ],
 
     # legacy / old stable
