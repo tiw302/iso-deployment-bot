@@ -1,6 +1,6 @@
 # os-deployment-library
 
-[![Daily Sync](https://github.com/tiw302/iso-deployment-bot/actions/workflows/daily_sync.yml/badge.svg)](https://github.com/tiw302/iso-deployment-bot/actions/workflows/daily_sync.yml)
+[![Sync & Deploy](https://github.com/tiw302/iso-deployment-bot/actions/workflows/daily_sync.yml/badge.svg)](https://github.com/tiw302/iso-deployment-bot/actions/workflows/daily_sync.yml)
 [![Lint](https://github.com/tiw302/iso-deployment-bot/actions/workflows/lint.yml/badge.svg)](https://github.com/tiw302/iso-deployment-bot/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Language-Python_3-3776AB.svg)](https://www.python.org/)
@@ -87,7 +87,7 @@ The project is not an enterprise-grade infrastructure tool, but rather a pragmat
 
 ## How It Works
 
-The workflow runs daily via a GitHub Actions Cron schedule (`.github/workflows/daily_sync.yml`). The sequence of events is straightforward:
+The workflow runs twice a week (Mondays and Thursdays) via a GitHub Actions Cron schedule (`.github/workflows/daily_sync.yml`). The sequence of events is straightforward:
 
 1. **Check State:** `sync.py` reads the desired list of ISOs from `src/distros.py` and uses Rclone to check which ones are missing from your Google Drive.
 2. **Download:** Any missing files are downloaded to the GitHub runner's temporary storage using `aria2c`.
