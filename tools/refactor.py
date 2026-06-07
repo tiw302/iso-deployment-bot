@@ -1,7 +1,6 @@
 # updated 2026-05-09
 
 import ast
-import re
 import os
 import json
 
@@ -28,7 +27,7 @@ def process_dict_node(dict_node, db_dict):
                 key = ast.literal_eval(key_node)
             except Exception:
                 continue
-            
+
             # parse value_node list
             entries = []
             if isinstance(value_node, ast.List):
@@ -39,7 +38,7 @@ def process_dict_node(dict_node, db_dict):
                             entries.append(entry)
                     except Exception:
                         continue
-            
+
             if key not in db_dict:
                 db_dict[key] = []
             db_dict[key].extend(entries)
@@ -49,31 +48,31 @@ def validate_db(db_dict):
     errors = 0
     warnings = 0
     seen_names = {}
-    
+
     print("\n--- database validation ---")
-    
+
     for category, entries in db_dict.items():
         for entry in entries:
             name = entry.get('name', 'unknown')
             url = entry.get('url', '')
-            
+
             # check 1: required fields
             if not url or not entry.get('name'):
                 print(f"[error] category '{category}': missing name or url in entry")
                 errors += 1
-            
+
             # check 2: valid url format
             if url and not (url.startswith('http://') or url.startswith('https://') or url.startswith('ftp://')):
                 print(f"[error] entry '{name}': invalid url protocol -> {url}")
                 errors += 1
-            
+
             # check 3: name collisions (potential file overwrites)
             full_path = f"{category}/{name}"
             if full_path in seen_names:
                 print(f"[warning] collision: name '{name}' appears multiple times in '{category}'")
                 warnings += 1
             seen_names[full_path] = True
-            
+
             # check 4: missing size (optional but recommended)
             if 'size' not in entry:
                 # we don't print for every entry to avoid noise, just a summary later if needed
@@ -87,7 +86,7 @@ def refactor_distros():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     base_dir = os.path.dirname(script_dir)
     distros_path = os.path.join(base_dir, 'src', 'distros.py')
-    
+
     if not os.path.exists(distros_path):
         print(f"error: {distros_path} not found")
         return
@@ -97,9 +96,9 @@ def refactor_distros():
 
     # use ast to parse the file
     tree = ast.parse(content)
-    
+
     db_dict = {}
-    
+
     # find the db assignment
     for node in tree.body:
         # handle regular assignment: db = { ... }
@@ -121,7 +120,7 @@ def refactor_distros():
         print("refactor aborted due to critical errors in database.")
         # we still proceed with refactor in this script because it fixes some errors like duplicates
         # but in a real CI environment, this would fail.
-    
+
     # de-duplicate entries by resolved filename per category
     import sys
     sys.path.append(os.path.join(base_dir, 'src', 'scripts'))
@@ -134,7 +133,7 @@ def refactor_distros():
             if not url: continue
             filename = resolve_filename(url)
             uniq_key = (key, filename)
-            
+
             if uniq_key not in filename_to_entry:
                 filename_to_entry[uniq_key] = entry
             else:
@@ -152,7 +151,7 @@ def refactor_distros():
     # rebuild db with unique filenames
     new_db_dict = {}
     seen_keys = set()
-    
+
     # preserve category assignment
     for key in db_dict.keys():
         new_db_dict[key] = []
@@ -164,7 +163,7 @@ def refactor_distros():
             if uniq_key not in seen_keys:
                 new_db_dict[key].append(filename_to_entry[uniq_key])
                 seen_keys.add(uniq_key)
-    
+
     # remove empty categories
     new_db_dict = {k: v for k, v in new_db_dict.items() if v}
 
@@ -187,7 +186,7 @@ def refactor_distros():
         "alternative/bsd",
         "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized", "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific", "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch"
     ]
-    
+
     sorted_keys = []
     for cat in category_order:
         if cat in new_db_dict:
@@ -252,7 +251,7 @@ def refactor_distros():
 
     # generate new file content
     new_content = "# updated 2026-05\n\nDB: dict[str, list[dict]] = {\n"
-    
+
     for i, key in enumerate(sorted_keys):
         cat_name = category_names.get(key, key.replace('linux/', '').replace('-', ' ').lower())
         new_content += f"\n    # {cat_name}\n"
@@ -265,7 +264,7 @@ def refactor_distros():
                     ordered_keys.append(k)
                     keys.remove(k)
             ordered_keys.extend(keys)
-            
+
             parts = []
             for k in ordered_keys:
                 parts.append(f'"{k}": {format_val(entry[k])}')
@@ -276,7 +275,7 @@ def refactor_distros():
             new_content += ",\n"
         else:
             new_content += "\n"
-            
+
     new_content += "}\n\n"
     new_content += "if __name__ == '__main__':\n"
     new_content += "    total = sum(len(v) for v in DB.values())\n"
