@@ -438,7 +438,7 @@ def check_sourceforge_version(project, folder):
         matches = re.findall(pattern, xml)
         if matches:
             filtered_matches = [
-                m for m in matches 
+                m for m in matches
                 if not any(x in m.lower() for x in ["pre", "beta", "rc", "alpha", "test", "unstable"])
             ]
             if not filtered_matches:
@@ -486,7 +486,7 @@ def write_back_db(new_db):
         "alternative/bsd",
         "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized", "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific", "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch", "linux/cloud", "linux/multimedia"
     ]
-    
+
     category_names = {
         "linux/ubuntu": "ubuntu",
         "linux/ubuntu-noble": "ubuntu 24.04 noble",
@@ -584,7 +584,7 @@ def write_back_db(new_db):
                         ordered_keys.append(k)
                         keys.remove(k)
                 ordered_keys.extend(keys)
-                
+
                 parts = []
                 for k in ordered_keys:
                     parts.append(f'"{k}": {format_val(e[k])}')
@@ -604,7 +604,7 @@ def main():
     # main execution flow
     print("checking for distribution updates...")
     updates = []
-    
+
     # 1. check debian stable netinst
     latest_debian = check_debian()
     if latest_debian:
@@ -620,7 +620,7 @@ def main():
                         "latest": f"Debian {latest_debian} Netinst",
                         "url": f"https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-{latest_debian}-amd64-netinst.iso"
                     })
-                    
+
     # 2. check ubuntu noble, jammy, plucky, and future
     for version_prefix, cat in [("26.04", "linux/ubuntu"), ("25.04", "linux/ubuntu-plucky"), ("24.04", "linux/ubuntu-noble"), ("22.04", "linux/ubuntu-jammy"), ("26.04", "linux/server")]:
         latest_ub = check_ubuntu_releases(version_prefix)
@@ -808,7 +808,7 @@ def main():
                                     lab = "Jam_KDE"
                                     new_name = f"Fedora {latest_fedora} Jam KDE"
                                 subpath = f"Labs/x86_64/iso/Fedora-{lab}-Live-x86_64-{latest_fedora}-{suffix}.iso"
-                            
+
                             updates.append({
                                 "name": entry["name"],
                                 "category": cat,
@@ -915,7 +915,7 @@ def main():
                     else:
                         arch = "x86_64"
                         flavor_suffix = f"standard-{latest_alpine}-x86_64"
-                    
+
                     updates.append({
                         "name": entry["name"],
                         "category": "linux/minimal" if "ARM64" not in entry["name"] else "linux/alternative-arch",
@@ -1207,11 +1207,11 @@ def main():
                         "url": up["url"],
                         "size": "unknown"
                     })
-        
+
         print("\nwriting updates back to src/distros.py...")
         write_back_db(DB)
         print("successfully updated src/distros.py!")
-        
+
         # update web dashboard
         print("updating web dashboard...")
         import subprocess
