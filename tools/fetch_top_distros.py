@@ -8,17 +8,17 @@ import json
 def fetch_top_distros(limit=100):
     print(f"fetching top {limit} distros from distrowatch...")
     url = "https://distrowatch.com/dwres.php?resource=popularity"
-    
+
     try:
         req = urllib.request.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0')
         with urllib.request.urlopen(req, timeout=15) as response:
             html = response.read().decode('utf-8', errors='ignore')
-            
+
         # simpler regex to catch distro names from the ranking table
         # pattern matches: <td class="phr2"><a href="distro_name">Distro Name</a></td>
         matches = re.findall(r'<td class="phr2"><a href="([^"]+)">([^<]+)</a></td>', html)
-        
+
         top_list = []
         for i, (slug, name) in enumerate(matches[:limit]):
             # DistroWatch links look like distrowatch.com/ubuntu
@@ -30,7 +30,7 @@ def fetch_top_distros(limit=100):
                 "url": f"https://distrowatch.com/table.php?distribution={slug}",
                 "description": f"ranked #{i+1} on distrowatch"
             })
-            
+
         return top_list
     except Exception as e:
         print(f"error fetching from distrowatch: {e}")
