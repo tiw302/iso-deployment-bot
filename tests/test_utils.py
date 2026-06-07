@@ -33,6 +33,14 @@ class TestUtils(unittest.TestCase):
         url = "https://cdimage.ubuntu.com/.../noble-preinstalled-server-arm64+raspi.img.xz"
         self.assertEqual(resolve_filename(url), "noble-preinstalled-server-arm64+raspi.img.xz")
         
+    def test_bz2_preserved(self):
+        url = "https://example.com/distro-image.bz2"
+        self.assertEqual(resolve_filename(url), "distro-image.bz2")
+
+    def test_iso_bz2_preserved(self):
+        url = "https://mirror.opnsense.org/.../OPNsense-25.1-dvd-amd64.iso.bz2"
+        self.assertEqual(resolve_filename(url), "OPNsense-25.1-dvd-amd64.iso.bz2")
+        
     def test_missing_extension(self):
         url = "https://example.com/somefile"
         self.assertEqual(resolve_filename(url), "somefile.iso")
