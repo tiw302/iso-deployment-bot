@@ -28,30 +28,30 @@ def fetch_summary(title):
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     json_path = os.path.join(script_dir, "massive_distros_categorized.json")
-    
+
     if not os.path.exists(json_path):
         print(f"JSON not found at: {json_path}")
         return
-        
+
     with open(json_path, "r") as f:
         categories = json.load(f)
-        
+
     total_items = sum(len(items) for items in categories.values())
     print(f"Loaded {total_items} items. Starting Wikipedia summary fetch...")
-    
+
     count = 0
     updated = 0
-    
+
     for cat_name, items in categories.items():
         for item in items:
             count += 1
             name = item.get("name")
             url = item.get("url", "")
             current_desc = item.get("description", "")
-            
+
             if current_desc and not current_desc.startswith("View "):
                 continue
-                
+
             if "wikipedia.org/wiki/" in url:
                 title = url.split("wikipedia.org/wiki/")[-1]
                 title = urllib.parse.unquote(title)
@@ -63,10 +63,10 @@ def main():
                     updated += 1
                     print(f" -> Found: {desc[:60]}...")
                 else:
-                    print(f" -> Failed/No extract")
-                
+                    print(" -> Failed/No extract")
+
                 time.sleep(0.1)
-                
+
             if updated > 0 and updated % 20 == 0:
                 with open(json_path, "w") as f:
                     json.dump(categories, f, indent=4)
@@ -74,7 +74,7 @@ def main():
 
     with open(json_path, "w") as f:
         json.dump(categories, f, indent=4)
-        
+
     print(f"Finished. Updated {updated} descriptions out of {total_items} total.")
 
 if __name__ == "__main__":
