@@ -7,7 +7,6 @@ import subprocess
 import re
 import json
 import time
-from urllib.parse import urlparse
 
 # import inventory database from parent dir
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -87,9 +86,9 @@ def get_drive_content():
                 if category not in library:
                     library[category] = []
                 library_item = {
-                    "name": pretty_name, 
-                    "filename": filename, 
-                    "size": format_size(size), 
+                    "name": pretty_name,
+                    "filename": filename,
+                    "size": format_size(size),
                     "bytes": bytes_val,
                     "id": file_id
                 }
@@ -274,12 +273,12 @@ def get_lib_details(name, desc, db_item=None):
         if keyword in name_lower:
             details.update(specs)
             break
-            
+
     if db_item:
         for key in ['developer', 'type', 'default_user', 'docs', 'notes', 'description', 'sha256', 'tags', 'filename']:
             if key in db_item:
                 details[key] = db_item[key]
-                
+
     return json.dumps(details).replace('"', '&quot;')
 
 def load_massive_distros():
@@ -296,10 +295,10 @@ def infer_tags(name, category, filename="", description=""):
     cat_lower = category.lower()
     file_lower = filename.lower()
     desc_lower = description.lower()
-    
+
     # combine all text fields to check for keywords
     text = f"{name_lower} {cat_lower} {file_lower} {desc_lower}"
-    
+
     # 1. check os family and upstream base
     if "ubuntu" in text:
         tags.add("ubuntu")
@@ -579,10 +578,10 @@ def generate_html():
         cat_sizes = {}
         for cat, items in library.items():
             cat_sizes[cat] = sum(item.get("bytes", 0) for item in items)
-        
+
         # Sort by size descending
         sorted_cats = sorted(cat_sizes.items(), key=lambda x: x[1], reverse=True)
-        
+
         for cat, size in sorted_cats:
             percentage = (size / total_bytes) * 100
             bar_width = 30
@@ -597,7 +596,7 @@ def generate_html():
     template_path = os.path.join(root_dir, "src", "templates", "index_template.html")
     with open(template_path, "r") as f:
         html_template = f.read()
-    
+
     # generate library section
     lib_sections = ""
     lib_nav = f'<button onclick="filterContent(\'lib\', \'all\')" class="filter-pill lib-pill active" data-target="all">all_files ({total_isos})</button>'
@@ -618,8 +617,8 @@ def generate_html():
         "windows/eval",
         "android-x86", "chromeos",
         "alternative/bsd",
-        "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized", 
-        "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific", 
+        "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized",
+        "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific",
         "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch", "linux/cloud",
         "linux/multimedia"
     ]
@@ -646,7 +645,7 @@ def generate_html():
             else:
                 db_item = db_item.copy()
             db_item["filename"] = item["filename"]
-            
+
             desc = get_lib_description(item["name"])
             if "description" in db_item:
                 desc = db_item["description"]
@@ -655,19 +654,19 @@ def generate_html():
             if "tags" not in db_item:
                 db_item["tags"] = infer_tags(item["name"], cat, item["filename"], desc)
             details_json = get_lib_details(item["name"], desc, db_item)
-            
+
             tags_html = ""
             if "tags" in db_item and db_item["tags"]:
                 tags_list = db_item["tags"]
                 tags_html = '<div class="iso-tags">' + "".join([f'<span class="tag-badge tag-{t.lower()}">{t}</span>' for t in tags_list]) + '</div>'
-                
+
             cards += f'<div class="iso-card secured" data-name="{item["name"].lower()}" data-details="{details_json}"><div class="iso-info"><div class="iso-name">{item["name"]} <span class="status-secured">✓</span></div><div class="iso-size">{item["size"]}</div>{tags_html}<div class="iso-desc">{desc}</div></div><div class="iso-actions"><button class="btn-copy" data-url="{gdrive_url}" title="Copy Link">{COPY_ICON}</button><a href="{gdrive_url}" target="_blank" class="btn-download btn-gdrive-dl">download</a></div></div>'
         lib_sections += f'<section class="category-section library-section" id="{cat_id}"><div class="category-title">{cat_display} ({len(items)})</div><div class="grid">{cards}</div></section>'
 
     # generate discovery section
     disc_sections = ""
     disc_nav = f'<button onclick="filterContent(\'disc\', \'all\')" class="filter-pill disc-pill active" data-target="all">all_distros ({massive_total})</button>'
-    
+
     disc_cat_order = [
         "ubuntu family", "debian family", "arch family", "red hat / enterprise",
         "suse / opensuse", "gentoo / source", "slackware based",
@@ -675,7 +674,7 @@ def generate_html():
         "gaming / multimedia", "mobile / android", "independent / unique",
         "bsd / alternative"
     ]
-    
+
     def disc_cat_sort_key(cat):
         cat_lower = cat.lower()
         if "others / niche" in cat_lower or "niche" in cat_lower:
@@ -696,7 +695,7 @@ def generate_html():
             desc = desc.replace('"', '&quot;')
             # infer tags for discovery cards
             disc_tags = infer_tags(distro["name"], cat, "", desc)
-            
+
             details_json = get_lib_details(distro["name"], desc)
             try:
                 import json as pyjson
@@ -707,11 +706,11 @@ def generate_html():
                 details_json = pyjson.dumps(details_dict).replace('"', '&quot;')
             except:
                 pass
-                
+
             tags_html = ""
             if disc_tags:
                 tags_html = '<div class="iso-tags">' + "".join([f'<span class="tag-badge tag-{t.lower()}">{t}</span>' for t in disc_tags]) + '</div>'
-                
+
             disc_cards += f'<div class="iso-card discovery-card" data-name="{distro["name"].lower()}" data-details="{details_json}"><div class="iso-info"><div class="iso-name">{distro["name"]}</div><div class="iso-size">encyclopedia</div>{tags_html}<div class="iso-desc">{desc}</div></div><div class="iso-actions"><button class="btn-copy" data-url="{distro["url"]}" title="Copy Link">{COPY_ICON}</button><a href="{distro["url"]}" target="_blank" class="btn-download btn-source-dl">wiki</a></div></div>'
         disc_sections += f'<section class="category-section discovery-section" id="{cat_id}"><div class="category-title">{cat.lower()} ({len(distros)})</div><div class="grid discovery-grid">{disc_cards}</div></section>'
 
@@ -727,7 +726,7 @@ def generate_html():
                              .replace("{{timestamp}}", str(int(time.time()))) \
                              .replace("{{storage_chart}}", storage_chart) \
                              .replace("{{last_updated}}", last_updated)
-    
+
     with open(output_path, "w") as f:
         f.write(final_html)
     print(f"dashboard regenerated: {total_isos} library files ({format_size(total_bytes)}) + {massive_total} discovery entries.")
