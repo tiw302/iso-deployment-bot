@@ -24,6 +24,11 @@ jobs:
           python3 -m py_compile src/distros.py src/scripts/*.py tools/*.py tests/*.py
           echo "syntax check passed: all python files are valid."
 
+      - name: Run Ruff Linter
+        run: |
+          pip install ruff
+          ruff check .
+
       - name: Run Unit Tests
         run: |
           python3 -m unittest discover -s tests -p "test_*.py"
