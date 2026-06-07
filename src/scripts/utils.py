@@ -62,7 +62,7 @@ def resolve_filename(url: str) -> str:
         if non_generic_parent:
             filename = f"{non_generic_parent}-{filename}"
             # ensure it ends with .iso if it got stripped or messed up
-            if not any(filename.endswith(ext) for ext in ('.iso', '.img', '.gz', '.xz', '.zip', '.bin')):
+            if not any(filename.endswith(ext) for ext in ('.iso', '.img', '.gz', '.xz', '.zip', '.bin', '.bz2')):
                 filename += '.iso'
         
     # standardize .img to .img.iso (to allow downloading in homelabs as bootable isos)
