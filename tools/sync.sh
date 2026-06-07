@@ -14,7 +14,7 @@ if [[ -n $(git status -s) ]]; then
     
     # pull rebase and push
     if git pull --rebase && git push; then
-        echo "[/] sync done. ($HOSTNAME) /|\ ^._.^ /|\\"
+        echo "[✓] sync done. ($HOSTNAME) /|\ ^._.^ /|\\"
     else
         echo "[!] sync failed: check for conflicts or network issues."
         exit 1
