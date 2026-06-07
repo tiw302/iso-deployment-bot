@@ -522,6 +522,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.getElementById('closeModal');
     const modalBody = document.getElementById('modalBody');
 
+    // Event delegation for copy buttons in modal
+    if (infoModal) {
+        infoModal.addEventListener('click', (e) => {
+            const btn = e.target.closest('.command-copy-btn');
+            if (!btn) return;
+            
+            const targetId = btn.dataset.target;
+            let text = '';
+            if (targetId === 'wgetCmdText') text = currentModalCommands.wget;
+            else if (targetId === 'curlCmdText') text = currentModalCommands.curl;
+            else if (targetId === 'proxmoxCmdText') text = currentModalCommands.proxmox;
+            else {
+                const el = document.getElementById(targetId);
+                text = el ? el.textContent : '';
+            }
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = checkIcon;
+                btn.style.color = '#22c55e';
+                btn.style.borderColor = '#22c55e';
+                btn.style.pointerEvents = 'none';
+
+                toast.classList.add('show');
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.color = '';
+                    btn.style.borderColor = '';
+                    btn.style.pointerEvents = 'auto';
+                }, 1500);
+
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            });
+        });
+    }
+
     // modal tab switching
     const modalTabsContainer = document.getElementById('modalTabs');
     if (modalTabsContainer) {
@@ -672,37 +709,6 @@ document.addEventListener('DOMContentLoaded', () => {
             proxmox: proxmoxCmd
         };
 
-        // attach event listeners to command copy buttons
-        document.querySelectorAll('.command-copy-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const targetId = btn.dataset.target;
-                let text = '';
-                if (targetId === 'wgetCmdText') text = currentModalCommands.wget;
-                else if (targetId === 'curlCmdText') text = currentModalCommands.curl;
-                else if (targetId === 'proxmoxCmdText') text = currentModalCommands.proxmox;
-                else text = document.getElementById(targetId).textContent;
-
-                navigator.clipboard.writeText(text).then(() => {
-                    const originalHTML = btn.innerHTML;
-                    btn.innerHTML = checkIcon;
-                    btn.style.color = '#22c55e';
-                    btn.style.borderColor = '#22c55e';
-                    btn.style.pointerEvents = 'none';
-
-                    toast.classList.add('show');
-
-                    setTimeout(() => {
-                        btn.innerHTML = originalHTML;
-                        btn.style.color = '';
-                        btn.style.borderColor = '';
-                        btn.style.pointerEvents = 'auto';
-                    }, 1500);
-
-                    setTimeout(() => toast.classList.remove('show'), 2000);
-                });
-            });
-        });
-
         // open native dialog
         infoModal.showModal();
         // trigger style transition
@@ -711,6 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal() {
         if (!infoModal) return;
+        if (typingTimer) clearInterval(typingTimer);
         infoModal.classList.remove('show');
         setTimeout(() => {
             infoModal.close();
