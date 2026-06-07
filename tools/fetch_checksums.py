@@ -21,7 +21,7 @@ def guess_checksum_urls(iso_url):
     parsed = urlparse(iso_url)
     base_url = iso_url.rsplit('/', 1)[0]
     filename = iso_url.rsplit('/', 1)[1]
-    
+
     guesses = [
         f"{iso_url}.sha256",
         f"{iso_url}.sha256sum",
@@ -36,7 +36,7 @@ def guess_checksum_urls(iso_url):
 def fetch_checksum(iso_url):
     """Best-effort attempt to find a checksum for an ISO."""
     guesses = guess_checksum_urls(iso_url)
-    
+
     for url in guesses:
         try:
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -64,7 +64,7 @@ def fetch_checksum(iso_url):
             continue
         except Exception:
             continue
-            
+
     return None
 
 def main():
@@ -73,33 +73,33 @@ def main():
     total = sum(len(entries) for entries in DB.values())
     processed = 0
     found = 0
-    
+
     for category, entries in DB.items():
         for entry in entries:
             processed += 1
             name = entry.get('name')
             url = entry.get('url')
-            
+
             # Skip sourceforge download URLs as they redirect
             if "sourceforge.net" in url:
                 print(f"[{processed}/{total}] Skipping {name} (SourceForge URL)")
                 continue
-                
+
             print(f"[{processed}/{total}] Checking {name}...")
             checksum_info = fetch_checksum(url)
-            
+
             if checksum_info:
                 print(f"  -> Found hash: {checksum_info['hash'][:16]}... from {checksum_info['source']}")
                 results[name] = checksum_info
                 found += 1
             else:
                 print("  -> No standard checksum file found.")
-                
+
     # Save results
     output_path = os.path.join(script_dir, "checksums_report.json")
     with open(output_path, "w") as f:
         json.dump(results, f, indent=4)
-        
+
     print(f"\nFinished. Found checksums for {found} out of {total} distros.")
     print(f"Report saved to {output_path}")
 
