@@ -21,14 +21,14 @@ def discord_notify(message: str, color: int = 0x3498db):
     """send notification to discord webhook"""
     if not DISCORD_WEBHOOK:
         return
-    
+
     payload = {
         "embeds": [{
             "description": message,
             "color": color
         }]
     }
-    
+
     try:
         req = Request(DISCORD_WEBHOOK, data=json.dumps(payload).encode('utf-8'))
         req.add_header('Content-Type', 'application/json')
@@ -111,7 +111,7 @@ def dl(entry: dict, category: str):
         return
 
     discord_notify(f"**fetching**: {display_name} ({size}) in `{category}`", 0x3498db)
-    
+
     os.makedirs(local_dir, exist_ok=True)
     print(f"{c}[ fetch  ]{w} downloading...")
 
@@ -130,7 +130,7 @@ def dl(entry: dict, category: str):
 
     try:
         subprocess.run(cmd, check=True, timeout=3600)
-        
+
         # verify checksum
         if expected_sha:
             print(f"{c}[ verify ]{w} checking sha256...")
@@ -145,7 +145,7 @@ def dl(entry: dict, category: str):
             local_file,
             f"{remote_name}:{remote_folder}/{category}/",
         ], check=True, timeout=7200)
-        
+
         print(f"{g}[ ok ]{w} {display_name} secured.")
         discord_notify(f"**secured**: {display_name} ({size})\ndestination: `{category}`", 0x2ecc71)
 
@@ -162,7 +162,7 @@ if __name__ == "__main__":
     current_remote = get_remote_name()
     total_isos = sum(len(v) for v in DB.values())
     cats_count = len(DB)
-    
+
     print(f"{c}[ info ]{w} {total_isos} isos across {cats_count} categories")
     print(f"{c}[ info ]{w} remote: {current_remote}:{remote_folder}")
     print()
