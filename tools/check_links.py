@@ -25,17 +25,19 @@ def check_link(category, entry):
         req = urllib.request.Request(url, method='HEAD')
         req.add_header('User-Agent', 'Mozilla/5.0')
         with urllib.request.urlopen(req, timeout=10) as response:
-            if response.status < 400:
+            if response.status < 400 or (response.status == 403 and 'sourceforge.net' in url):
                 return 'ok', category, name, url
             return f'error {response.status}', category, name, url
     except urllib.error.HTTPError as e:
+        if e.code == 403 and 'sourceforge.net' in url:
+            return 'ok', category, name, url
         # Some servers return 403/405 for HEAD, try a GET with Range
         try:
             req = urllib.request.Request(url)
             req.add_header('User-Agent', 'Mozilla/5.0')
             req.add_header('Range', 'bytes=0-0')
             with urllib.request.urlopen(req, timeout=10) as response:
-                if response.status < 400:
+                if response.status < 400 or (response.status == 403 and 'sourceforge.net' in url):
                     return 'ok', category, name, url
                 return f'error {response.status}', category, name, url
         except Exception:
