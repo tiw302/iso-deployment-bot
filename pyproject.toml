@@ -18,7 +18,13 @@ target-version = "py38"
 
 [tool.ruff.lint]
 select = ["E", "F", "W"]
-ignore = ["E501"]  # line length handled separately
+ignore = [
+    "E501",  # line length handled separately
+    "E402",  # module level import not at top of file (needed for sys.path.append before import)
+    "E722",  # bare except (prevalent in legacy scripts)
+    "E701",  # multiple statements on one line (prevalent in legacy scripts)
+    "F841",  # unused local variable (prevalent in legacy scripts)
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
