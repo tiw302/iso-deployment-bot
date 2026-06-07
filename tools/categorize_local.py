@@ -7,7 +7,7 @@ def categorize():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(script_dir, "massive_distros.json")
     output_path = os.path.join(script_dir, "massive_distros_categorized.json")
-    
+
     if not os.path.exists(input_path):
         print("input file not found.")
         return
@@ -33,11 +33,11 @@ def categorize():
     }
 
     categorized = {}
-    
+
     for distro in distros:
         name = distro['name']
         found = False
-        
+
         # skip general articles
         if any(x in name for x in ["Comparison of", "List of", "Linux distribution"]):
             continue
@@ -49,7 +49,7 @@ def categorize():
                 categorized[family].append(distro)
                 found = True
                 break
-        
+
         if not found:
             # Try to catch some common suffixes
             if "BSD" in name:
@@ -60,7 +60,7 @@ def categorize():
                 cat = "Server / Cloud / NAS"
             else:
                 cat = "Others / Niche"
-                
+
             if cat not in categorized:
                 categorized[cat] = []
             categorized[cat].append(distro)
@@ -70,7 +70,7 @@ def categorize():
 
     with open(output_path, "w") as f:
         json.dump(sorted_categorized, f, indent=4)
-    
+
     count = sum(len(v) for v in sorted_categorized.values())
     print(f"categorized {count} distros into {len(sorted_categorized)} refined groups.")
 
