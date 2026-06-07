@@ -114,13 +114,101 @@ def main():
     print(f"kept: {total_checked - removed_count}")
     print(f"removed: {removed_count}")
     
+    # Reorganize and format categories to match refactor.py format
+    category_order = [
+        "linux/ubuntu", "linux/ubuntu-noble", "linux/ubuntu-plucky", "linux/ubuntu-jammy",
+        "linux/debian", "linux/debian-based", "linux/mint", "linux/pop-os", "linux/zorin",
+        "linux/arch-family",
+        "linux/enterprise", "linux/server", "linux/server-cloud", "linux/fedora-spins",
+        "linux/gaming",
+        "linux/security", "linux/pentesting", "linux/forensic", "linux/privacy",
+        "linux/immutable", "linux/wayland-tiling", "linux/rolling",
+        "linux/lightweight", "linux/minimal",
+        "homelab", "homelab/virtualization", "homelab/firewall", "homelab/nas",
+        "specialized/vintage", "specialized/containers", "specialized/risc-emulation",
+        "recovery/tools", "recovery/backup",
+        "arm/raspberry-pi", "arm/sbc",
+        "windows/eval",
+        "android-x86", "chromeos",
+        "alternative/bsd",
+        "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized", "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific", "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch", "linux/cloud", "linux/multimedia"
+    ]
+    
+    category_names = {
+        "linux/ubuntu": "ubuntu",
+        "linux/ubuntu-noble": "ubuntu 24.04 noble",
+        "linux/ubuntu-plucky": "ubuntu 25.04 plucky",
+        "linux/ubuntu-jammy": "ubuntu 22.04 jammy",
+        "linux/debian": "debian",
+        "linux/debian-based": "debian derivatives",
+        "linux/mint": "linux mint",
+        "linux/pop-os": "pop!_os",
+        "linux/zorin": "zorin os",
+        "linux/arch-family": "arch family",
+        "linux/enterprise": "enterprise / rpm",
+        "linux/server": "server",
+        "linux/server-cloud": "server & cloud",
+        "linux/fedora-spins": "fedora spins & labs",
+        "linux/gaming": "gaming",
+        "linux/security": "security",
+        "linux/pentesting": "pentesting & red team",
+        "linux/forensic": "forensic & digital investigation",
+        "linux/privacy": "privacy & security focused",
+        "linux/immutable": "immutable / atomic desktops",
+        "linux/wayland-tiling": "wayland / tiling wm",
+        "linux/rolling": "rolling release",
+        "linux/lightweight": "lightweight",
+        "linux/minimal": "minimal & diy",
+        "homelab": "homelab",
+        "homelab/virtualization": "virtualization",
+        "homelab/firewall": "firewall / router",
+        "homelab/nas": "nas",
+        "specialized/vintage": "vintage / novelty / retro",
+        "specialized/containers": "containers & cloud native",
+        "specialized/risc-emulation": "risc / emulation / research",
+        "recovery/tools": "recovery & rescue tools",
+        "recovery/backup": "backup & recovery",
+        "arm/raspberry-pi": "raspberry pi",
+        "arm/sbc": "arm / sbc",
+        "windows/eval": "windows evaluation",
+        "android-x86": "android-x86",
+        "chromeos": "chromeos",
+        "alternative/bsd": "bsd / alternative",
+        "linux/ai-ml": "ai / machine learning",
+        "linux/developer": "developer tools",
+        "linux/desktop-env": "desktop environments",
+        "linux/embedded": "embedded & iot",
+        "linux/specialized": "specialized / custom",
+        "linux/office": "office & productivity",
+        "linux/hardware": "hardware specific",
+        "linux/live-tools": "live usb tools",
+        "linux/education": "education & learning",
+        "linux/scientific": "scientific & data science",
+        "linux/legacy": "legacy / old stable",
+        "linux/others": "other distributions",
+        "linux/experimental": "experimental",
+        "linux/alternative-arch": "alternative architectures",
+        "linux/cloud": "cloud",
+        "linux/multimedia": "multimedia"
+    }
+
+    sorted_keys = []
+    for cat in category_order:
+        if cat in new_db:
+            sorted_keys.append(cat)
+    for cat in sorted(new_db.keys()):
+        if cat not in sorted_keys:
+            sorted_keys.append(cat)
+
     # write back to distros.py
     distros_path = os.path.join(os.path.dirname(script_dir), 'src', 'distros.py')
     with open(distros_path, 'w') as f:
         f.write("# updated auto-cleanup\n\nDB: dict[str, list[dict]] = {\n")
-        for cat, entries in new_db.items():
+        for idx, cat in enumerate(sorted_keys):
+            comment_name = category_names.get(cat, cat.replace('linux/', '').replace('-', ' ').lower())
+            f.write(f"\n    # {comment_name}\n")
             f.write(f"    \"{cat}\": [\n")
-            for e in entries:
+            for e in new_db[cat]:
                 ordered_keys = []
                 keys = list(e.keys())
                 for k in ["name", "url", "size"]:
@@ -134,7 +222,11 @@ def main():
                     parts.append(f'"{k}": {format_val(e[k])}')
                 line = "        {" + ", ".join(parts) + "},"
                 f.write(line + "\n")
-            f.write("    ],\n")
+            f.write("    ]")
+            if idx < len(sorted_keys) - 1:
+                f.write(",\n")
+            else:
+                f.write("\n")
         f.write("}\n\n")
         f.write("if __name__ == '__main__':\n")
         f.write("    total = sum(len(v) for v in DB.values())\n")
