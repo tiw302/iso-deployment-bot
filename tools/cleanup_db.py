@@ -5,8 +5,6 @@ import sys
 import urllib.request
 import urllib.error
 import subprocess
-from urllib.parse import urlparse
-from concurrent.futures import ThreadPoolExecutor
 
 # setup path to import distros from parent directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -22,7 +20,7 @@ def get_drive_files():
         remote_res = subprocess.run(["rclone", "listremotes"], capture_output=True, text=True)
         remotes = [r.strip().rstrip(':') for r in remote_res.stdout.strip().split('\n') if r.strip()]
         remote_name = remotes[0] if remotes else "gdrive"
-        
+
         res = subprocess.run(
             ["rclone", "lsf", f"{remote_name}:os-deployment-library", "-R", "--files-only"],
             capture_output=True, text=True, timeout=60
@@ -76,28 +74,28 @@ def format_val(val):
 
 def main():
     print("starting database cleanup...")
-    
+
     drive_files = get_drive_files()
     print(f"found {len(drive_files)} files in gdrive.")
-    
+
     new_db = {}
     removed_count = 0
     total_checked = 0
-    
+
     # process categories
     for category, entries in DB.items():
         kept_entries = []
         for entry in entries:
             total_checked += 1
             filename = get_expected_filename(entry['url'])
-            
+
             # criteria 1: is it in drive?
             in_drive = filename in drive_files
-            
+
             if in_drive:
                 kept_entries.append(entry)
                 continue
-            
+
             # criteria 2: is the link working?
             print(f"checking: {entry['name']}...", end='\r')
             if is_link_working(entry['url']):
@@ -105,15 +103,15 @@ def main():
             else:
                 removed_count += 1
                 print(f"removing broken & unsynced: {entry['name']}          ")
-        
+
         if kept_entries:
             new_db[category] = kept_entries
 
-    print(f"\ncleanup finished.")
+    print("\ncleanup finished.")
     print(f"total checked: {total_checked}")
     print(f"kept: {total_checked - removed_count}")
     print(f"removed: {removed_count}")
-    
+
     # Reorganize and format categories to match refactor.py format
     category_order = [
         "linux/ubuntu", "linux/ubuntu-noble", "linux/ubuntu-plucky", "linux/ubuntu-jammy",
@@ -133,7 +131,7 @@ def main():
         "alternative/bsd",
         "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized", "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific", "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch", "linux/cloud", "linux/multimedia"
     ]
-    
+
     category_names = {
         "linux/ubuntu": "ubuntu",
         "linux/ubuntu-noble": "ubuntu 24.04 noble",
@@ -216,7 +214,7 @@ def main():
                         ordered_keys.append(k)
                         keys.remove(k)
                 ordered_keys.extend(keys)
-                
+
                 parts = []
                 for k in ordered_keys:
                     parts.append(f'"{k}": {format_val(e[k])}')
