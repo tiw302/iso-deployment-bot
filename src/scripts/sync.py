@@ -78,6 +78,17 @@ def is_single_stream(url: str) -> bool:
     host = urlparse(url).netloc.lower()
     return any(h in host for h in SINGLE_STREAM_HOSTS)
 
+def remove_empty_parents(path: str, stop_at_dir: str = "./temp"):
+    """recursively remove empty parent directories up to stop_at_dir."""
+    path = os.path.abspath(path)
+    stop_at_dir = os.path.abspath(stop_at_dir)
+    while path != stop_at_dir and os.path.isdir(path):
+        try:
+            os.rmdir(path)
+            path = os.path.dirname(path)
+        except OSError:
+            break
+
 def dl(entry: dict, category: str):
     """download one iso, upload to gdrive, then delete local file"""
     url          = entry["url"]
@@ -145,10 +156,7 @@ def dl(entry: dict, category: str):
     finally:
         if os.path.exists(local_file):
             os.remove(local_file)
-        try:
-            os.rmdir(local_dir)
-        except OSError:
-            pass
+        remove_empty_parents(local_dir)
 
 if __name__ == "__main__":
     current_remote = get_remote_name()
