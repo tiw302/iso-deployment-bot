@@ -1,8 +1,10 @@
 # Updated at 2026-05-24
 
+name: Daily ISO Sync & Deploy
+
 on:
   schedule:
-    - cron: '0 17 * * *'
+    - cron: '0 17 * * 1,4'
   workflow_dispatch:
   workflow_call:
 
