@@ -18,8 +18,8 @@ DB: dict[str, list[dict]] = {
 
     # ubuntu 25.04 plucky
     "linux/ubuntu-plucky": [
-        {"name": "Ubuntu 25.04 Desktop", "url": "https://releases.ubuntu.com/25.04/ubuntu-25.04-desktop-amd64.iso", "size": "5.8GB"},
-        {"name": "Ubuntu 25.04 Server", "url": "https://releases.ubuntu.com/25.04/ubuntu-25.04-live-server-amd64.iso", "size": "2.7GB"},
+        {"name": "Ubuntu 25.04 Desktop", "url": "https://old-releases.ubuntu.com/releases/25.04/ubuntu-25.04-desktop-amd64.iso", "size": "5.8GB"},
+        {"name": "Ubuntu 25.04 Server", "url": "https://old-releases.ubuntu.com/releases/25.04/ubuntu-25.04-live-server-amd64.iso", "size": "2.7GB"},
     ],
 
     # ubuntu 22.04 jammy
@@ -82,10 +82,10 @@ DB: dict[str, list[dict]] = {
     # enterprise / rpm
     "linux/enterprise": [
         {"name": "Fedora 44 Workstation", "url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/44/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-44-1.1.iso", "size": "2.2GB"},
-        {"name": "Rocky Linux 9.8 Minimal", "url": "https://download.rockylinux.org/pub/rocky/9.8/isos/x86_64/Rocky-9.8-latest-x86_64-minimal.iso", "size": "1.8GB", "tags": ["server", "enterprise", "redhat"], "docs": "https://docs.rockylinux.org", "notes": "CentOS replacement. RHEL-compatible enterprise distribution."},
-        {"name": "Rocky Linux 9.8 DVD", "url": "https://download.rockylinux.org/pub/rocky/9.8/isos/x86_64/Rocky-9.8-latest-x86_64-dvd.iso", "size": "10.0GB", "tags": ["server", "enterprise", "redhat"]},
-        {"name": "AlmaLinux 9.8 Minimal", "url": "https://repo.almalinux.org/almalinux/9.8/isos/x86_64/AlmaLinux-9.8-latest-x86_64-minimal.iso", "size": "1.9GB", "tags": ["server", "enterprise", "redhat"], "docs": "https://wiki.almalinux.org", "notes": "Community-driven RHEL fork. Free and open forever."},
-        {"name": "AlmaLinux 9.8 DVD", "url": "https://repo.almalinux.org/almalinux/9.8/isos/x86_64/AlmaLinux-9.8-latest-x86_64-dvd.iso", "size": "10.0GB", "tags": ["server", "enterprise", "redhat"]},
+        {"name": "Rocky Linux 9 Minimal", "url": "https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-minimal.iso", "size": "1.8GB", "tags": ["server", "enterprise", "redhat"], "docs": "https://docs.rockylinux.org", "notes": "CentOS replacement. RHEL-compatible enterprise distribution."},
+        {"name": "Rocky Linux 9 DVD", "url": "https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-dvd.iso", "size": "10.0GB", "tags": ["server", "enterprise", "redhat"]},
+        {"name": "AlmaLinux 9 Minimal", "url": "https://repo.almalinux.org/almalinux/9/isos/x86_64/AlmaLinux-9-latest-x86_64-minimal.iso", "size": "1.9GB", "tags": ["server", "enterprise", "redhat"], "docs": "https://wiki.almalinux.org", "notes": "Community-driven RHEL fork. Free and open forever."},
+        {"name": "AlmaLinux 9 DVD", "url": "https://repo.almalinux.org/almalinux/9/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso", "size": "10.0GB", "tags": ["server", "enterprise", "redhat"]},
         {"name": "openSUSE Leap 15.6 DVD", "url": "https://download.opensuse.org/distribution/leap/15.6/iso/openSUSE-Leap-15.6-DVD-x86_64-Media.iso", "size": "4.7GB"},
         {"name": "CentOS Stream 9 DVD", "url": "https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-latest-x86_64-dvd1.iso", "size": "9.5GB"},
         {"name": "Oracle Linux 9.5 DVD", "url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u5/x86_64/OracleLinux-R9-U5-x86_64-dvd.iso", "size": "10.0GB"},
@@ -200,7 +200,7 @@ DB: dict[str, list[dict]] = {
 
     # vintage / novelty / retro
     "specialized/vintage": [
-        {"name": "KolibriOS Latest", "url": "https://kolibrios.org/download/kolibrios.iso", "size": "8MB"},
+        {"name": "KolibriOS Latest", "url": "http://builds.kolibrios.org/en_US/latest-iso.7z", "size": "45MB"},
         {"name": "TinyCore Linux 16", "url": "http://tinycorelinux.net/16.x/x86_64/release/TinyCorePure64-current.iso", "size": "157MB"},
     ],
 
@@ -243,8 +243,8 @@ DB: dict[str, list[dict]] = {
 
     # bsd / alternative
     "alternative/bsd": [
-        {"name": "FreeBSD 15.1 amd64 DVD", "url": "https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/15.1/FreeBSD-15.1-RELEASE-amd64-dvd1.iso", "size": "4.2GB", "tags": ["bsd", "server", "stable"], "docs": "https://docs.freebsd.org", "notes": "Enterprise-class UNIX operating system. Known for advanced networking, security, and ZFS."},
-        {"name": "FreeBSD 15.1 amd64 Bootonly", "url": "https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/15.1/FreeBSD-15.1-RELEASE-amd64-bootonly.iso", "size": "420MB", "tags": ["bsd", "netinst"]},
+        {"name": "FreeBSD 14.4 amd64 DVD", "url": "https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.4/FreeBSD-14.4-RELEASE-amd64-dvd1.iso", "size": "4.2GB", "tags": ["bsd", "server", "stable"], "docs": "https://docs.freebsd.org", "notes": "Enterprise-class UNIX operating system. Known for advanced networking, security, and ZFS."},
+        {"name": "FreeBSD 14.4 amd64 Bootonly", "url": "https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.4/FreeBSD-14.4-RELEASE-amd64-bootonly.iso", "size": "420MB", "tags": ["bsd", "netinst"]},
         {"name": "OpenBSD 7.9 amd64", "url": "https://cdn.openbsd.org/pub/OpenBSD/7.9/amd64/install79.iso", "size": "600MB", "tags": ["bsd", "security"], "docs": "https://www.openbsd.org/faq/", "notes": "Security-focused BSD. Proactive security features, integrated cryptography, and clean code."},
         {"name": "NetBSD 10.1 amd64", "url": "https://ftp.netbsd.org/pub/NetBSD/NetBSD-10.1/images/NetBSD-10.1-amd64.iso", "size": "560MB"},
     ],
@@ -291,7 +291,7 @@ DB: dict[str, list[dict]] = {
 
     # alternative architectures
     "linux/alternative-arch": [
-        {"name": "Alpine Linux ARM64", "url": "https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/aarch64/alpine-aarch64.iso", "size": "220MB"},
+        {"name": "Alpine Linux ARM64", "url": "https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/aarch64/alpine-standard-3.23.4-aarch64.iso", "size": "373MB"},
     ],
 
     # cloud
