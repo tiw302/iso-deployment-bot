@@ -4,7 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>os-deployment-library</title>
+    <title>OS Deployment Library - Homelab ISO Mirrors & Directory</title>
+    <meta name="description" content="Automated ISO mirroring system for homelabs. Synchronizes daily, validates checksums, and serves popular operating system distributions directly from high-speed storage mirrors.">
+    <meta name="keywords" content="homelab, iso mirrors, os deployment, linux, debian, ubuntu, proxmox, rclone, netboot.xyz, trueNAS, bsd">
+    <meta name="author" content="tiw302">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="OS Deployment Library - Homelab ISO Mirrors & Directory">
+    <meta property="og:description" content="Automated ISO mirroring system for homelabs. Synchronizes, validates, and serves popular OS distributions from high-speed mirrors.">
+    
     <script>
         (function () {
             const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -141,7 +150,7 @@ this library maintains high-speed, direct google drive mirrors of the most commo
   library_storage_size:      {{total_size}}
   mirrored_iso_files:        {{total_isos}} items
   indexed_discovery_distros: {{massive_count}} distros
-  database_refresh_rate:     daily sync cron at 00:00 utc
+  database_refresh_rate:     semi-weekly sync (mondays & thursdays) at 00:00 utc
 
 [storage distribution by category]
 {{storage_chart}}
@@ -153,7 +162,7 @@ this library maintains high-speed, direct google drive mirrors of the most commo
                     <div class="category-title">&gt; system_architecture</div>
                     <div class="about-card">
                         <pre class="about-text about-diagram">
-+---------------------+     (daily cron)     +----------------------+
++---------------------+   (semi-weekly cron)   +----------------------+
 |  src/distros.py     | -------------------> | github actions runner|
 | (inventory database)|                      | - checks updates     |
 +---------------------+                      | - runs aria2 hooks   |
@@ -174,7 +183,7 @@ this library maintains high-speed, direct google drive mirrors of the most commo
                     <div class="about-card">
                         <pre class="about-text">
 q: how often are the mirrored files synced?
-a: all active operating system mirrors are synced daily at 00:00 utc. the index generator runs automatically to update this page with the latest active google drive links.
+a: all active operating system mirrors are synced twice a week (mondays & thursdays) at 00:00 utc. the index generator runs automatically to update this page with the latest active google drive links.
 
 q: where are these files stored and are they safe?
 a: files are stored on high-speed google drive enterprise storage and shared via rclone. all iso and img files are matched against the upstream sha256 checksums to verify integrity and security.
