@@ -66,7 +66,7 @@ def get_drive_content():
                 parts = line.split(';')
                 if len(parts) < 3: continue
                 path, file_id, size = parts[0], parts[1], parts[2]
-                if not any(path.lower().endswith(ext) for ext in ['.iso', '.img', '.gz', '.xz', '.zip', '.bin']):
+                if not any(path.lower().endswith(ext) for ext in ['.iso', '.img', '.gz', '.xz', '.zip', '.bin', '.bz2']):
                     continue
                 try:
                     bytes_val = int(size)
