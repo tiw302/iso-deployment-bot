@@ -41,6 +41,10 @@ class TestUtils(unittest.TestCase):
         url = "https://mirror.opnsense.org/.../OPNsense-25.1-dvd-amd64.iso.bz2"
         self.assertEqual(resolve_filename(url), "OPNsense-25.1-dvd-amd64.iso.bz2")
 
+    def test_7z_preserved(self):
+        url = "http://builds.kolibrios.org/en_US/latest-iso.7z"
+        self.assertEqual(resolve_filename(url), "latest-iso.7z")
+
     def test_missing_extension(self):
         url = "https://example.com/somefile"
         self.assertEqual(resolve_filename(url), "somefile.iso")
