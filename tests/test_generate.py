@@ -1,14 +1,13 @@
 # tests for generate_index.py helper functions
 
 import unittest
-import sys
 import os
 
 # setup path
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
+# sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
 
-from generate_index import clean_filename, format_size, infer_tags, get_lib_description
+from os_deployment_library.scripts.generate_index import clean_filename, format_size, infer_tags, get_lib_description
 
 
 class TestCleanFilename(unittest.TestCase):
