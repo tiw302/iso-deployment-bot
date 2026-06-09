@@ -1,7 +1,6 @@
 # automated gdrive library generator
 
 import os
-import sys
 import datetime
 import subprocess
 import re
@@ -10,12 +9,12 @@ import time
 
 # import inventory database from parent dir
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(script_dir))
+# sys.path.append(os.path.dirname(script_dir))
 try:
-    from distros import DB
+    from os_deployment_library.distros import DB
 except ImportError:
     DB = {}
-from utils import resolve_filename
+from os_deployment_library.scripts.utils import resolve_filename
 
 GDRIVE_LIBRARY_URL = "https://drive.google.com/drive/folders/1B64Y44QVMlgoVm49PRk2_UvPXRzXNZ8e?usp=sharing"
 
@@ -564,7 +563,7 @@ def infer_tags(name, category, filename="", description=""):
 
 def generate_html():
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    root_dir = os.path.dirname(os.path.dirname(script_dir))
+    root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     output_path = os.path.join(root_dir, "web", "index.html")
     library, total_bytes = get_drive_content()
     massive_dict = load_massive_distros()
