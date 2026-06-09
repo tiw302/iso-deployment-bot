@@ -2,17 +2,17 @@
 
 import os
 import subprocess
-import sys
 import hashlib
 import json
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
+import urllib.error
 
 # setup path to import distros from parent dir
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(script_dir))
-from distros import DB
-from utils import resolve_filename
+# sys.path.append(os.path.dirname(script_dir))
+from os_deployment_library.distros import DB
+from os_deployment_library.scripts.utils import resolve_filename
 
 c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
 DISCORD_WEBHOOK = os.environ.get("DISCORD_WEBHOOK")
@@ -35,7 +35,7 @@ def discord_notify(message: str, color: int = 0x3498db):
         req.add_header('User-Agent', 'Mozilla/5.0')
         with urlopen(req) as res:
             pass
-    except Exception as e:
+    except urllib.error.URLError as e:
         print(f"{r}[ discord error ]{w} {e}")
 
 def get_remote_name() -> str:
@@ -149,7 +149,7 @@ def dl(entry: dict, category: str):
         print(f"{g}[ ok ]{w} {display_name} secured.")
         discord_notify(f"**secured**: {display_name} ({size})\ndestination: `{category}`", 0x2ecc71)
 
-    except Exception as e:
+    except (subprocess.CalledProcessError, ValueError, OSError) as e:
         error_msg = f"**error**: {display_name}\n`{e}`"
         print(f"{r}[ error ]{w} {display_name}: {e}")
         discord_notify(error_msg, 0xe74c3c)
