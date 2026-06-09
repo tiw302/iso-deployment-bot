@@ -1,14 +1,13 @@
 import unittest
-import sys
 import os
 
 # setup path to import DB and resolve_filename
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
-sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
+# sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
+# sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
 
-from distros import DB
-from utils import resolve_filename
+from os_deployment_library.distros import DB
+from os_deployment_library.scripts.utils import resolve_filename
 
 class TestDatabase(unittest.TestCase):
     def test_db_structure(self):
