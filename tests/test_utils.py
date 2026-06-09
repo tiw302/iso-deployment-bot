@@ -1,12 +1,11 @@
 import unittest
-import sys
 import os
 
 # setup path to import utils
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
+# sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
 
-from utils import resolve_filename
+from os_deployment_library.scripts.utils import resolve_filename
 
 class TestUtils(unittest.TestCase):
     def test_standard_url(self):
