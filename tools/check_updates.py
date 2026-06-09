@@ -8,9 +8,9 @@ import json
 
 # setup path to import distros from src
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
+# sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
 try:
-    from distros import DB
+    from os_deployment_library.distros import DB
 except ImportError:
     print("error: could not import DB from src/distros.py")
     sys.exit(1)
