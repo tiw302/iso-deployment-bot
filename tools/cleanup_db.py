@@ -1,17 +1,16 @@
 # database cleanup script
 
 import os
-import sys
 import urllib.request
 import urllib.error
 import subprocess
 
 # setup path to import distros from parent directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
-sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
-from distros import DB
-from utils import resolve_filename
+# sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
+# sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
+from os_deployment_library.distros import DB
+from os_deployment_library.scripts.utils import resolve_filename
 
 def get_drive_files():
     """get a set of filenames currently in gdrive."""
