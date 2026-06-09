@@ -52,3 +52,6 @@ undo/
 # system files
 .DS_Store
 Thumbs.db
+
+# gemini
+GEMINI.md
