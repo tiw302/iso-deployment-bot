@@ -21,7 +21,7 @@ jobs:
 
       - name: Compile Python Files
         run: |
-          python3 -m py_compile src/distros.py src/scripts/*.py tools/*.py tests/*.py
+          python3 -m py_compile src/os_deployment_library/distros.py src/os_deployment_library/scripts/*.py tools/*.py tests/*.py
           echo "syntax check passed: all python files are valid."
 
       - name: Run Ruff Linter
@@ -31,6 +31,6 @@ jobs:
 
       - name: Run Unit Tests
         run: |
-          python3 -m unittest discover -s tests -p "test_*.py"
+          PYTHONPATH=src python3 -m unittest discover -s tests -p "test_*.py"
           echo "all unit tests passed successfully."
           
