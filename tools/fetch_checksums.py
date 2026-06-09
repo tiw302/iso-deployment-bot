@@ -8,10 +8,10 @@ from urllib.parse import urlparse
 # Add src to python path to import DB
 script_dir = os.path.dirname(os.path.abspath(__file__))
 src_dir = os.path.join(os.path.dirname(script_dir), "src")
-sys.path.append(src_dir)
+# sys.path.append(src_dir)
 
 try:
-    from distros import DB
+    from os_deployment_library.distros import DB
 except ImportError:
     print("Error: Could not import DB from src/distros.py")
     sys.exit(1)
