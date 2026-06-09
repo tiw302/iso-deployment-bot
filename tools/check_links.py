@@ -1,7 +1,6 @@
 # link checker for os-deployment-library (no dependencies version)
 
 import os
-import sys
 import urllib.request
 import urllib.error
 import time
@@ -9,8 +8,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 # setup path to import distros from parent directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
-from distros import DB
+# sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
+from os_deployment_library.distros import DB
 
 c, g, r, y, w = '\033[96m', '\033[92m', '\033[91m', '\033[93m', '\033[0m'
 
