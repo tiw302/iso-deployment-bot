@@ -58,10 +58,10 @@ jobs:
       - name: Run Mirror Script (Streaming Mode)
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: python3 src/scripts/sync.py
+        run: PYTHONPATH=src python3 -m os_deployment_library.scripts.sync
 
       - name: Generate HTML Dashboard
-        run: python3 src/scripts/generate_index.py
+        run: PYTHONPATH=src python3 -m os_deployment_library.scripts.generate_index
 
       - name: Deploy to GitHub Pages (gh-pages branch)
         uses: peaceiris/actions-gh-pages@v4
