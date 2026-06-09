@@ -122,9 +122,8 @@ def refactor_distros():
         # but in a real CI environment, this would fail.
 
     # de-duplicate entries by resolved filename per category
-    import sys
-    sys.path.append(os.path.join(base_dir, 'src', 'scripts'))
-    from utils import resolve_filename
+    # sys.path.append(os.path.join(base_dir, 'src', 'scripts'))
+    from os_deployment_library.scripts.utils import resolve_filename
 
     filename_to_entry = {}
     for key, entries in db_dict.items():
