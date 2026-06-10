@@ -281,8 +281,9 @@ def get_lib_details(name, desc, db_item=None):
     return json.dumps(details).replace('"', '&quot;')
 
 def load_massive_distros():
-    root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    path = os.path.join(root_dir, "tools", "massive_distros_categorized.json")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
+    path = os.path.join(repo_root, "tools", "massive_distros_categorized.json")
     if os.path.exists(path):
         with open(path, "r") as f:
             return json.load(f)
@@ -563,8 +564,9 @@ def infer_tags(name, category, filename="", description=""):
 
 def generate_html():
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    output_path = os.path.join(root_dir, "web", "index.html")
+    package_dir = os.path.dirname(script_dir)
+    repo_root = os.path.dirname(os.path.dirname(package_dir))
+    output_path = os.path.join(repo_root, "web", "index.html")
     library, total_bytes = get_drive_content()
     massive_dict = load_massive_distros()
     total_isos = sum(len(v) for v in library.values())
@@ -592,7 +594,7 @@ def generate_html():
         chart_lines.append("  no mirrored files found in storage.")
     storage_chart = "\n".join(chart_lines)
 
-    template_path = os.path.join(root_dir, "src", "templates", "index_template.html")
+    template_path = os.path.join(package_dir, "templates", "index_template.html")
     with open(template_path, "r") as f:
         html_template = f.read()
 
