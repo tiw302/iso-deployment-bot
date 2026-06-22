@@ -66,7 +66,8 @@ def resolve_filename(url: str) -> str:
                 filename += '.iso'
 
     # standardize .img to .img.iso (to allow downloading in homelabs as bootable isos)
+    # replace only trailing .img to prevent mangling middle parts of name
     if filename.endswith(".img"):
-        filename = filename.replace(".img", ".img.iso")
+        filename = filename[:-4] + ".img.iso"
 
     return filename
