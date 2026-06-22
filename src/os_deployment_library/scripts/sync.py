@@ -53,9 +53,27 @@ def calculate_sha256(file_path: str) -> str:
     """calc sha256 checksum of a file"""
     sha256_hash = hashlib.sha256()
     with open(file_path, "rb") as f:
-        for byte_block in iter(lambda: f.read(4096), b""):
+        # read in 64kb chunks for better performance with large isos
+        for byte_block in iter(lambda: f.read(65536), b""):
             sha256_hash.update(byte_block)
     return sha256_hash.hexdigest()
+
+def get_existing_files(remote_name: str) -> set:
+    """pre-fetch all file paths in the remote folder to avoid O(N) rclone checks"""
+    try:
+        print(f"{c}[ info ]{w} pre-fetching existing files from {remote_name}:{remote_folder}...")
+        res = subprocess.run(
+            ["rclone", "lsf", f"{remote_name}:{remote_folder}", "-R", "--files-only"],
+            capture_output=True, text=True, timeout=120
+        )
+        if res.returncode == 0:
+            # map files by category/filename path
+            files = {line.strip() for line in res.stdout.strip().split('\n') if line.strip()}
+            print(f"{g}[ info ]{w} found {len(files)} existing files in storage.")
+            return files
+    except Exception as e:
+        print(f"{y}[ warning ]{w} failed to pre-fetch drive file list: {e}")
+    return set()
 
 remote_folder = "os-deployment-library"
 
@@ -89,13 +107,12 @@ def remove_empty_parents(path: str, stop_at_dir: str = "./temp"):
         except OSError:
             break
 
-def dl(entry: dict, category: str):
+def dl(entry: dict, category: str, existing_files: set, remote_name: str):
     """download one iso, upload to gdrive, then delete local file"""
     url          = entry["url"]
     display_name = entry["name"]
     size         = entry.get("size", "?")
     expected_sha = entry.get("sha256")
-    remote_name  = get_remote_name()
 
     filename = resolve_filename(url)
 
@@ -105,8 +122,9 @@ def dl(entry: dict, category: str):
 
     print(f"\n{c}[ check  ]{w} {display_name}  ({size})")
 
-    check = subprocess.run(["rclone", "lsf", remote_path], capture_output=True)
-    if check.returncode == 0 and filename in check.stdout.decode():
+    # check if file exists in our pre-fetched set
+    remote_rel_path = f"{category}/{filename}"
+    if remote_rel_path in existing_files:
         print(f"{y}[ skip   ]{w} already in library.")
         return
 
@@ -160,6 +178,7 @@ def dl(entry: dict, category: str):
 
 if __name__ == "__main__":
     current_remote = get_remote_name()
+    existing_files = get_existing_files(current_remote)
     total_isos = sum(len(v) for v in DB.values())
     cats_count = len(DB)
 
@@ -170,7 +189,7 @@ if __name__ == "__main__":
     for cat, entries in DB.items():
         print(f"{y}-- {cat} ({len(entries)}) --{w}")
         for entry in entries:
-            dl(entry, cat)
+            dl(entry, cat, existing_files, current_remote)
 
     print(f"\n{g}[ done ]{w} all entries processed.")
     discord_notify(f"**sync session complete**\ntotal isos processed: {total_isos}", 0x9b59b6)
