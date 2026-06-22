@@ -26,8 +26,8 @@ jobs:
       - name: Run Health & Update Checks
         id: check
         run: |
-          python3 tools/check_links.py 2>&1 | tee link_check_output.txt
-          python3 tools/check_updates.py 2>&1
+          PYTHONPATH=src python3 tools/check_links.py 2>&1 | tee link_check_output.txt
+          PYTHONPATH=src python3 tools/check_updates.py 2>&1
 
           # Combine reports into broken_links.log if updates were found
           if [ -f updates_report.txt ]; then
