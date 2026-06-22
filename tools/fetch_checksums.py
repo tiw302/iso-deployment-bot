@@ -3,7 +3,6 @@ import sys
 import json
 import urllib.request
 import urllib.error
-from urllib.parse import urlparse
 
 # Add src to python path to import DB
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -18,7 +17,6 @@ except ImportError:
 
 def guess_checksum_urls(iso_url):
     """Generate potential checksum URLs based on the ISO URL."""
-    parsed = urlparse(iso_url)
     base_url = iso_url.rsplit('/', 1)[0]
     filename = iso_url.rsplit('/', 1)[1]
 
