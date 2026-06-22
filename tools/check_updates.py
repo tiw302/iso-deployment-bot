@@ -59,10 +59,9 @@ def check_ubuntu_flavor(flavor):
         print(f"error checking ubuntu flavor {flavor}: {e}")
     return None
 
-def check_pop_os_version_helper(version_pref, start_build):
+def check_pop_os_version_helper(version_pref, gpu, start_build):
     # find the latest build number for pop!_os version
     latest_build = start_build
-    gpu = "intel"
     while True:
         next_build = latest_build + 1
         url = f"https://iso.pop-os.org/{version_pref}/amd64/{gpu}/{next_build}/pop-os_{version_pref}_amd64_{gpu}_{next_build}.iso"
@@ -676,7 +675,7 @@ def main():
                 version_pref = match_url.group(1)
                 gpu = match_url.group(2)
                 current_build = int(match_url.group(3))
-                latest_build = check_pop_os_version_helper(version_pref, current_build)
+                latest_build = check_pop_os_version_helper(version_pref, gpu, current_build)
                 if latest_build > current_build:
                     updates.append({
                         "name": entry["name"],
@@ -695,7 +694,7 @@ def main():
             try:
                 with urllib.request.urlopen(req, timeout=5) as r:
                     if r.status == 200:
-                        latest_build = check_pop_os_version_helper(next_ver, 1)
+                        latest_build = check_pop_os_version_helper(next_ver, "intel", 1)
                         updates.append({
                             "name": f"Pop!_OS {next_ver} LTS",
                             "category": "linux/pop-os",
