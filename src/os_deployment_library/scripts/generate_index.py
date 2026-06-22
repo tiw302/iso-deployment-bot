@@ -26,6 +26,16 @@ ASCII_ART = r"""
 #  ██████  ███████        ███████ ██ ███████  ██    ██ ██    ██  ██    ██   ██   (___/___)
 """
 
+def html_escape(text: str) -> str:
+    """simple html escaping to prevent rendering breaks"""
+    if not text:
+        return ""
+    return (text.replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace('"', "&quot;")
+                .replace("'", "&#x27;"))
+
 COPY_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>'
 
 def clean_filename(filename):
@@ -51,6 +61,14 @@ def get_drive_content():
     library = {}
     total_bytes = 0
     try:
+        # cache resolved filenames to avoid nested loop O(N*M) resolve_filename calls
+        db_filenames = {}
+        for cat_items in DB.values():
+            for item in cat_items:
+                url = item.get('url', '')
+                if url:
+                    db_filenames[resolve_filename(url)] = item
+
         remote_res = subprocess.run(["rclone", "listremotes"], capture_output=True, text=True)
         remotes = [r.strip().rstrip(':') for r in remote_res.stdout.strip().split('\n') if r.strip()]
         remote_name = remotes[0] if remotes else "gdrive"
@@ -75,13 +93,11 @@ def get_drive_content():
                 if not category: category = "unsorted"
                 filename = os.path.basename(path)
                 pretty_name = clean_filename(filename)
-                db_item = None
-                for cat_items in DB.values():
-                    for item in cat_items:
-                        if resolve_filename(item.get('url', '')) == filename:
-                            pretty_name = item.get('name')
-                            db_item = item
-                            break
+
+                db_item = db_filenames.get(filename)
+                if db_item:
+                    pretty_name = db_item.get('name')
+
                 if category not in library:
                     library[category] = []
                 library_item = {
@@ -656,12 +672,16 @@ def generate_html():
                 db_item["tags"] = infer_tags(item["name"], cat, item["filename"], desc)
             details_json = get_lib_details(item["name"], desc, db_item)
 
+            safe_name = html_escape(item["name"])
+            safe_desc = html_escape(desc)
+            safe_name_attr = html_escape(item["name"].lower())
+
             tags_html = ""
             if "tags" in db_item and db_item["tags"]:
                 tags_list = db_item["tags"]
                 tags_html = '<div class="iso-tags">' + "".join([f'<span class="tag-badge tag-{t.lower()}">{t}</span>' for t in tags_list]) + '</div>'
 
-            cards += f'<div class="iso-card secured" data-name="{item["name"].lower()}" data-details="{details_json}"><div class="iso-info"><div class="iso-name">{item["name"]} <span class="status-secured">✓</span></div><div class="iso-size">{item["size"]}</div>{tags_html}<div class="iso-desc">{desc}</div></div><div class="iso-actions"><button class="btn-copy" data-url="{gdrive_url}" title="Copy Link">{COPY_ICON}</button><a href="{gdrive_url}" target="_blank" class="btn-download btn-gdrive-dl">download</a></div></div>'
+            cards += f'<div class="iso-card secured" data-name="{safe_name_attr}" data-details="{details_json}"><div class="iso-info"><div class="iso-name">{safe_name} <span class="status-secured">✓</span></div><div class="iso-size">{item["size"]}</div>{tags_html}<div class="iso-desc">{safe_desc}</div></div><div class="iso-actions"><button class="btn-copy" data-url="{gdrive_url}" title="Copy Link">{COPY_ICON}</button><a href="{gdrive_url}" target="_blank" class="btn-download btn-gdrive-dl">download</a></div></div>'
         lib_sections += f'<section class="category-section library-section" id="{cat_id}"><div class="category-title">{cat_display} ({len(items)})</div><div class="grid">{cards}</div></section>'
 
     # generate discovery section
@@ -697,14 +717,14 @@ def generate_html():
             # infer tags for discovery cards
             disc_tags = infer_tags(distro["name"], cat, "", desc)
 
+            # replace raw imports with global json to prevent redundant imports
             details_json = get_lib_details(distro["name"], desc)
             try:
-                import json as pyjson
-                details_dict = pyjson.loads(details_json.replace('&quot;', '"'))
+                details_dict = json.loads(details_json.replace('&quot;', '"'))
                 details_dict['docs'] = distro['url']
                 details_dict['type'] = 'Linux (Discovery Archive)'
                 details_dict['tags'] = disc_tags
-                details_json = pyjson.dumps(details_dict).replace('"', '&quot;')
+                details_json = json.dumps(details_dict).replace('"', '&quot;')
             except:
                 pass
 
@@ -712,7 +732,11 @@ def generate_html():
             if disc_tags:
                 tags_html = '<div class="iso-tags">' + "".join([f'<span class="tag-badge tag-{t.lower()}">{t}</span>' for t in disc_tags]) + '</div>'
 
-            disc_cards += f'<div class="iso-card discovery-card" data-name="{distro["name"].lower()}" data-details="{details_json}"><div class="iso-info"><div class="iso-name">{distro["name"]}</div><div class="iso-size">encyclopedia</div>{tags_html}<div class="iso-desc">{desc}</div></div><div class="iso-actions"><button class="btn-copy" data-url="{distro["url"]}" title="Copy Link">{COPY_ICON}</button><a href="{distro["url"]}" target="_blank" class="btn-download btn-source-dl">wiki</a></div></div>'
+            safe_name = html_escape(distro["name"])
+            safe_desc = html_escape(desc)
+            safe_name_attr = html_escape(distro["name"].lower())
+
+            disc_cards += f'<div class="iso-card discovery-card" data-name="{safe_name_attr}" data-details="{details_json}"><div class="iso-info"><div class="iso-name">{safe_name}</div><div class="iso-size">encyclopedia</div>{tags_html}<div class="iso-desc">{safe_desc}</div></div><div class="iso-actions"><button class="btn-copy" data-url="{distro["url"]}" title="Copy Link">{COPY_ICON}</button><a href="{distro["url"]}" target="_blank" class="btn-download btn-source-dl">wiki</a></div></div>'
         disc_sections += f'<section class="category-section discovery-section" id="{cat_id}"><div class="category-title">{cat.lower()} ({len(distros)})</div><div class="grid discovery-grid">{disc_cards}</div></section>'
 
     final_html = html_template.replace("ASCII_ART_PLACEHOLDER", ASCII_ART) \
