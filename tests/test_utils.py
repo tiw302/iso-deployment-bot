@@ -28,6 +28,11 @@ class TestUtils(unittest.TestCase):
         url = "https://example.com/raspbian.img"
         self.assertEqual(resolve_filename(url), "raspbian.img.iso")
 
+    def test_img_middle_not_replaced(self):
+        # ensure .img in the middle of a filename is not mangled
+        url = "https://example.com/distro-img-5.0.img"
+        self.assertEqual(resolve_filename(url), "distro-img-5.0.img.iso")
+
     def test_img_xz_preserved(self):
         url = "https://cdimage.ubuntu.com/.../noble-preinstalled-server-arm64+raspi.img.xz"
         self.assertEqual(resolve_filename(url), "noble-preinstalled-server-arm64+raspi.img.xz")
