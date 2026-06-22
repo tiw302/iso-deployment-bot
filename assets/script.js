@@ -148,7 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         const name = searchData.name;
                         const tagsText = searchData.tagsText;
 
-                        if (term === '' || isMatch(term, name) || (tagsText && tagsText.includes(term))) {
+                        // lowercase name to prevent case-sensitive mismatches
+                        if (term === '' || isMatch(term, name.toLowerCase()) || (tagsText && tagsText.includes(term))) {
                             card.style.display = 'flex';
                             hasMatch = true;
                             anyMatch = true;
