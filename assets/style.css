@@ -249,13 +249,30 @@ header {
 
 .filter-nav {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 0.5rem;
-    padding: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0 20px;
 }
 
 .scroll-arrow {
-    display: none !important;
+    position: absolute;
+    top: 0;
+    bottom: 1rem;
+    width: 40px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-color);
+    color: var(--accent);
+    z-index: 10;
+    cursor: pointer;
+    font-size: 1rem;
+    pointer-events: auto;
+    transition: none;
 }
 
 .scroll-arrow:hover {
