@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # cd to project root
-cd "$(dirname "$0")" || exit
+cd "$(dirname "$0")/.." || exit
 
 HOSTNAME=$(hostname)
 TIMESTAMP=$(date +'%Y-%m-%d %H:%M')
