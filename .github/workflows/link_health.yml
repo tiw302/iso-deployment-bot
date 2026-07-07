@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 jobs:
@@ -27,7 +27,8 @@ jobs:
         id: check
         run: |
           PYTHONPATH=src python3 tools/check_links.py 2>&1 | tee link_check_output.txt
-          PYTHONPATH=src python3 tools/check_updates.py 2>&1
+          PYTHONPATH=src python3 tools/check_updates.py -w 2>&1
+          PYTHONPATH=src python3 tools/fetch_checksums.py 2>&1
 
           # Combine reports into broken_links.log if updates were found
           if [ -f updates_report.txt ]; then
@@ -45,6 +46,18 @@ jobs:
             echo "has_issues=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_issues=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit & Push Database Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/os_deployment_library/distros.* 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No database changes to commit"
+          else
+            git commit -m "chore(auto): update distros database & checksums [skip ci]"
+            git push
           fi
 
       - name: Create or Update Issue
@@ -76,7 +89,7 @@ jobs:
             let title = `🔗 Health Check & Updates — ${today}`;
             let issueBody = `## Automated Health Check & Update Report\n\n`;
             if (parseInt(brokenCount) > 0) {
-              issueBody += `⚠️ **${brokenCount} broken link(s)** were found in \`src/distros.py\`.\n`;
+              issueBody += `⚠️ **${brokenCount} broken link(s)** were found in \`src/os_deployment_library/distros.json\`.\n`;
             }
             if (hasUpdates === 'true') {
               issueBody += `⚡ **New upstream OS versions** were detected!\n`;
@@ -108,5 +121,5 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: "⚠️ Broken Links / OS Updates Detected"
-          description: "Weekly health check found broken links or new upstream OS versions in distros.py. Please review the GitHub Issue."
+          description: "Weekly health check found broken links or new upstream OS versions in distros.json. Please review the GitHub Issue."
           color: 0xe74c3c
