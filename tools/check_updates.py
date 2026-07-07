@@ -1,4 +1,7 @@
-# semi-automated version checker
+# check_updates.py
+#
+# automated version checking utility.
+# queries remote repositories to find newer versions of hosted operating systems.
 
 import os
 import sys
@@ -11,6 +14,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 # sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
 try:
     from os_deployment_library.distros import DB
+    from os_deployment_library.scripts.utils import CATEGORY_ORDER
 except ImportError:
     print("error: could not import DB from src/distros.py")
     sys.exit(1)
@@ -466,138 +470,34 @@ def check_endeavouros():
     return None
 
 def write_back_db(new_db):
-    # write updated database back to src/distros.py preserving structure
-    category_order = [
-        "linux/ubuntu", "linux/ubuntu-noble", "linux/ubuntu-plucky", "linux/ubuntu-jammy",
-        "linux/debian", "linux/debian-based", "linux/mint", "linux/pop-os", "linux/zorin",
-        "linux/arch-family",
-        "linux/enterprise", "linux/server", "linux/server-cloud", "linux/fedora-spins",
-        "linux/gaming",
-        "linux/security", "linux/pentesting", "linux/forensic", "linux/privacy",
-        "linux/immutable", "linux/wayland-tiling", "linux/rolling",
-        "linux/lightweight", "linux/minimal",
-        "homelab", "homelab/virtualization", "homelab/firewall", "homelab/nas",
-        "specialized/vintage", "specialized/containers", "specialized/risc-emulation",
-        "recovery/tools", "recovery/backup",
-        "arm/raspberry-pi", "arm/sbc",
-        "windows/eval",
-        "android-x86", "chromeos",
-        "alternative/bsd",
-        "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized", "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific", "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch", "linux/cloud", "linux/multimedia"
-    ]
-
-    category_names = {
-        "linux/ubuntu": "ubuntu",
-        "linux/ubuntu-noble": "ubuntu 24.04 noble",
-        "linux/ubuntu-plucky": "ubuntu 25.04 plucky",
-        "linux/ubuntu-jammy": "ubuntu 22.04 jammy",
-        "linux/debian": "debian",
-        "linux/debian-based": "debian derivatives",
-        "linux/mint": "linux mint",
-        "linux/pop-os": "pop!_os",
-        "linux/zorin": "zorin os",
-        "linux/arch-family": "arch family",
-        "linux/enterprise": "enterprise / rpm",
-        "linux/server": "server",
-        "linux/server-cloud": "server & cloud",
-        "linux/fedora-spins": "fedora spins & labs",
-        "linux/gaming": "gaming",
-        "linux/security": "security",
-        "linux/pentesting": "pentesting & red team",
-        "linux/forensic": "forensic & digital investigation",
-        "linux/privacy": "privacy & security focused",
-        "linux/immutable": "immutable / atomic desktops",
-        "linux/wayland-tiling": "wayland / tiling wm",
-        "linux/rolling": "rolling release",
-        "linux/lightweight": "lightweight",
-        "linux/minimal": "minimal & diy",
-        "homelab": "homelab",
-        "homelab/virtualization": "virtualization",
-        "homelab/firewall": "firewall / router",
-        "homelab/nas": "nas",
-        "specialized/vintage": "vintage / novelty / retro",
-        "specialized/containers": "containers & cloud native",
-        "specialized/risc-emulation": "risc / emulation / research",
-        "recovery/tools": "recovery & rescue tools",
-        "recovery/backup": "backup & recovery",
-        "arm/raspberry-pi": "raspberry pi",
-        "arm/sbc": "arm / sbc",
-        "windows/eval": "windows evaluation",
-        "android-x86": "android-x86",
-        "chromeos": "chromeos",
-        "alternative/bsd": "bsd / alternative",
-        "linux/ai-ml": "ai / machine learning",
-        "linux/developer": "developer tools",
-        "linux/desktop-env": "desktop environments",
-        "linux/embedded": "embedded & iot",
-        "linux/specialized": "specialized / custom",
-        "linux/office": "office & productivity",
-        "linux/hardware": "hardware specific",
-        "linux/live-tools": "live usb tools",
-        "linux/education": "education & learning",
-        "linux/scientific": "scientific & data science",
-        "linux/legacy": "legacy / old stable",
-        "linux/others": "other distributions",
-        "linux/experimental": "experimental",
-        "linux/alternative-arch": "alternative architectures",
-        "linux/cloud": "cloud",
-        "linux/multimedia": "multimedia"
-    }
-
-    def format_val(val):
-        if isinstance(val, str):
-            return json.dumps(val)
-        elif isinstance(val, bool):
-            return "True" if val else "False"
-        elif val is None:
-            return "None"
-        elif isinstance(val, (int, float)):
-            return str(val)
-        elif isinstance(val, list):
-            return "[" + ", ".join(format_val(x) for x in val) + "]"
-        elif isinstance(val, dict):
-            return "{" + ", ".join(f"{format_val(k)}: {format_val(v)}" for k, v in val.items()) + "}"
-        else:
-            return repr(val)
-
+    # reorganize categories by CATEGORY_ORDER
     sorted_keys = []
-    for cat in category_order:
+    for cat in CATEGORY_ORDER:
         if cat in new_db:
             sorted_keys.append(cat)
     for cat in sorted(new_db.keys()):
         if cat not in sorted_keys:
             sorted_keys.append(cat)
 
-    distros_path = os.path.join(os.path.dirname(script_dir), 'src', 'distros.py')
-    with open(distros_path, 'w') as f:
-        f.write("# updated auto-version-checker\n\nDB: dict[str, list[dict]] = {\n")
-        for idx, cat in enumerate(sorted_keys):
-            comment_name = category_names.get(cat, cat.replace('linux/', '').replace('-', ' ').lower())
-            f.write(f"\n    # {comment_name}\n")
-            f.write(f"    \"{cat}\": [\n")
-            for e in new_db[cat]:
-                ordered_keys = []
-                keys = list(e.keys())
-                for k in ["name", "url", "size"]:
-                    if k in keys:
-                        ordered_keys.append(k)
-                        keys.remove(k)
-                ordered_keys.extend(keys)
+    # rebuild ordered DB dictionary
+    ordered_db = {}
+    for key in sorted_keys:
+        ordered_db[key] = []
+        for entry in new_db[key]:
+            # sort keys in each entry to keep name, url, size first
+            ordered_entry = {}
+            for k in ["name", "url", "size"]:
+                if k in entry:
+                    ordered_entry[k] = entry[k]
+            for k in entry:
+                if k not in ordered_entry:
+                    ordered_entry[k] = entry[k]
+            ordered_db[key].append(ordered_entry)
 
-                parts = []
-                for k in ordered_keys:
-                    parts.append(f'"{k}": {format_val(e[k])}')
-                line = "        {" + ", ".join(parts) + "},"
-                f.write(line + "\n")
-            f.write("    ]")
-            if idx < len(sorted_keys) - 1:
-                f.write(",\n")
-            else:
-                f.write("\n")
-        f.write("}\n\n")
-        f.write("if __name__ == '__main__':\n")
-        f.write("    total = sum(len(v) for v in DB.values())\n")
-        f.write("    print(f\"refactor complete: total {total} entries\")\n")
+    # write back to distros.json
+    distros_json_path = os.path.join(os.path.dirname(script_dir), 'src', 'os_deployment_library', 'distros.json')
+    with open(distros_json_path, 'w', encoding='utf-8') as f:
+        json.dump(ordered_db, f, indent=4)
 
 def main():
     # main execution flow
@@ -1215,8 +1115,10 @@ def main():
         print("updating web dashboard...")
         import subprocess
         base_dir = os.path.dirname(script_dir)
-        generate_script = os.path.join(base_dir, "src", "scripts", "generate_index.py")
-        subprocess.run([sys.executable, generate_script])
+        generate_script = os.path.join(base_dir, "src", "os_deployment_library", "scripts", "generate_index.py")
+        env = os.environ.copy()
+        env["PYTHONPATH"] = os.path.join(base_dir, "src")
+        subprocess.run([sys.executable, generate_script], env=env)
 
 if __name__ == "__main__":
     # execution hook
