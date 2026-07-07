@@ -1,4 +1,7 @@
-# updated 2026-05-09
+# sync.py
+#
+# core synchronization script for the os deployment library.
+# downloads missing iso files via aria2 and uploads them to google drive via rclone.
 
 import os
 import subprocess
@@ -33,7 +36,8 @@ def discord_notify(message: str, color: int = 0x3498db):
         req = Request(DISCORD_WEBHOOK, data=json.dumps(payload).encode('utf-8'))
         req.add_header('Content-Type', 'application/json')
         req.add_header('User-Agent', 'Mozilla/5.0')
-        with urlopen(req) as res:
+        # set 10s timeout to prevent blocking if webhook hangs
+        with urlopen(req, timeout=10) as res:
             pass
     except urllib.error.URLError as e:
         print(f"{r}[ discord error ]{w} {e}")
@@ -100,6 +104,9 @@ def remove_empty_parents(path: str, stop_at_dir: str = "./temp"):
     """recursively remove empty parent directories up to stop_at_dir."""
     path = os.path.abspath(path)
     stop_at_dir = os.path.abspath(stop_at_dir)
+    # prevent walking up beyond stop_at_dir
+    if not path.startswith(stop_at_dir):
+        return
     while path != stop_at_dir and os.path.isdir(path):
         try:
             os.rmdir(path)
@@ -118,7 +125,6 @@ def dl(entry: dict, category: str, existing_files: set, remote_name: str):
 
     local_dir  = f"./temp/{category}"
     local_file = os.path.join(local_dir, filename)
-    remote_path = f"{remote_name}:{remote_folder}/{category}/{filename}"
 
     print(f"\n{c}[ check  ]{w} {display_name}  ({size})")
 
@@ -174,6 +180,13 @@ def dl(entry: dict, category: str, existing_files: set, remote_name: str):
     finally:
         if os.path.exists(local_file):
             os.remove(local_file)
+        # remove left-over aria2 control files to clean temp directory
+        aria_control = local_file + ".aria2"
+        if os.path.exists(aria_control):
+            try:
+                os.remove(aria_control)
+            except OSError:
+                pass
         remove_empty_parents(local_dir)
 
 if __name__ == "__main__":
