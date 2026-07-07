@@ -55,6 +55,28 @@ jobs:
               print(f"[x] Error: {e}")
               exit(1)
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check for OS Updates & Checksums
+        run: |
+          PYTHONPATH=src python3 tools/check_updates.py -w
+          PYTHONPATH=src python3 tools/fetch_checksums.py
+
+      - name: Commit & Push Database Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/os_deployment_library/distros.* 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No database changes to commit"
+          else
+            git commit -m "chore(auto): update distros database & checksums [skip ci]"
+            git push
+          fi
+
       - name: Run Mirror Script (Streaming Mode)
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
