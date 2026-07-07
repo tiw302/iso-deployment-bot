@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let searchTimeout = null;
 
     // cache card search data to avoid dom query/parse on keypress
+    const cardCache = [];
     document.querySelectorAll('.iso-card').forEach(card => {
         const name = card.dataset.name || '';
         let tagsText = '';
@@ -23,7 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } catch (e) {}
-        card._searchData = { name, tagsText };
+        const searchData = { name, tagsText };
+        card._searchData = searchData;
+
+        cardCache.push({
+            element: card,
+            section: card.closest('.category-section'),
+            name: name,
+            tagsText: tagsText,
+            nameEl: card.querySelector('.iso-name'),
+            descEl: card.querySelector('.iso-desc'),
+            isDiscovery: card.classList.contains('discovery-card')
+        });
     });
 
     // focus search input when clicking anywhere on the search wrapper
@@ -40,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // custom autocomplete
     const autocompleteDropdown = document.getElementById('autocompleteDropdown');
-    const allOSNames = Array.from(new Set(Array.from(document.querySelectorAll('.iso-card')).map(card => card.dataset.name)));
     let currentFocus = -1;
 
     // levenshtein distance for typo tolerance (optimized early-exit version)
@@ -119,9 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 let anyMatch = false;
 
                 // clear highlights first
-                document.querySelectorAll('.iso-name, .iso-desc').forEach(el => {
-                    if (el.dataset.original) {
-                        el.innerHTML = el.dataset.original;
+                cardCache.forEach(item => {
+                    if (item.nameEl && item.nameEl.dataset.original) {
+                        item.nameEl.innerHTML = item.nameEl.dataset.original;
+                    }
+                    if (item.descEl && item.descEl.dataset.original) {
+                        item.descEl.innerHTML = item.descEl.dataset.original;
                     }
                 });
 
@@ -133,41 +147,43 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
 
-                sections.forEach(section => {
-                    // only search in active tab
-                    if ((currentTab === 'library' && !section.classList.contains('library-section')) ||
-                        (currentTab === 'discovery' && !section.classList.contains('discovery-section'))) {
+                const sectionMatches = new Map();
+                sections.forEach(sec => {
+                    if ((currentTab === 'library' && sec.classList.contains('library-section')) ||
+                        (currentTab === 'discovery' && sec.classList.contains('discovery-section'))) {
+                        sectionMatches.set(sec, false);
+                    }
+                });
+
+                cardCache.forEach(item => {
+                    const isTabMatch = (currentTab === 'library' && !item.isDiscovery) ||
+                                       (currentTab === 'discovery' && item.isDiscovery);
+                    if (!isTabMatch) {
+                        item.element.style.display = 'none';
                         return;
                     }
 
-                    let hasMatch = false;
-                    const cards = section.querySelectorAll('.iso-card');
+                    if (term === '' || isMatch(term, item.name.toLowerCase()) || (item.tagsText && item.tagsText.includes(term))) {
+                        item.element.style.display = 'flex';
+                        sectionMatches.set(item.section, true);
+                        anyMatch = true;
+                    } else {
+                        item.element.style.display = 'none';
+                    }
+                });
 
-                    cards.forEach(card => {
-                        const searchData = card._searchData || { name: '', tagsText: '' };
-                        const name = searchData.name;
-                        const tagsText = searchData.tagsText;
-
-                        // lowercase name to prevent case-sensitive mismatches
-                        if (term === '' || isMatch(term, name.toLowerCase()) || (tagsText && tagsText.includes(term))) {
-                            card.style.display = 'flex';
-                            hasMatch = true;
-                            anyMatch = true;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-
-                    section.style.display = hasMatch ? 'block' : 'none';
+                // update section visibility
+                sectionMatches.forEach((hasMatch, sec) => {
+                    sec.style.display = hasMatch ? 'block' : 'none';
                 });
 
                 if (term !== '') {
-                    document.querySelectorAll('.iso-card').forEach(card => {
-                        if (card.style.display !== 'none') {
-                            const nameEl = card.querySelector('.iso-name');
-                            const descEl = card.querySelector('.iso-desc');
-                            if (nameEl) highlightHTML(nameEl, term);
-                            if (descEl) highlightHTML(descEl, term);
+                    cardCache.forEach(item => {
+                        const isTabMatch = (currentTab === 'library' && !item.isDiscovery) ||
+                                           (currentTab === 'discovery' && item.isDiscovery);
+                        if (isTabMatch && item.element.style.display !== 'none') {
+                            if (item.nameEl) highlightHTML(item.nameEl, term);
+                            if (item.descEl) highlightText(item.descEl, term);
                         }
                     });
                 }
@@ -179,8 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (autocompleteDropdown) {
                     autocompleteDropdown.innerHTML = '';
                     if (term !== '') {
-                        const activeCards = document.querySelectorAll(currentTab === 'library' ? '.library-section .iso-card' : '.discovery-section .iso-card');
-                        const tabOSNames = Array.from(new Set(Array.from(activeCards).map(card => card.dataset.name)));
+                        const activeCards = cardCache.filter(item => 
+                            (currentTab === 'library' && !item.isDiscovery) ||
+                            (currentTab === 'discovery' && item.isDiscovery)
+                        );
+                        const tabOSNames = Array.from(new Set(activeCards.map(item => item.name)));
                         const matches = tabOSNames.filter(name => isMatch(term, name.toLowerCase()));
                         if (matches.length > 0) {
                             autocompleteDropdown.style.display = 'block';
@@ -197,13 +216,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                 });
                                 autocompleteDropdown.appendChild(item);
                             });
+                        } else {
+                            autocompleteDropdown.style.display = 'none';
+                        }
                     } else {
                         autocompleteDropdown.style.display = 'none';
                     }
-                } else {
-                    autocompleteDropdown.style.display = 'none';
                 }
-            }
         }, 60); // 60ms debounce to prevent layout thrashing
     });
 
@@ -501,7 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.btn-copy').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const url = btn.dataset.url;
-            navigator.clipboard.writeText(url).then(() => {
+            copyToClipboard(url).then(() => {
                 const originalHTML = btn.innerHTML;
                 btn.innerHTML = checkIcon;
                 btn.style.pointerEvents = 'none'; // prevent double clicks during change
@@ -539,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 text = el ? el.textContent : '';
             }
 
-            navigator.clipboard.writeText(text).then(() => {
+            copyToClipboard(text).then(() => {
                 const originalHTML = btn.innerHTML;
                 btn.innerHTML = checkIcon;
                 btn.style.color = '#22c55e';
@@ -912,6 +931,44 @@ document.addEventListener('DOMContentLoaded', () => {
         return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
+    // helper for robust clipboard copying
+    function copyToClipboard(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text);
+        }
+        return new Promise((resolve, reject) => {
+            try {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                if (successful) resolve();
+                else reject(new Error('copy failed'));
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+
+    // fast string-based highlighter for text-only elements
+    function highlightText(el, term) {
+        const original = el.dataset.original || el.textContent;
+        if (!el.dataset.original) el.dataset.original = original;
+        
+        if (!term) {
+            el.textContent = original;
+            return;
+        }
+        
+        const regex = new RegExp(`(${escapeRegExp(term)})`, 'gi');
+        const escaped = original.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        el.innerHTML = escaped.replace(regex, '<mark class="search-highlight">$1</mark>');
+    }
+
     function highlightHTML(el, term) {
         const original = el.dataset.original || el.innerHTML;
         if (!el.dataset.original) el.dataset.original = original;
@@ -932,9 +989,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function highlightNode(node, regex) {
         if (node.nodeType === Node.TEXT_NODE) {
             const text = node.nodeValue;
-            if (regex.test(text)) {
+            const replaced = text.replace(regex, '<mark class="search-highlight">$1</mark>');
+            if (replaced !== text) {
                 const span = document.createElement('span');
-                span.innerHTML = text.replace(regex, '<mark class="search-highlight">$1</mark>');
+                span.innerHTML = replaced;
                 node.parentNode.replaceChild(span, node);
             }
         } else if (node.nodeType === Node.ELEMENT_NODE) {
