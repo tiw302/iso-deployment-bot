@@ -1,3 +1,8 @@
+# utils.py
+#
+# shared utility functions and centralized configuration.
+# contains category definitions and url parsing helpers for the library.
+
 import os
 from urllib.parse import urlparse, parse_qs
 
@@ -71,3 +76,85 @@ def resolve_filename(url: str) -> str:
         filename = filename[:-4] + ".img.iso"
 
     return filename
+
+# global order of categories for dashboard and database formatting
+CATEGORY_ORDER = [
+    "linux/ubuntu", "linux/ubuntu-noble", "linux/ubuntu-plucky", "linux/ubuntu-jammy",
+    "linux/debian", "linux/debian-based", "linux/mint", "linux/pop-os", "linux/zorin",
+    "linux/arch-family",
+    "linux/enterprise", "linux/server", "linux/server-cloud", "linux/fedora-spins",
+    "linux/gaming",
+    "linux/security", "linux/pentesting", "linux/forensic", "linux/privacy",
+    "linux/immutable", "linux/wayland-tiling", "linux/rolling",
+    "linux/lightweight", "linux/minimal",
+    "homelab", "homelab/virtualization", "homelab/firewall", "homelab/nas",
+    "specialized/vintage", "specialized/containers", "specialized/risc-emulation",
+    "recovery/tools", "recovery/backup",
+    "arm/raspberry-pi", "arm/sbc",
+    "windows/eval",
+    "android-x86", "chromeos",
+    "alternative/bsd",
+    "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized",
+    "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific",
+    "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch", "linux/cloud",
+    "linux/multimedia"
+]
+
+# map keys to clean display names
+CATEGORY_NAMES = {
+    "linux/ubuntu": "ubuntu",
+    "linux/ubuntu-noble": "ubuntu 24.04 noble",
+    "linux/ubuntu-plucky": "ubuntu 25.04 plucky",
+    "linux/ubuntu-jammy": "ubuntu 22.04 jammy",
+    "linux/debian": "debian",
+    "linux/debian-based": "debian derivatives",
+    "linux/mint": "linux mint",
+    "linux/pop-os": "pop!_os",
+    "linux/zorin": "zorin os",
+    "linux/arch-family": "arch family",
+    "linux/enterprise": "enterprise / rpm",
+    "linux/server": "server",
+    "linux/server-cloud": "server & cloud",
+    "linux/fedora-spins": "fedora spins & labs",
+    "linux/gaming": "gaming",
+    "linux/security": "security",
+    "linux/pentesting": "pentesting & red team",
+    "linux/forensic": "forensic & digital investigation",
+    "linux/privacy": "privacy & security focused",
+    "linux/immutable": "immutable / atomic desktops",
+    "linux/wayland-tiling": "wayland / tiling wm",
+    "linux/rolling": "rolling release",
+    "linux/lightweight": "lightweight",
+    "linux/minimal": "minimal & diy",
+    "homelab": "homelab",
+    "homelab/virtualization": "virtualization",
+    "homelab/firewall": "firewall / router",
+    "homelab/nas": "nas",
+    "specialized/vintage": "vintage / novelty / retro",
+    "specialized/containers": "containers & cloud native",
+    "specialized/risc-emulation": "risc / emulation / research",
+    "recovery/tools": "recovery & rescue tools",
+    "recovery/backup": "backup & recovery",
+    "arm/raspberry-pi": "raspberry pi",
+    "arm/sbc": "arm / sbc",
+    "windows/eval": "windows evaluation",
+    "android-x86": "android-x86",
+    "chromeos": "chromeos",
+    "alternative/bsd": "bsd / alternative",
+    "linux/ai-ml": "ai / machine learning",
+    "linux/developer": "developer tools",
+    "linux/desktop-env": "desktop environments",
+    "linux/embedded": "embedded & iot",
+    "linux/specialized": "specialized / custom",
+    "linux/office": "office & productivity",
+    "linux/hardware": "hardware specific",
+    "linux/live-tools": "live usb tools",
+    "linux/education": "education & learning",
+    "linux/scientific": "scientific & data science",
+    "linux/legacy": "legacy / old stable",
+    "linux/others": "other distributions",
+    "linux/experimental": "experimental",
+    "linux/alternative-arch": "alternative architectures",
+    "linux/cloud": "cloud",
+    "linux/multimedia": "multimedia"
+}
