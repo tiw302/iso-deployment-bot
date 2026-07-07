@@ -1,4 +1,7 @@
-# automated gdrive library generator
+# generate_index.py
+#
+# automated static dashboard generator for the os deployment library.
+# reads the inventory database and compiles a responsive html web interface.
 
 import os
 import datetime
@@ -14,7 +17,7 @@ try:
     from os_deployment_library.distros import DB
 except ImportError:
     DB = {}
-from os_deployment_library.scripts.utils import resolve_filename
+from os_deployment_library.scripts.utils import resolve_filename, CATEGORY_ORDER
 
 GDRIVE_LIBRARY_URL = "https://drive.google.com/drive/folders/1B64Y44QVMlgoVm49PRk2_UvPXRzXNZ8e?usp=sharing"
 
@@ -41,8 +44,9 @@ COPY_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke=
 def clean_filename(filename):
     name = os.path.splitext(filename)[0]
     if name.endswith('.img'): name = name[:-4]
+    # remove architecture and formatting keywords first
+    name = re.sub(r'\b(amd64|x86_64|x86-64|x64|x86|64bit|32bit|dvd|iso)\b', '', name, flags=re.IGNORECASE)
     name = name.replace('-', ' ').replace('_', ' ').replace('.', ' ')
-    name = re.sub(r'\b(amd64|x86_64|64bit|dvd|iso)\b', '', name, flags=re.IGNORECASE)
     name = ' '.join(name.split()).title()
     return name
 
@@ -53,7 +57,7 @@ def format_size(size_bytes):
             if size < 1024.0:
                 return f"{size:.1f} {unit}"
             size /= 1024.0
-    except:
+    except Exception:
         return "?.? GB"
     return "?.? GB"
 
@@ -63,11 +67,11 @@ def get_drive_content():
     try:
         # cache resolved filenames to avoid nested loop O(N*M) resolve_filename calls
         db_filenames = {}
-        for cat_items in DB.values():
+        for cat, cat_items in DB.items():
             for item in cat_items:
                 url = item.get('url', '')
                 if url:
-                    db_filenames[resolve_filename(url)] = item
+                    db_filenames[(cat, resolve_filename(url))] = item
 
         remote_res = subprocess.run(["rclone", "listremotes"], capture_output=True, text=True)
         remotes = [r.strip().rstrip(':') for r in remote_res.stdout.strip().split('\n') if r.strip()]
@@ -78,8 +82,7 @@ def get_drive_content():
         )
         if res.returncode == 0:
             for line in res.stdout.strip().split('\n'):
-                if ';' not in line: continue
-                parts = line.split(';')
+                parts = line.rsplit(';', 2)
                 if len(parts) < 3: continue
                 path, file_id, size = parts[0], parts[1], parts[2]
                 if not any(path.lower().endswith(ext) for ext in ['.iso', '.img', '.gz', '.xz', '.zip', '.bin', '.bz2', '.7z']):
@@ -94,7 +97,7 @@ def get_drive_content():
                 filename = os.path.basename(path)
                 pretty_name = clean_filename(filename)
 
-                db_item = db_filenames.get(filename)
+                db_item = db_filenames.get((category, filename))
                 if db_item:
                     pretty_name = db_item.get('name')
 
@@ -116,7 +119,15 @@ def get_drive_content():
 
 
 OS_DESCRIPTIONS = [
-    ('ubuntu', 'A popular, easy-to-use Linux distribution with a large community, suitable for both Desktop and Server.'),
+    ('ubuntu-noble', 'Ubuntu 24.04 LTS (Noble Numbat). Long-term support release with latest stable kernel.'),
+    ('ubuntu-jammy', 'Ubuntu 22.04 LTS (Jammy Jellyfish). Widely used and highly stable enterprise release.'),
+    ('ubuntu-plucky', 'Ubuntu 24.10 (Plucky Puffin). Interim release with bleeding-edge packages.'),
+    ('ubuntu-live-server', 'Ubuntu Server Edition. Optimized headless environment for enterprise deployments.'),
+    ('ubuntu-desktop', 'Ubuntu Desktop Edition. Includes a graphical user interface and productivity tools.'),
+    ('ubuntu', 'A popular, easy-to-use Linux distribution with a large community.'),
+    ('debian-live', 'Debian Live environment. Boot and run Debian directly without installation.'),
+    ('debian-edu', 'Debian Education (Skolelinux). Specifically tailored for schools and educational institutions.'),
+    ('debian-mac', 'Debian installer modified for Apple Mac hardware architectures.'),
     ('debian', 'A highly stable and secure Linux distribution, serving as the upstream for Ubuntu.'),
     ('alpine', 'A security-oriented, lightweight Linux distribution. Widely used for Docker containers.'),
     ('proxmox', 'An enterprise-grade open-source virtualization management platform (Hypervisor).'),
@@ -294,7 +305,8 @@ def get_lib_details(name, desc, db_item=None):
             if key in db_item:
                 details[key] = db_item[key]
 
-    return json.dumps(details).replace('"', '&quot;')
+    # escape ampersands first, then quotes to prevent xss or parsing breaks in attributes
+    return json.dumps(details).replace('&', '&amp;').replace('"', '&quot;')
 
 def load_massive_distros():
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -527,7 +539,7 @@ def infer_tags(name, category, filename="", description=""):
         tags.add("deepin")
 
     # 3. check cpu architecture
-    if "arm64" in text or "aarch64" in text or "arm" in text:
+    if "arm64" in text or "aarch64" in text or re.search(r'\barm\b', text):
         tags.add("arm64")
     elif "amd64" in text or "x86_64" in text or "x64" in text or "64bit" in text:
         tags.add("x86_64")
@@ -618,27 +630,7 @@ def generate_html():
     lib_sections = ""
     lib_nav = f'<button onclick="filterContent(\'lib\', \'all\')" class="filter-pill lib-pill active" data-target="all">all_files ({total_isos})</button>'
     # predefined logical category order
-    lib_cat_order = [
-        "linux/ubuntu", "linux/ubuntu-noble", "linux/ubuntu-plucky", "linux/ubuntu-jammy",
-        "linux/debian", "linux/debian-based", "linux/mint", "linux/pop-os", "linux/zorin",
-        "linux/arch-family",
-        "linux/enterprise", "linux/server", "linux/server-cloud", "linux/fedora-spins",
-        "linux/gaming",
-        "linux/security", "linux/pentesting", "linux/forensic", "linux/privacy",
-        "linux/immutable", "linux/wayland-tiling", "linux/rolling",
-        "linux/lightweight", "linux/minimal",
-        "homelab", "homelab/virtualization", "homelab/firewall", "homelab/nas",
-        "specialized/vintage", "specialized/containers", "specialized/risc-emulation",
-        "recovery/tools", "recovery/backup",
-        "arm/raspberry-pi", "arm/sbc",
-        "windows/eval",
-        "android-x86", "chromeos",
-        "alternative/bsd",
-        "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized",
-        "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific",
-        "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch", "linux/cloud",
-        "linux/multimedia"
-    ]
+    lib_cat_order = CATEGORY_ORDER
 
     def lib_cat_sort_key(cat):
         cat_lower = cat.lower()
@@ -725,7 +717,7 @@ def generate_html():
                 details_dict['type'] = 'Linux (Discovery Archive)'
                 details_dict['tags'] = disc_tags
                 details_json = json.dumps(details_dict).replace('"', '&quot;')
-            except:
+            except Exception:
                 pass
 
             tags_html = ""
@@ -736,7 +728,7 @@ def generate_html():
             safe_desc = html_escape(desc)
             safe_name_attr = html_escape(distro["name"].lower())
 
-            disc_cards += f'<div class="iso-card discovery-card" data-name="{safe_name_attr}" data-details="{details_json}"><div class="iso-info"><div class="iso-name">{safe_name}</div><div class="iso-size">encyclopedia</div>{tags_html}<div class="iso-desc">{safe_desc}</div></div><div class="iso-actions"><button class="btn-copy" data-url="{distro["url"]}" title="Copy Link">{COPY_ICON}</button><a href="{distro["url"]}" target="_blank" class="btn-download btn-source-dl">wiki</a></div></div>'
+            disc_cards += f'<div class="iso-card discovery-card" data-name="{safe_name_attr}" data-details="{details_json}"><div class="iso-info"><div class="iso-name">{safe_name}</div><div class="iso-size">encyclopedia</div>{tags_html}<div class="iso-desc">{safe_desc}</div></div><div class="iso-actions"><button class="btn-copy" data-url="{distro["url"]}" title="Copy Link">{COPY_ICON}</button><a href="{distro["url"]}" target="_blank" class="btn-download btn-source-dl">wiki ↗</a></div></div>'
         disc_sections += f'<section class="category-section discovery-section" id="{cat_id}"><div class="category-title">{cat.lower()} ({len(distros)})</div><div class="grid discovery-grid">{disc_cards}</div></section>'
 
     final_html = html_template.replace("ASCII_ART_PLACEHOLDER", ASCII_ART) \
