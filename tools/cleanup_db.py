@@ -1,16 +1,22 @@
-# database cleanup script
+# cleanup_db.py
+#
+# database maintenance and validation tool.
+# removes dead links, verifies url health concurrently, and formats the database.
 
 import os
 import urllib.request
 import urllib.error
 import subprocess
+import sys
+from concurrent.futures import ThreadPoolExecutor
 
 # setup path to import distros from parent directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
 # sys.path.append(os.path.join(os.path.dirname(script_dir), "src"))
 # sys.path.append(os.path.join(os.path.dirname(script_dir), "src", "scripts"))
+import json
 from os_deployment_library.distros import DB
-from os_deployment_library.scripts.utils import resolve_filename
+from os_deployment_library.scripts.utils import resolve_filename, CATEGORY_ORDER
 
 def get_drive_files():
     """get a set of filenames currently in gdrive."""
@@ -39,7 +45,7 @@ def is_link_working(url):
         req.add_header('User-Agent', 'Mozilla/5.0')
         with urllib.request.urlopen(req, timeout=5) as response:
             return response.status < 400
-    except:
+    except Exception:
         # try GET with range as fallback
         try:
             req = urllib.request.Request(url)
@@ -47,29 +53,13 @@ def is_link_working(url):
             req.add_header('Range', 'bytes=0-0')
             with urllib.request.urlopen(req, timeout=5) as response:
                 return response.status < 400
-        except:
+        except Exception:
             return False
 
 def get_expected_filename(url):
     return resolve_filename(url)
 
-import json
 
-def format_val(val):
-    if isinstance(val, str):
-        return json.dumps(val)
-    elif isinstance(val, bool):
-        return "True" if val else "False"
-    elif val is None:
-        return "None"
-    elif isinstance(val, (int, float)):
-        return str(val)
-    elif isinstance(val, list):
-        return "[" + ", ".join(format_val(x) for x in val) + "]"
-    elif isinstance(val, dict):
-        return "{" + ", ".join(f"{format_val(k)}: {format_val(v)}" for k, v in val.items()) + "}"
-    else:
-        return repr(val)
 
 def main():
     print("starting database cleanup...")
@@ -77,163 +67,89 @@ def main():
     drive_files = get_drive_files()
     print(f"found {len(drive_files)} files in gdrive.")
 
-    new_db = {}
-    removed_count = 0
+    # first collect all entries to check
+    entries_to_check = []
+    kept_by_drive = {}
     total_checked = 0
 
-    # process categories
     for category, entries in DB.items():
-        kept_entries = []
+        kept_by_drive[category] = []
         for entry in entries:
             total_checked += 1
             filename = get_expected_filename(entry['url'])
+            if filename in drive_files:
+                kept_by_drive[category].append(entry)
+            else:
+                entries_to_check.append((category, entry))
 
-            # criteria 1: is it in drive?
-            in_drive = filename in drive_files
+    print(f"checking {len(entries_to_check)} links in parallel...")
 
-            if in_drive:
-                kept_entries.append(entry)
-                continue
+    def check_entry(item):
+        category, entry = item
+        working = is_link_working(entry['url'])
+        return category, entry, working
 
-            # criteria 2: is the link working?
-            print(f"checking: {entry['name']}...", end='\r')
-            if is_link_working(entry['url']):
-                kept_entries.append(entry)
+    kept_by_link = {}
+    removed_count = 0
+
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        results = executor.map(check_entry, entries_to_check)
+        for category, entry, working in results:
+            if working:
+                if category not in kept_by_link:
+                    kept_by_link[category] = []
+                kept_by_link[category].append(entry)
             else:
                 removed_count += 1
                 print(f"removing broken & unsynced: {entry['name']}          ")
 
-        if kept_entries:
-            new_db[category] = kept_entries
+    new_db = {}
+    for category in DB.keys():
+        entries = kept_by_drive.get(category, []) + kept_by_link.get(category, [])
+        if entries:
+            new_db[category] = entries
 
     print("\ncleanup finished.")
     print(f"total checked: {total_checked}")
     print(f"kept: {total_checked - removed_count}")
     print(f"removed: {removed_count}")
 
-    # Reorganize and format categories to match refactor.py format
-    category_order = [
-        "linux/ubuntu", "linux/ubuntu-noble", "linux/ubuntu-plucky", "linux/ubuntu-jammy",
-        "linux/debian", "linux/debian-based", "linux/mint", "linux/pop-os", "linux/zorin",
-        "linux/arch-family",
-        "linux/enterprise", "linux/server", "linux/server-cloud", "linux/fedora-spins",
-        "linux/gaming",
-        "linux/security", "linux/pentesting", "linux/forensic", "linux/privacy",
-        "linux/immutable", "linux/wayland-tiling", "linux/rolling",
-        "linux/lightweight", "linux/minimal",
-        "homelab", "homelab/virtualization", "homelab/firewall", "homelab/nas",
-        "specialized/vintage", "specialized/containers", "specialized/risc-emulation",
-        "recovery/tools", "recovery/backup",
-        "arm/raspberry-pi", "arm/sbc",
-        "windows/eval",
-        "android-x86", "chromeos",
-        "alternative/bsd",
-        "linux/ai-ml", "linux/developer", "linux/desktop-env", "linux/embedded", "linux/specialized", "linux/office", "linux/hardware", "linux/live-tools", "linux/education", "linux/scientific", "linux/legacy", "linux/others", "linux/experimental", "linux/alternative-arch", "linux/cloud", "linux/multimedia"
-    ]
-
-    category_names = {
-        "linux/ubuntu": "ubuntu",
-        "linux/ubuntu-noble": "ubuntu 24.04 noble",
-        "linux/ubuntu-plucky": "ubuntu 25.04 plucky",
-        "linux/ubuntu-jammy": "ubuntu 22.04 jammy",
-        "linux/debian": "debian",
-        "linux/debian-based": "debian derivatives",
-        "linux/mint": "linux mint",
-        "linux/pop-os": "pop!_os",
-        "linux/zorin": "zorin os",
-        "linux/arch-family": "arch family",
-        "linux/enterprise": "enterprise / rpm",
-        "linux/server": "server",
-        "linux/server-cloud": "server & cloud",
-        "linux/fedora-spins": "fedora spins & labs",
-        "linux/gaming": "gaming",
-        "linux/security": "security",
-        "linux/pentesting": "pentesting & red team",
-        "linux/forensic": "forensic & digital investigation",
-        "linux/privacy": "privacy & security focused",
-        "linux/immutable": "immutable / atomic desktops",
-        "linux/wayland-tiling": "wayland / tiling wm",
-        "linux/rolling": "rolling release",
-        "linux/lightweight": "lightweight",
-        "linux/minimal": "minimal & diy",
-        "homelab": "homelab",
-        "homelab/virtualization": "virtualization",
-        "homelab/firewall": "firewall / router",
-        "homelab/nas": "nas",
-        "specialized/vintage": "vintage / novelty / retro",
-        "specialized/containers": "containers & cloud native",
-        "specialized/risc-emulation": "risc / emulation / research",
-        "recovery/tools": "recovery & rescue tools",
-        "recovery/backup": "backup & recovery",
-        "arm/raspberry-pi": "raspberry pi",
-        "arm/sbc": "arm / sbc",
-        "windows/eval": "windows evaluation",
-        "android-x86": "android-x86",
-        "chromeos": "chromeos",
-        "alternative/bsd": "bsd / alternative",
-        "linux/ai-ml": "ai / machine learning",
-        "linux/developer": "developer tools",
-        "linux/desktop-env": "desktop environments",
-        "linux/embedded": "embedded & iot",
-        "linux/specialized": "specialized / custom",
-        "linux/office": "office & productivity",
-        "linux/hardware": "hardware specific",
-        "linux/live-tools": "live usb tools",
-        "linux/education": "education & learning",
-        "linux/scientific": "scientific & data science",
-        "linux/legacy": "legacy / old stable",
-        "linux/others": "other distributions",
-        "linux/experimental": "experimental",
-        "linux/alternative-arch": "alternative architectures",
-        "linux/cloud": "cloud",
-        "linux/multimedia": "multimedia"
-    }
-
+    # reorganize categories by CATEGORY_ORDER
     sorted_keys = []
-    for cat in category_order:
+    for cat in CATEGORY_ORDER:
         if cat in new_db:
             sorted_keys.append(cat)
     for cat in sorted(new_db.keys()):
         if cat not in sorted_keys:
             sorted_keys.append(cat)
 
-    # write back to distros.py
-    distros_path = os.path.join(os.path.dirname(script_dir), 'src', 'distros.py')
-    with open(distros_path, 'w') as f:
-        f.write("# updated auto-cleanup\n\nDB: dict[str, list[dict]] = {\n")
-        for idx, cat in enumerate(sorted_keys):
-            comment_name = category_names.get(cat, cat.replace('linux/', '').replace('-', ' ').lower())
-            f.write(f"\n    # {comment_name}\n")
-            f.write(f"    \"{cat}\": [\n")
-            for e in new_db[cat]:
-                ordered_keys = []
-                keys = list(e.keys())
-                for k in ["name", "url", "size"]:
-                    if k in keys:
-                        ordered_keys.append(k)
-                        keys.remove(k)
-                ordered_keys.extend(keys)
+    # rebuild ordered DB dictionary
+    ordered_db = {}
+    for key in sorted_keys:
+        ordered_db[key] = []
+        for entry in new_db[key]:
+            # sort keys in each entry to keep name, url, size first
+            ordered_entry = {}
+            for k in ["name", "url", "size"]:
+                if k in entry:
+                    ordered_entry[k] = entry[k]
+            for k in entry:
+                if k not in ordered_entry:
+                    ordered_entry[k] = entry[k]
+            ordered_db[key].append(ordered_entry)
 
-                parts = []
-                for k in ordered_keys:
-                    parts.append(f'"{k}": {format_val(e[k])}')
-                line = "        {" + ", ".join(parts) + "},"
-                f.write(line + "\n")
-            f.write("    ]")
-            if idx < len(sorted_keys) - 1:
-                f.write(",\n")
-            else:
-                f.write("\n")
-        f.write("}\n\n")
-        f.write("if __name__ == '__main__':\n")
-        f.write("    total = sum(len(v) for v in DB.values())\n")
-        f.write("    print(f\"refactor complete: total {total} entries\")\n")
+    # write back to distros.json
+    distros_json_path = os.path.join(os.path.dirname(script_dir), 'src', 'os_deployment_library', 'distros.json')
+    with open(distros_json_path, 'w', encoding='utf-8') as f:
+        json.dump(ordered_db, f, indent=4)
 
     # update web
     print("\nupdating web dashboard...")
     base_dir = os.path.dirname(script_dir)
-    generate_script = os.path.join(base_dir, "src", "scripts", "generate_index.py")
-    subprocess.run(["python3", generate_script])
+    generate_script = os.path.join(base_dir, "src", "os_deployment_library", "scripts", "generate_index.py")
+    env = os.environ.copy()
+    env["PYTHONPATH"] = os.path.join(base_dir, "src")
+    subprocess.run([sys.executable, generate_script], env=env)
 
 if __name__ == "__main__":
     main()
