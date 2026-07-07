@@ -75,7 +75,7 @@ This project attempts to mitigate these minor annoyances by running an automated
 
 The project is not an enterprise-grade infrastructure tool, but rather a pragmatic script built around a few specific choices to keep it free and easy to maintain:
 
-**Stateless Execution:** The system does not require a persistent server. It runs entirely on ephemeral GitHub Actions runners. It determines what needs to be downloaded by comparing a local text file (`src/distros.py`) against what currently exists in the target Google Drive.
+**Stateless Execution:** The system does not require a persistent server. It runs entirely on ephemeral GitHub Actions runners. It determines what needs to be downloaded by comparing a local JSON database (`src/os_deployment_library/distros.json`) against what currently exists in the target Google Drive.
 
 **Parallel Downloading:** Instead of standard single-thread downloads, it uses `aria2c` with 16 connections. This helps finish the downloads quickly before the GitHub Action job times out.
 
@@ -89,7 +89,7 @@ The project is not an enterprise-grade infrastructure tool, but rather a pragmat
 
 The workflow runs twice a week (Mondays and Thursdays) via a GitHub Actions Cron schedule (`.github/workflows/daily_sync.yml`). The sequence of events is straightforward:
 
-1. **Check State:** `sync.py` reads the desired list of ISOs from `src/distros.py` and uses Rclone to check which ones are missing from your Google Drive.
+1. **Check State:** `sync.py` reads the desired list of ISOs from `src/os_deployment_library/distros.json` and uses Rclone to check which ones are missing from your Google Drive.
 2. **Download:** Any missing files are downloaded to the GitHub runner's temporary storage using `aria2c`.
 3. **Upload:** The successfully downloaded files are moved to Google Drive via Rclone.
 4. **Cleanup:** Because GitHub runners have limited disk space (~14GB), the script deletes local files immediately after uploading to make room for the next one.
@@ -153,9 +153,9 @@ To let GitHub Actions access your Google Drive without committing passwords to t
 
 ## Adding Distributions
 
-The primary list of all operating systems is kept in a simple Python dictionary inside `src/distros.py`. To track a new OS, just add an entry:
+The primary list of all operating systems is kept in a simple JSON file inside `src/os_deployment_library/distros.json`. To track a new OS, just add an entry:
 
-```python
+```json
 {
     "name": "Ubuntu 24.04 LTS",
     "url": "https://releases.ubuntu.com/24.04/ubuntu-24.04-desktop-amd64.iso",
@@ -174,7 +174,7 @@ The repository is divided into core operational scripts and a few helper tools u
 
 ### Core Scripts
 
-- `src/distros.py`: The single source of truth containing the list of all ISO URLs.
+- `src/os_deployment_library/distros.json`: The single source of truth containing the list of all ISO URLs.
 - `src/scripts/sync.py`: The main script that handles the logic of downloading and uploading.
 - `src/scripts/generate_index.py`: The script responsible for creating the HTML front-end.
 
@@ -185,7 +185,7 @@ These are optional scripts located in the `tools/` folder, written to make manag
 - `tools/fetch_top_distros.py`: A basic scraper to find popular Linux distributions and add them to the list.
 - `tools/fetch_descriptions_wikipedia.py`: Reaches out to the Wikipedia API to automatically pull short text descriptions for the OSs in the database.
 - `tools/fetch_checksums.py`: A best-effort discovery tool that guesses and downloads SHA256/SHA512 checksum files to verify ISO integrity.
-- `tools/check_links.py`: Pings every URL in `src/distros.py` to check for 404/dead links, so they can be updated or removed.
+- `tools/check_links.py`: Pings every URL in `distros.json` to check for 404/dead links, so they can be updated or removed.
 - `tools/cleanup_db.py`: Compares database entries against what actually exists in Google Drive, checks missing URLs, and removes broken/un-mirrored entries to keep the list clean.
 - `tools/refactor.py`: A formatting script to sort the list alphabetically and remove any accidental duplicates.
 - `tools/sync.sh`: A helper bash script to automatically commit and push any changes detected in the repository.
@@ -203,14 +203,14 @@ Runs on every push and pull request to `master`/`main` branches.
 
 ### Link Health Check (`link_health.yml`)
 Runs automatically every Sunday at midnight UTC.
-- **Link Verification:** Scans the entire `distros.py` database (120+ entries) for 404/dead links.
+- **Link Verification:** Scans the entire `distros.json` database (120+ entries) for 404/dead links.
 - **Automated Reporting:** If broken links are detected, the workflow automatically opens or updates a GitHub Issue with the detailed error log, and sends a Discord alert.
 
 ---
 
 ## Contributing
 
-This is a personal utility, but suggestions and improvements are welcome. If you find a bug in the synchronization logic, want to add support for a different cloud provider, or just want to fix a broken link in `distros.py`, feel free to open an issue or a pull request.
+This is a personal utility, but suggestions and improvements are welcome. If you find a bug in the synchronization logic, want to add support for a different cloud provider, or just want to fix a broken link in `distros.json`, feel free to open an issue or a pull request.
 
 ---
 
