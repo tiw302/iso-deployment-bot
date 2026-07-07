@@ -58,7 +58,7 @@
         </header>
         <div class="search-container" id="searchContainer">
             <div class="search-wrapper">
-                <label class="search-prompt" id="searchPrompt" for="searchInput">user@linux:~$ search library</label>
+                <label class="search-prompt" id="searchPrompt" for="searchInput">user@linux:~$ search (press '/' to start)</label>
                 <input type="text" id="searchInput" class="search-input" autocomplete="off" spellcheck="false">
                 <span class="key-hint" title="Press '/' to search, 'Esc' to clear">[ / ]</span>
                 <button type="button" id="searchClear" class="search-clear" title="Clear search"
@@ -89,6 +89,9 @@
         </div>
 
         <div id="discoveryContent" class="tab-content" style="display:none">
+            <div class="discovery-intro" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem; border-left: 2px solid var(--text-muted); padding-left: 1rem;">
+                &gt; <b>discovery archive</b>: comprehensive encyclopedia of linux and open-source distributions. this section provides external wiki links for alternative distros that are not currently hosted on our google drive mirror.
+            </div>
             <div class="nav-container">
                 <div class="scroll-arrow left-arrow" id="discArrowLeft">&lt;</div>
                 <div class="filter-nav" id="discNav">
@@ -108,15 +111,22 @@
                     <div class="about-card">
                         <pre class="about-text">
 [overview]
-automated iso mirroring system designed to synchronize multiple operating system distributions to google drive storage. the system utilizes github actions for scheduled execution, aria2 for multi-threaded downloads, and rclone for cloud storage synchronization.
+automated iso mirroring system designed to synchronize multiple operating system
+distributions to google drive storage. the system utilizes github actions for
+scheduled execution, aria2 for multi-threaded downloads, and rclone for cloud
+storage synchronization.
 
 [why this exists]
-when deploying operating systems across virtualized environments (like proxmox, hyper-v) or physical machines, fetching iso images from slow, geographically distant upstream mirrors can waste hours of time.
+when deploying operating systems across virtualized environments (like proxmox,
+hyper-v) or physical machines, fetching iso images from slow, geographically
+distant upstream mirrors can waste hours of time.
 
-this library maintains high-speed, direct google drive mirrors of the most common, secure, and clean system installation media. it guarantees that all deployment files are:
-1. hosted on enterprise-grade cloud storage for maximum download bandwidth.
-2. verified and synced daily to prevent broken links or stale versions.
-3. stored securely, providing a single consolidated inventory.
+this library maintains high-speed, direct google drive mirrors of the most
+common, secure, and clean system installation media. it guarantees that all
+deployment files are:
+ 1. hosted on enterprise-grade cloud storage for maximum download bandwidth.
+ 2. verified and synced daily to prevent broken links or stale versions.
+ 3. stored securely, providing a single consolidated inventory.
                         </pre>
                     </div>
                 </section>
@@ -271,7 +281,7 @@ for requests to add new distributions, reporting offline files, or system inquir
         </div>
     </dialog>
 
-    <script src="assets/script.js"></script>
+    <script src="assets/script.js?v={{timestamp}}"></script>
 </body>
 
 </html>
