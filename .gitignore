@@ -9,6 +9,16 @@ temp/
 *.json
 *.txt
 !requirements.txt
+!src/os_deployment_library/distros.json
+!package.json
+!package-lock.json
+
+# build artifacts & node
+build/
+dist/
+*.egg-info/
+*.egg
+node_modules/
 
 # python cache
 __pycache__/
