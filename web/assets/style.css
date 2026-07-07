@@ -35,8 +35,8 @@
     --tab-active-text: #000000;
     --pill-active-bg: #1a1a1a;
     --btn-hover-bg: #1a1a1a;
-    --text-muted: #525252;
-    --text-disabled: #404040;
+    --text-muted: #8b949e;
+    --text-disabled: #525252;
     --color-red: #ef4444;
 }
 
@@ -209,11 +209,13 @@ header {
     font-size: 0.875rem;
     cursor: pointer;
     text-transform: lowercase;
+    border-bottom: 2px solid transparent;
 }
 
 .tab-btn.active {
     background: var(--tab-active-bg);
     color: var(--tab-active-text);
+    border-bottom: 2px solid #22c55e;
 }
 
 .tab-btn:hover:not(.active) {
@@ -247,30 +249,13 @@ header {
 
 .filter-nav {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    flex-wrap: wrap;
     gap: 0.5rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    ms-overflow-style: none;
-    padding: 0 20px;
+    padding: 0;
 }
 
 .scroll-arrow {
-    position: absolute;
-    top: 0;
-    bottom: 1rem;
-    width: 40px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-color);
-    color: var(--accent);
-    z-index: 10;
-    cursor: pointer;
-    font-size: 1rem;
-    pointer-events: auto;
-    transition: none;
+    display: none !important;
 }
 
 .scroll-arrow:hover {
@@ -483,7 +468,7 @@ header {
 
 .iso-actions {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .btn-download {
