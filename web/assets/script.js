@@ -237,6 +237,12 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 if (autocompleteDropdown) autocompleteDropdown.style.display = 'none';
+                if (searchInput.value !== '') {
+                    searchInput.value = '';
+                    if (searchClear) searchClear.style.display = 'none';
+                    searchInput.dispatchEvent(new Event('input'));
+                }
+                searchInput.blur();
                 return;
             }
             if (!autocompleteDropdown || autocompleteDropdown.style.display === 'none') return;
@@ -317,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             updateArrows(tab === 'library' ? 'libNav' : 'discNav');
         }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     Object.keys(tabButtons).forEach(tab => {
