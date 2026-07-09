@@ -8,22 +8,26 @@
                 "kde",
                 "desktop",
                 "ubuntu"
-            ]
+            ],
+            "sha256": "95ce9cf68f13015b9a88bd1ef86fcf7eda77c99979fda48c69e28aa0a84f88ac"
         },
         {
             "name": "Xubuntu 26.04",
             "url": "https://cdimage.ubuntu.com/xubuntu/releases/26.04/release/xubuntu-26.04-desktop-amd64.iso",
-            "size": "3.3GB"
+            "size": "3.3GB",
+            "sha256": "ae030dbd99426a4c7b2d1c96731e0f435ec9d18f6a28c9e76f077dd5f46364bc"
         },
         {
             "name": "Lubuntu 26.04",
             "url": "https://cdimage.ubuntu.com/lubuntu/releases/26.04/release/lubuntu-26.04-desktop-amd64.iso",
-            "size": "3.0GB"
+            "size": "3.0GB",
+            "sha256": "a9eef9e75c139caa428d11799f681e2d29e6ba7e22aa045d9a64599d45cd12ff"
         },
         {
             "name": "Edubuntu 26.04",
             "url": "https://cdimage.ubuntu.com/edubuntu/releases/26.04/release/edubuntu-26.04-desktop-amd64.iso",
-            "size": "4.9GB"
+            "size": "4.9GB",
+            "sha256": "e2255cca689450e368d504fbbc28a2b8086f3e871d5364ca14409391e6985ac3"
         }
     ],
     "linux/ubuntu-noble": [
@@ -37,7 +41,8 @@
                 "standard"
             ],
             "docs": "https://ubuntu.com/tutorials",
-            "notes": "Standard LTS version with GNOME Desktop environment."
+            "notes": "Standard LTS version with GNOME Desktop environment.",
+            "sha256": "3a4c9877b483ab46d7c3fbe165a0db275e1ae3cfe56a5657e5a47c2f99a99d1e"
         },
         {
             "name": "Ubuntu 24.04.4 Server",
@@ -49,41 +54,48 @@
                 "cloud-init"
             ],
             "docs": "https://ubuntu.com/server/docs",
-            "notes": "Highly recommended for cloud-init and virtualization templates."
+            "notes": "Highly recommended for cloud-init and virtualization templates.",
+            "sha256": "e907d92eeec9df64163a7e454cbc8d7755e8ddc7ed42f99dbc80c40f1a138433"
         }
     ],
     "linux/ubuntu-plucky": [
         {
             "name": "Ubuntu 25.04 Desktop",
             "url": "https://old-releases.ubuntu.com/releases/25.04/ubuntu-25.04-desktop-amd64.iso",
-            "size": "5.8GB"
+            "size": "5.8GB",
+            "sha256": "b87366b62eddfbecb60e681ba83299c61884a0d97569abe797695c8861f5dea4"
         },
         {
             "name": "Ubuntu 25.04 Server",
             "url": "https://old-releases.ubuntu.com/releases/25.04/ubuntu-25.04-live-server-amd64.iso",
-            "size": "2.7GB"
+            "size": "2.7GB",
+            "sha256": "8b44046211118639c673335a80359f4b3f0d9e52c33fe61c59072b1b61bdecc5"
         }
     ],
     "linux/ubuntu-jammy": [
         {
             "name": "Ubuntu 22.04.5 LTS Desktop",
             "url": "https://releases.ubuntu.com/22.04.5/ubuntu-22.04.5-desktop-amd64.iso",
-            "size": "4.7GB"
+            "size": "4.7GB",
+            "sha256": "bfd1cee02bc4f35db939e69b934ba49a39a378797ce9aee20f6e3e3e728fefbf"
         },
         {
             "name": "Ubuntu 22.04.5 LTS Server",
             "url": "https://releases.ubuntu.com/22.04.5/ubuntu-22.04.5-live-server-amd64.iso",
-            "size": "2.1GB"
+            "size": "2.1GB",
+            "sha256": "9bc6028870aef3f74f4e16b900008179e78b130e6b0b9a140635434a46aa98b0"
         },
         {
             "name": "Kubuntu 22.04.5",
             "url": "https://cdimage.ubuntu.com/kubuntu/releases/22.04.5/release/kubuntu-22.04.5-desktop-amd64.iso",
-            "size": "3.7GB"
+            "size": "3.7GB",
+            "sha256": "a3e2c4b1bc190cebaa8083c0d23ea2555e223d86b885570474a423b6de818888"
         },
         {
             "name": "Xubuntu 22.04.5",
             "url": "https://cdimage.ubuntu.com/xubuntu/releases/22.04.5/release/xubuntu-22.04.5-desktop-amd64.iso",
-            "size": "3.0GB"
+            "size": "3.0GB",
+            "sha256": "864e2cf7f23a9e76a8e56d9187af5654d0155bac449e9e3063c696ec1281346c"
         }
     ],
     "linux/debian": [
@@ -97,7 +109,8 @@
                 "netinst"
             ],
             "docs": "https://www.debian.org/releases/trixie/",
-            "notes": "Minimal network installer. Requires active internet connection during installation."
+            "notes": "Minimal network installer. Requires active internet connection during installation.",
+            "sha256": "95838884f5ea6c82421dfe6baaa5a639dbbe6756c1e380f9fe7a7cb0c1949d2a"
         }
     ],
     "linux/debian-based": [
@@ -155,7 +168,8 @@
                 "debian"
             ],
             "docs": "https://linuxmint-user-guide.readthedocs.io",
-            "notes": "The most popular Linux Mint edition with the Cinnamon desktop. Ideal for Windows switchers."
+            "notes": "The most popular Linux Mint edition with the Cinnamon desktop. Ideal for Windows switchers.",
+            "sha256": "a081ab202cfda17f6924128dbd2de8b63518ac0531bcfe3f1a1b88097c459bd4"
         },
         {
             "name": "Linux Mint 22.3 XFCE",
@@ -167,7 +181,8 @@
                 "xfce",
                 "ubuntu",
                 "debian"
-            ]
+            ],
+            "sha256": "45a835b5dddaf40e84d776549e0b19b3fbd49673b6cc6434ebddbfcd217df776"
         },
         {
             "name": "Linux Mint 22.3 MATE",
@@ -179,7 +194,8 @@
                 "mate",
                 "ubuntu",
                 "debian"
-            ]
+            ],
+            "sha256": "7609294da613b75eea89bb918292125e9f06418a368136fb190466e15bf8c373"
         }
     ],
     "linux/pop-os": [
@@ -195,7 +211,8 @@
                 "debian"
             ],
             "docs": "https://support.system76.com",
-            "notes": "Features the new COSMIC desktop. Great for developers and gamers."
+            "notes": "Features the new COSMIC desktop. Great for developers and gamers.",
+            "sha256": "ebc202932fc6982bf5f587ebbdd4e084ca150e626c10736170919b92a245a747"
         },
         {
             "name": "Pop!_OS 24.04 LTS (NVIDIA)",
@@ -207,7 +224,8 @@
                 "nvidia",
                 "ubuntu",
                 "debian"
-            ]
+            ],
+            "sha256": "939a79097d0bc5df427fba503ac75b0230a9c6343ed046c4dd249487eca275bc"
         }
     ],
     "linux/zorin": [
@@ -233,8 +251,8 @@
             "size": "1.1GB"
         },
         {
-            "name": "Manjaro KDE",
-            "url": "https://download.manjaro.org/kde/26.0.4/manjaro-kde-26.0.4-260327-linux618.iso",
+            "name": "Manjaro KDE 26.1.0-pre",
+            "url": "https://download.manjaro.org/kde/26.1.0-pre/manjaro-kde-26.1.0-pre-260626-linux70.iso",
             "size": "3.8GB",
             "tags": [
                 "rolling",
@@ -243,29 +261,32 @@
                 "arch"
             ],
             "docs": "https://wiki.manjaro.org",
-            "notes": "Arch-based, user-friendly rolling release with hardware detection."
+            "notes": "Arch-based, user-friendly rolling release with hardware detection.",
+            "sha256": "49300f42b7517bcd7cbd14535a4bf67f8eacc7ea085170ff405a17e7f856060a"
         },
         {
-            "name": "Manjaro GNOME",
-            "url": "https://download.manjaro.org/gnome/26.0.4/manjaro-gnome-26.0.4-260327-linux618.iso",
+            "name": "Manjaro GNOME 26.1.0-pre",
+            "url": "https://download.manjaro.org/gnome/26.1.0-pre/manjaro-gnome-26.1.0-pre-260626-linux70.iso",
             "size": "3.5GB",
             "tags": [
                 "rolling",
                 "desktop",
                 "gnome",
                 "arch"
-            ]
+            ],
+            "sha256": "d13b125e9a1039efc32f02a04924add3105b0cf0256124ab4553a74f66ca3387"
         },
         {
-            "name": "Manjaro XFCE",
-            "url": "https://download.manjaro.org/xfce/26.0.4/manjaro-xfce-26.0.4-260327-linux618.iso",
+            "name": "Manjaro XFCE 26.1.0-pre",
+            "url": "https://download.manjaro.org/xfce/26.1.0-pre/manjaro-xfce-26.1.0-pre-260626-linux70.iso",
             "size": "3.3GB",
             "tags": [
                 "rolling",
                 "desktop",
                 "xfce",
                 "arch"
-            ]
+            ],
+            "sha256": "10f2a9298f1ff72d0fcdea2c388024c9b2d2174fd095654ee44d3c283045dc89"
         },
         {
             "name": "EndeavourOS Endeavour",
@@ -277,7 +298,8 @@
                 "arch"
             ],
             "docs": "https://discovery.endeavouros.com",
-            "notes": "Terminal-centric Arch installer with a welcoming community."
+            "notes": "Terminal-centric Arch installer with a welcoming community.",
+            "sha256": "968657495b81e5a393dd877397725b30dc274ff9f54c23c7e6d653126c796fbbafc00cd52e0b243954b52b14c888d101b55a09a7b5e2689a9247a51a8ef5ab7b"
         },
         {
             "name": "Garuda Dr460nized latest",
@@ -312,8 +334,8 @@
             "size": "2.2GB"
         },
         {
-            "name": "Rocky Linux 9 Minimal",
-            "url": "https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-minimal.iso",
+            "name": "Rocky Linux 9.8 Minimal",
+            "url": "https://download.rockylinux.org/pub/rocky/9.8/isos/x86_64/Rocky-9.8-latest-x86_64-minimal.iso",
             "size": "1.8GB",
             "tags": [
                 "server",
@@ -324,8 +346,8 @@
             "notes": "CentOS replacement. RHEL-compatible enterprise distribution."
         },
         {
-            "name": "Rocky Linux 9 DVD",
-            "url": "https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-dvd.iso",
+            "name": "Rocky Linux 9.8 DVD",
+            "url": "https://download.rockylinux.org/pub/rocky/9.8/isos/x86_64/Rocky-9.8-latest-x86_64-dvd.iso",
             "size": "10.0GB",
             "tags": [
                 "server",
@@ -334,8 +356,8 @@
             ]
         },
         {
-            "name": "AlmaLinux 9 Minimal",
-            "url": "https://repo.almalinux.org/almalinux/9/isos/x86_64/AlmaLinux-9-latest-x86_64-minimal.iso",
+            "name": "AlmaLinux 9.8 Minimal",
+            "url": "https://repo.almalinux.org/almalinux/9.8/isos/x86_64/AlmaLinux-9.8-latest-x86_64-minimal.iso",
             "size": "1.9GB",
             "tags": [
                 "server",
@@ -346,8 +368,8 @@
             "notes": "Community-driven RHEL fork. Free and open forever."
         },
         {
-            "name": "AlmaLinux 9 DVD",
-            "url": "https://repo.almalinux.org/almalinux/9/isos/x86_64/AlmaLinux-9-latest-x86_64-dvd.iso",
+            "name": "AlmaLinux 9.8 DVD",
+            "url": "https://repo.almalinux.org/almalinux/9.8/isos/x86_64/AlmaLinux-9.8-latest-x86_64-dvd.iso",
             "size": "10.0GB",
             "tags": [
                 "server",
@@ -358,7 +380,8 @@
         {
             "name": "openSUSE Leap 15.6 DVD",
             "url": "https://download.opensuse.org/distribution/leap/15.6/iso/openSUSE-Leap-15.6-DVD-x86_64-Media.iso",
-            "size": "4.7GB"
+            "size": "4.7GB",
+            "sha256": "a74d4072e639c75ca127df3d869c1e57bcc44a093a969550f348a3ead561fe4f"
         },
         {
             "name": "CentOS Stream 9 DVD",
@@ -385,7 +408,8 @@
         {
             "name": "Ubuntu 26.04 LTS Server",
             "url": "https://releases.ubuntu.com/26.04/ubuntu-26.04-live-server-amd64.iso",
-            "size": "2.7GB"
+            "size": "2.7GB",
+            "sha256": "dec49008a71f6098d0bcfc822021f4d042d5f2db279e4d75bdd981304f1ca5d9"
         }
     ],
     "linux/fedora-spins": [
@@ -449,16 +473,18 @@
     ],
     "linux/security": [
         {
-            "name": "Kali Linux 2026.1 Installer",
-            "url": "https://cdimage.kali.org/kali-2026.1/kali-linux-2026.1-installer-amd64.iso",
-            "size": "4.4GB"
+            "name": "Kali Linux 2026.2 Installer",
+            "url": "https://cdimage.kali.org/kali-2026.2/kali-linux-2026.2-installer-amd64.iso",
+            "size": "4.4GB",
+            "sha256": "6dbefacc95e3b556c19c48e8bae39b8b505e2d3a1aba0bfb7ab62b036c3d2ba3"
         }
     ],
     "linux/pentesting": [
         {
             "name": "BackBox 9",
             "url": "http://backbox.mirror.garr.it/backbox-9-desktop-amd64.iso",
-            "size": "3.0GB"
+            "size": "3.0GB",
+            "sha256": "2326434e340745bfaffed2fbc6eb9528a9219484786f365b40dbbcf3636a9636"
         }
     ],
     "linux/forensic": [
@@ -563,8 +589,8 @@
     ],
     "linux/minimal": [
         {
-            "name": "Alpine Linux 3.23.4 Standard",
-            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/alpine-standard-3.23.4-x86_64.iso",
+            "name": "Alpine Linux 3.24.1 Standard",
+            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-standard-3.24.1-x86_64.iso",
             "size": "215MB",
             "tags": [
                 "minimal",
@@ -572,17 +598,20 @@
                 "container"
             ],
             "docs": "https://wiki.alpinelinux.org",
-            "notes": "Extremely compact security-oriented distro. Ideal for minimal VM instances."
+            "notes": "Extremely compact security-oriented distro. Ideal for minimal VM instances.",
+            "sha256": "f4dd613206676c62949144c8ad75fc64582099f444dd1485bae104a60f51dd26"
         },
         {
             "name": "Alpine Linux 3.23.4 Extended",
-            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/alpine-extended-3.23.4-x86_64.iso",
-            "size": "625MB"
+            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-extended-3.24.1-x86_64.iso",
+            "size": "625MB",
+            "sha256": "dc54e0eba94db5c493a6160ba0c3a23b185d7b36d727bc9fad0964c757d3571b"
         },
         {
             "name": "Alpine Virt",
-            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/alpine-virt-3.23.4-x86_64.iso",
-            "size": "210MB"
+            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-virt-3.24.1-x86_64.iso",
+            "size": "210MB",
+            "sha256": "e73a6241bd5f3c5c2d4d38c02cc52c378c0415a7c888bd292066bf36e0f41a39"
         },
         {
             "name": "Void Linux XFCE",
@@ -594,7 +623,8 @@
                 "independent"
             ],
             "docs": "https://docs.voidlinux.org",
-            "notes": "Independent rolling-release distro with runit init system and XBPS package manager."
+            "notes": "Independent rolling-release distro with runit init system and XBPS package manager.",
+            "sha256": "SHA256"
         },
         {
             "name": "Void Linux Base",
@@ -604,11 +634,12 @@
                 "rolling",
                 "minimal",
                 "independent"
-            ]
+            ],
+            "sha256": "SHA256"
         },
         {
             "name": "Gentoo Minimal Install",
-            "url": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20260531T160106Z.iso",
+            "url": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20260705T170105Z.iso",
             "size": "700MB",
             "tags": [
                 "source-based",
@@ -616,7 +647,8 @@
                 "rolling"
             ],
             "docs": "https://wiki.gentoo.org/wiki/Handbook:AMD64",
-            "notes": "Source-based meta-distribution. Maximum customization through compiling from source."
+            "notes": "Source-based meta-distribution. Maximum customization through compiling from source.",
+            "sha256": "54ad48e83d84ebab95f5d50fe5afe4426798a5aaceb252d1ca4812201aca8668"
         }
     ],
     "homelab": [
@@ -637,18 +669,19 @@
                 "debian"
             ],
             "docs": "https://pve.proxmox.com/pve-docs/",
-            "notes": "Hypervisor management platform. Direct import: use Proxmox import command in details modal."
+            "notes": "Hypervisor management platform. Direct import: use Proxmox import command in details modal.",
+            "sha256": "4e88fe416df9b527624a175f24c9aa07c714d3332afb1ee3dbf3879573ef2c6c"
         },
         {
-            "name": "Harvester HCI v1.8.0",
-            "url": "https://releases.rancher.com/harvester/v1.8.0/harvester-v1.8.0-amd64.iso",
+            "name": "Harvester HCI v1.8.1",
+            "url": "https://releases.rancher.com/harvester/v1.8.1/harvester-v1.8.1-amd64.iso",
             "size": "4.6GB"
         }
     ],
     "homelab/firewall": [
         {
-            "name": "OPNsense 26.1 DVD",
-            "url": "https://mirror.ams1.nl.leaseweb.net/opnsense/releases/26.1/OPNsense-26.1-dvd-amd64.iso.bz2",
+            "name": "OPNsense 26.7 DVD",
+            "url": "https://mirror.ams1.nl.leaseweb.net/opnsense/releases/26.7/OPNsense-26.7-dvd-amd64.iso.bz2",
             "size": "1.4GB",
             "tags": [
                 "firewall",
@@ -671,7 +704,8 @@
                 "homelab"
             ],
             "docs": "https://www.truenas.com/docs/scale/",
-            "notes": "Enterprise-grade ZFS NAS. Supports VMs, containers, and apps out of the box."
+            "notes": "Enterprise-grade ZFS NAS. Supports VMs, containers, and apps out of the box.",
+            "sha256": "ede23d4c70a7fde6674879346c1307517be9854dc79f6a5e016814226457f359"
         },
         {
             "name": "OpenMediaVault 7.4",
@@ -747,7 +781,8 @@
         {
             "name": "Ubuntu Server 24.04 RPi",
             "url": "https://cdimage.ubuntu.com/ubuntu-server/noble/daily-preinstalled/current/noble-preinstalled-server-arm64+raspi.img.xz",
-            "size": "1.5GB"
+            "size": "1.5GB",
+            "sha256": "c962248083f5b12ea9c9a3321c4b330295616da5228e91746b599ec5038f0699"
         },
         {
             "name": "LibreELEC RPi4",
@@ -781,8 +816,8 @@
     ],
     "alternative/bsd": [
         {
-            "name": "FreeBSD 14.4 amd64 DVD",
-            "url": "https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.4/FreeBSD-14.4-RELEASE-amd64-dvd1.iso",
+            "name": "FreeBSD 15.1 amd64 DVD",
+            "url": "https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/15.1/FreeBSD-15.1-RELEASE-amd64-dvd1.iso",
             "size": "4.2GB",
             "tags": [
                 "bsd",
@@ -793,8 +828,8 @@
             "notes": "Enterprise-class UNIX operating system. Known for advanced networking, security, and ZFS."
         },
         {
-            "name": "FreeBSD 14.4 amd64 Bootonly",
-            "url": "https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.4/FreeBSD-14.4-RELEASE-amd64-bootonly.iso",
+            "name": "FreeBSD 15.1 amd64 Bootonly",
+            "url": "https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/15.1/FreeBSD-15.1-RELEASE-amd64-bootonly.iso",
             "size": "420MB",
             "tags": [
                 "bsd",
@@ -841,7 +876,8 @@
         {
             "name": "Grml 2026.04 Full",
             "url": "https://download.grml.org/grml-full-2026.04-amd64.iso",
-            "size": "1.2GB"
+            "size": "1.2GB",
+            "sha256": "44791d71752972f2105a4895dc9df3c16c9ef4e325cbdb2d10ea45b55995f8ff"
         },
         {
             "name": "Finnix 125 Recovery",
@@ -858,7 +894,8 @@
         {
             "name": "Ubuntu Budgie 26.04",
             "url": "https://cdimage.ubuntu.com/ubuntu-budgie/releases/26.04/release/ubuntu-budgie-26.04-desktop-amd64.iso",
-            "size": "3.4GB"
+            "size": "3.4GB",
+            "sha256": "cbdebfa6517d6f64ecc07f6b91a672cf623e1f378b1b92c6e2d27bd7c8b6ca42"
         }
     ],
     "linux/education": [
@@ -872,17 +909,20 @@
         {
             "name": "Ubuntu 20.04.6 LTS (Focal)",
             "url": "https://releases.ubuntu.com/20.04.6/ubuntu-20.04.6-desktop-amd64.iso",
-            "size": "3.8GB"
+            "size": "3.8GB",
+            "sha256": "510ce77afcb9537f198bc7daa0e5b503b6e67aaed68146943c231baeaab94df1"
         },
         {
             "name": "Debian 11.11 Netinst",
             "url": "https://cdimage.debian.org/cdimage/archive/11.11.0/amd64/iso-cd/debian-11.11.0-amd64-netinst.iso",
-            "size": "400MB"
+            "size": "400MB",
+            "sha256": "cd5b2a6fc22050affa1d141adb3857af07e94ff886dca1ce17214e2761a3b316"
         },
         {
             "name": "CentOS 7.9 Final DVD",
             "url": "https://vault.centos.org/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2207-02.iso",
-            "size": "4.8GB"
+            "size": "4.8GB",
+            "sha256": "4b257cb5418e2ba44064121020dfe457fadaff0d0c597bb2f4e7f7eec4aef58a"
         }
     ],
     "linux/experimental": [
@@ -895,7 +935,7 @@
     "linux/alternative-arch": [
         {
             "name": "Alpine Linux ARM64",
-            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/aarch64/alpine-standard-3.23.4-aarch64.iso",
+            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/aarch64/alpine-aarch64.iso",
             "size": "373MB"
         }
     ],
