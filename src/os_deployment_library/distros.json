@@ -251,8 +251,8 @@
             "size": "1.1GB"
         },
         {
-            "name": "Manjaro KDE 26.1.0-pre",
-            "url": "https://download.manjaro.org/kde/26.1.0-pre/manjaro-kde-26.1.0-pre-260626-linux70.iso",
+            "name": "Manjaro KDE 26.1.0-rc1",
+            "url": "https://download.manjaro.org/kde/26.1.0-rc1/manjaro-kde-26.1.0-rc1-260710-linux71.iso",
             "size": "3.8GB",
             "tags": [
                 "rolling",
@@ -262,11 +262,11 @@
             ],
             "docs": "https://wiki.manjaro.org",
             "notes": "Arch-based, user-friendly rolling release with hardware detection.",
-            "sha256": "49300f42b7517bcd7cbd14535a4bf67f8eacc7ea085170ff405a17e7f856060a"
+            "sha256": "a2cce41a1b4f71e631a4aabe4d9437ee934efe923b8fe6e5a58b5d6ff03e5d3b"
         },
         {
-            "name": "Manjaro GNOME 26.1.0-pre",
-            "url": "https://download.manjaro.org/gnome/26.1.0-pre/manjaro-gnome-26.1.0-pre-260626-linux70.iso",
+            "name": "Manjaro GNOME 26.1.0-rc1",
+            "url": "https://download.manjaro.org/gnome/26.1.0-rc1/manjaro-gnome-26.1.0-rc1-260710-linux71.iso",
             "size": "3.5GB",
             "tags": [
                 "rolling",
@@ -274,11 +274,11 @@
                 "gnome",
                 "arch"
             ],
-            "sha256": "d13b125e9a1039efc32f02a04924add3105b0cf0256124ab4553a74f66ca3387"
+            "sha256": "916591a74f9c0328e7b5d7daa838c413e2863d25111f7fe73a4e0c173db40944"
         },
         {
-            "name": "Manjaro XFCE 26.1.0-pre",
-            "url": "https://download.manjaro.org/xfce/26.1.0-pre/manjaro-xfce-26.1.0-pre-260626-linux70.iso",
+            "name": "Manjaro XFCE 26.1.0-rc1",
+            "url": "https://download.manjaro.org/xfce/26.1.0-rc1/manjaro-xfce-26.1.0-rc1-260710-linux71.iso",
             "size": "3.3GB",
             "tags": [
                 "rolling",
@@ -286,7 +286,7 @@
                 "xfce",
                 "arch"
             ],
-            "sha256": "10f2a9298f1ff72d0fcdea2c388024c9b2d2174fd095654ee44d3c283045dc89"
+            "sha256": "1f300a096bd95a4b5a118e749fb887e4739b567b4c825efc029b19f693d15ba9"
         },
         {
             "name": "EndeavourOS Endeavour",
@@ -750,8 +750,8 @@
             "notes": "Industry-standard graphical partition editor. Essential homelab utility."
         },
         {
-            "name": "CloneZilla 3.3.2-31",
-            "url": "https://sourceforge.net/projects/clonezilla/files/clonezilla_live_stable/3.3.2-31/clonezilla-live-3.3.2-31-amd64.iso/download",
+            "name": "CloneZilla 3.3.3-15",
+            "url": "https://sourceforge.net/projects/clonezilla/files/clonezilla_live_stable/3.3.3-15/clonezilla-live-3.3.3-15-amd64.iso/download",
             "size": "490MB"
         },
         {
@@ -782,7 +782,7 @@
             "name": "Ubuntu Server 24.04 RPi",
             "url": "https://cdimage.ubuntu.com/ubuntu-server/noble/daily-preinstalled/current/noble-preinstalled-server-arm64+raspi.img.xz",
             "size": "1.5GB",
-            "sha256": "1f1eb88b6a8a07222ee437c1d2408e3e4346fbddd3c1b2db17c21a9194f3b70b"
+            "sha256": "ae9d2ad4d28b02e6adcf4cf2c473b82cfec5eebf105cf824799063c3fdcdd0b4"
         },
         {
             "name": "LibreELEC RPi4",
