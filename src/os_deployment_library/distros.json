@@ -251,8 +251,8 @@
             "size": "1.1GB"
         },
         {
-            "name": "Manjaro KDE 26.1.0-rc1",
-            "url": "https://download.manjaro.org/kde/26.1.0-rc1/manjaro-kde-26.1.0-rc1-260710-linux71.iso",
+            "name": "Manjaro KDE 26.1.0-rc2",
+            "url": "https://download.manjaro.org/kde/26.1.0-rc2/manjaro-kde-26.1.0-rc2-260722-linux71.iso",
             "size": "3.8GB",
             "tags": [
                 "rolling",
@@ -262,11 +262,11 @@
             ],
             "docs": "https://wiki.manjaro.org",
             "notes": "Arch-based, user-friendly rolling release with hardware detection.",
-            "sha256": "a2cce41a1b4f71e631a4aabe4d9437ee934efe923b8fe6e5a58b5d6ff03e5d3b"
+            "sha256": "0906fdba97c8a23b42b57905b3be122dd712028b276b2ff325794af5bba13b3b"
         },
         {
-            "name": "Manjaro GNOME 26.1.0-rc1",
-            "url": "https://download.manjaro.org/gnome/26.1.0-rc1/manjaro-gnome-26.1.0-rc1-260710-linux71.iso",
+            "name": "Manjaro GNOME 26.1.0-rc2",
+            "url": "https://download.manjaro.org/gnome/26.1.0-rc2/manjaro-gnome-26.1.0-rc2-260722-linux71.iso",
             "size": "3.5GB",
             "tags": [
                 "rolling",
@@ -274,11 +274,11 @@
                 "gnome",
                 "arch"
             ],
-            "sha256": "916591a74f9c0328e7b5d7daa838c413e2863d25111f7fe73a4e0c173db40944"
+            "sha256": "5810d004dc2224667429c1f790f3b09e4235f38485d639a52a2cc96274b362b4"
         },
         {
-            "name": "Manjaro XFCE 26.1.0-rc1",
-            "url": "https://download.manjaro.org/xfce/26.1.0-rc1/manjaro-xfce-26.1.0-rc1-260710-linux71.iso",
+            "name": "Manjaro XFCE 26.1.0-rc2",
+            "url": "https://download.manjaro.org/xfce/26.1.0-rc2/manjaro-xfce-26.1.0-rc2-260722-linux71.iso",
             "size": "3.3GB",
             "tags": [
                 "rolling",
@@ -286,7 +286,7 @@
                 "xfce",
                 "arch"
             ],
-            "sha256": "1f300a096bd95a4b5a118e749fb887e4739b567b4c825efc029b19f693d15ba9"
+            "sha256": "8a8963e4fc8559191a8a0c186083db28edbf1a639663e85680a6a35c4fee2509"
         },
         {
             "name": "EndeavourOS Endeavour",
