@@ -251,8 +251,8 @@
             "size": "1.1GB"
         },
         {
-            "name": "Manjaro KDE 26.1.0-rc1",
-            "url": "https://download.manjaro.org/kde/26.1.0-rc1/manjaro-kde-26.1.0-rc1-260710-linux71.iso",
+            "name": "Manjaro KDE 26.1.0-rc3",
+            "url": "https://download.manjaro.org/kde/26.1.0-rc3/manjaro-kde-26.1.0-rc3-260723-linux71.iso",
             "size": "3.8GB",
             "tags": [
                 "rolling",
@@ -262,11 +262,11 @@
             ],
             "docs": "https://wiki.manjaro.org",
             "notes": "Arch-based, user-friendly rolling release with hardware detection.",
-            "sha256": "a2cce41a1b4f71e631a4aabe4d9437ee934efe923b8fe6e5a58b5d6ff03e5d3b"
+            "sha256": "f9d0f29b9e25a4f7b72417454ce647425839589e11643c22734f3786bd49dc7e"
         },
         {
-            "name": "Manjaro GNOME 26.1.0-rc1",
-            "url": "https://download.manjaro.org/gnome/26.1.0-rc1/manjaro-gnome-26.1.0-rc1-260710-linux71.iso",
+            "name": "Manjaro GNOME 26.1.0-rc3",
+            "url": "https://download.manjaro.org/gnome/26.1.0-rc3/manjaro-gnome-26.1.0-rc3-260723-linux71.iso",
             "size": "3.5GB",
             "tags": [
                 "rolling",
@@ -274,11 +274,11 @@
                 "gnome",
                 "arch"
             ],
-            "sha256": "916591a74f9c0328e7b5d7daa838c413e2863d25111f7fe73a4e0c173db40944"
+            "sha256": "6d8c7aa5ef09f7b7c1cb5e82fac49e7fabde97ca440acedd04702fc8a762e16d"
         },
         {
-            "name": "Manjaro XFCE 26.1.0-rc1",
-            "url": "https://download.manjaro.org/xfce/26.1.0-rc1/manjaro-xfce-26.1.0-rc1-260710-linux71.iso",
+            "name": "Manjaro XFCE 26.1.0-rc3",
+            "url": "https://download.manjaro.org/xfce/26.1.0-rc3/manjaro-xfce-26.1.0-rc3-260723-linux71.iso",
             "size": "3.3GB",
             "tags": [
                 "rolling",
@@ -286,7 +286,7 @@
                 "xfce",
                 "arch"
             ],
-            "sha256": "1f300a096bd95a4b5a118e749fb887e4739b567b4c825efc029b19f693d15ba9"
+            "sha256": "8c7071846e60996697b711f1762c9e51e191b9dbad522c9c05f633e1a4882622"
         },
         {
             "name": "EndeavourOS Endeavour",
@@ -782,7 +782,7 @@
             "name": "Ubuntu Server 24.04 RPi",
             "url": "https://cdimage.ubuntu.com/ubuntu-server/noble/daily-preinstalled/current/noble-preinstalled-server-arm64+raspi.img.xz",
             "size": "1.5GB",
-            "sha256": "280f223f55ff730bbbff2bdeacf027bc49af77af44a7a1ca21198db76508be8e"
+            "sha256": "2c6e652f904ec9e3923b58379e95ae38e02328f939cc7cf43015c750d282b27b"
         },
         {
             "name": "LibreELEC RPi4",
@@ -848,8 +848,8 @@
             "notes": "Security-focused BSD. Proactive security features, integrated cryptography, and clean code."
         },
         {
-            "name": "NetBSD 10.1 amd64",
-            "url": "https://ftp.netbsd.org/pub/NetBSD/NetBSD-10.1/images/NetBSD-10.1-amd64.iso",
+            "name": "NetBSD 11.0 amd64",
+            "url": "https://ftp.netbsd.org/pub/NetBSD/NetBSD-11.0/images/NetBSD-11.0-amd64.iso",
             "size": "560MB"
         }
     ],
