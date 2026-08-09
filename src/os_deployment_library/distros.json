@@ -673,8 +673,8 @@
             "sha256": "4e88fe416df9b527624a175f24c9aa07c714d3332afb1ee3dbf3879573ef2c6c"
         },
         {
-            "name": "Harvester HCI v1.8.1",
-            "url": "https://releases.rancher.com/harvester/v1.8.1/harvester-v1.8.1-amd64.iso",
+            "name": "Harvester HCI v1.8.2",
+            "url": "https://releases.rancher.com/harvester/v1.8.2/harvester-v1.8.2-amd64.iso",
             "size": "4.6GB"
         }
     ],
@@ -782,7 +782,7 @@
             "name": "Ubuntu Server 24.04 RPi",
             "url": "https://cdimage.ubuntu.com/ubuntu-server/noble/daily-preinstalled/current/noble-preinstalled-server-arm64+raspi.img.xz",
             "size": "1.5GB",
-            "sha256": "ee6accf740b7e15f63f7cd6233ee03fca5dfed10ed839e293db3695e4b9d1c2e"
+            "sha256": "0e9156c8d817bdf1a62437ac30844ba5ec7a8a769b15bc2c966c0f234d3779d1"
         },
         {
             "name": "LibreELEC RPi4",
