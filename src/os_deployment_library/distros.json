@@ -639,7 +639,7 @@
         },
         {
             "name": "Gentoo Minimal Install",
-            "url": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20260712T170110Z.iso",
+            "url": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20260811T083102Z.iso",
             "size": "700MB",
             "tags": [
                 "source-based",
@@ -648,7 +648,7 @@
             ],
             "docs": "https://wiki.gentoo.org/wiki/Handbook:AMD64",
             "notes": "Source-based meta-distribution. Maximum customization through compiling from source.",
-            "sha256": "d5b517272901d6ce6bc02619667b00a009e75fec633ac2dab9235970fc6a72bb"
+            "sha256": "9b4d2fbb324956098e3ad68c6313c4b7f8a01511155be5c8c71cd0332d046b5f"
         }
     ],
     "homelab": [
@@ -782,7 +782,7 @@
             "name": "Ubuntu Server 24.04 RPi",
             "url": "https://cdimage.ubuntu.com/ubuntu-server/noble/daily-preinstalled/current/noble-preinstalled-server-arm64+raspi.img.xz",
             "size": "1.5GB",
-            "sha256": "cfb80aee6a3326bf44cd371130a481a9665e7e3e9cef5c84b0f4442b84837d1f"
+            "sha256": "65eec345585e6f01c48d49adb0e8d9a1296e7bd3fcc3303b2d9184c72c5f0620"
         },
         {
             "name": "LibreELEC RPi4",
