@@ -782,7 +782,7 @@
             "name": "Ubuntu Server 24.04 RPi",
             "url": "https://cdimage.ubuntu.com/ubuntu-server/noble/daily-preinstalled/current/noble-preinstalled-server-arm64+raspi.img.xz",
             "size": "1.5GB",
-            "sha256": "b344bc7d055cc7216b6d7a753103c4385bd0856833fd76522eeffc8bcc0cd328"
+            "sha256": "78faa5d2a906621350091baedef525f5de298ee985840c23d7911b17c7d9ec8d"
         },
         {
             "name": "LibreELEC RPi4",
