@@ -289,8 +289,8 @@
             "sha256": "8c7071846e60996697b711f1762c9e51e191b9dbad522c9c05f633e1a4882622"
         },
         {
-            "name": "EndeavourOS Endeavour",
-            "url": "https://mirror.alpix.eu/endeavouros/iso/EndeavourOS_Titan-Neo-2026.04.27.iso",
+            "name": "EndeavourOS Titan-Nova-2026.08.15",
+            "url": "https://mirror.alpix.eu/endeavouros/iso/EndeavourOS_Titan-Nova-2026.08.15.iso",
             "size": "2.0GB",
             "tags": [
                 "rolling",
@@ -406,10 +406,10 @@
     ],
     "linux/server": [
         {
-            "name": "Ubuntu 26.04 LTS Server",
-            "url": "https://releases.ubuntu.com/26.04/ubuntu-26.04-live-server-amd64.iso",
+            "name": "Ubuntu 26.04.1 Server",
+            "url": "https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-live-server-amd64.iso",
             "size": "2.7GB",
-            "sha256": "dec49008a71f6098d0bcfc822021f4d042d5f2db279e4d75bdd981304f1ca5d9"
+            "sha256": "cc8a95cde20f6ced61a322420de00f10cc3c90ced545daa46cb9c1a117f1d927"
         }
     ],
     "linux/fedora-spins": [
@@ -782,7 +782,7 @@
             "name": "Ubuntu Server 24.04 RPi",
             "url": "https://cdimage.ubuntu.com/ubuntu-server/noble/daily-preinstalled/current/noble-preinstalled-server-arm64+raspi.img.xz",
             "size": "1.5GB",
-            "sha256": "d9476e5d038c959bcfa0de4d173ebd59da3dc90687d56d7a77017d25dddf18bc"
+            "sha256": "7ad2ee8fdc843e08f2693b018f8ee28c8f3d60facc06ade1959ad10b3371f60d"
         },
         {
             "name": "LibreELEC RPi4",
