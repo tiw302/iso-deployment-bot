@@ -32,8 +32,8 @@
     ],
     "linux/ubuntu-noble": [
         {
-            "name": "Ubuntu 24.04.4 Desktop",
-            "url": "https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-desktop-amd64.iso",
+            "name": "Ubuntu 24.04.5 Desktop",
+            "url": "https://releases.ubuntu.com/24.04.5/ubuntu-24.04.5-desktop-amd64.iso",
             "size": "5.7GB",
             "tags": [
                 "lts",
@@ -42,11 +42,11 @@
             ],
             "docs": "https://ubuntu.com/tutorials",
             "notes": "Standard LTS version with GNOME Desktop environment.",
-            "sha256": "3a4c9877b483ab46d7c3fbe165a0db275e1ae3cfe56a5657e5a47c2f99a99d1e"
+            "sha256": "63bed7c60c252d5563742b19204ff228ef9f7f10ac0a060159897ab423b6c398"
         },
         {
-            "name": "Ubuntu 24.04.4 Server",
-            "url": "https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-live-server-amd64.iso",
+            "name": "Ubuntu 24.04.5 Server",
+            "url": "https://releases.ubuntu.com/24.04.5/ubuntu-24.04.5-live-server-amd64.iso",
             "size": "2.6GB",
             "tags": [
                 "lts",
@@ -55,7 +55,7 @@
             ],
             "docs": "https://ubuntu.com/server/docs",
             "notes": "Highly recommended for cloud-init and virtualization templates.",
-            "sha256": "e907d92eeec9df64163a7e454cbc8d7755e8ddc7ed42f99dbc80c40f1a138433"
+            "sha256": "97f3d7ffb032c3eb3b23d2c8be9cc76e60c2c1f2c0146ba5ba9fe01cafae0fd8"
         }
     ],
     "linux/ubuntu-plucky": [
@@ -782,7 +782,7 @@
             "name": "Ubuntu Server 24.04 RPi",
             "url": "https://cdimage.ubuntu.com/ubuntu-server/noble/daily-preinstalled/current/noble-preinstalled-server-arm64+raspi.img.xz",
             "size": "1.5GB",
-            "sha256": "40843903f102eba9ec87d47d1f30683fd3ea4727c6991927d661ec8f2f54cdce"
+            "sha256": "b23371a5c8d02f612c26e7c18cacb81c5a48f968c7c66a2645391320aa94351e"
         },
         {
             "name": "LibreELEC RPi4",
