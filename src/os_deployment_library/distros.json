@@ -589,8 +589,8 @@
     ],
     "linux/minimal": [
         {
-            "name": "Alpine Linux 3.24.1 Standard",
-            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-standard-3.24.1-x86_64.iso",
+            "name": "Alpine Linux 3.24.2 Standard",
+            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-standard-3.24.2-x86_64.iso",
             "size": "215MB",
             "tags": [
                 "minimal",
@@ -599,19 +599,19 @@
             ],
             "docs": "https://wiki.alpinelinux.org",
             "notes": "Extremely compact security-oriented distro. Ideal for minimal VM instances.",
-            "sha256": "f4dd613206676c62949144c8ad75fc64582099f444dd1485bae104a60f51dd26"
+            "sha256": "20c026e3a788bfb75fc8b50a54bcc12aee85e3c75909740bba6a6f4563d63296"
         },
         {
             "name": "Alpine Linux 3.23.4 Extended",
-            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-extended-3.24.1-x86_64.iso",
+            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-extended-3.24.2-x86_64.iso",
             "size": "625MB",
-            "sha256": "dc54e0eba94db5c493a6160ba0c3a23b185d7b36d727bc9fad0964c757d3571b"
+            "sha256": "a22115a46a1bcd876234a6cd43797fe19f4acfc4512fb41ea64e16cc2ffb4d90"
         },
         {
             "name": "Alpine Virt",
-            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-virt-3.24.1-x86_64.iso",
+            "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-virt-3.24.2-x86_64.iso",
             "size": "210MB",
-            "sha256": "e73a6241bd5f3c5c2d4d38c02cc52c378c0415a7c888bd292066bf36e0f41a39"
+            "sha256": "3ab424762af704b2c2a9e57df1dc37f982af260071504d977f2fb96822e7130b"
         },
         {
             "name": "Void Linux XFCE",
@@ -673,8 +673,8 @@
             "sha256": "4e88fe416df9b527624a175f24c9aa07c714d3332afb1ee3dbf3879573ef2c6c"
         },
         {
-            "name": "Harvester HCI v1.8.2",
-            "url": "https://releases.rancher.com/harvester/v1.8.2/harvester-v1.8.2-amd64.iso",
+            "name": "Harvester HCI v1.9.0",
+            "url": "https://releases.rancher.com/harvester/v1.9.0/harvester-v1.9.0-amd64.iso",
             "size": "4.6GB"
         }
     ],
