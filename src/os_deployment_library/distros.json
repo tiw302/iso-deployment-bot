@@ -837,8 +837,8 @@
             ]
         },
         {
-            "name": "OpenBSD 7.9 amd64",
-            "url": "https://cdn.openbsd.org/pub/OpenBSD/7.9/amd64/install79.iso",
+            "name": "OpenBSD 8.0 amd64",
+            "url": "https://cdn.openbsd.org/pub/OpenBSD/8.0/amd64/install80.iso",
             "size": "600MB",
             "tags": [
                 "bsd",
